@@ -1,0 +1,221 @@
+.model int4_approx
+.inputs a0 a1 a2 a3 b0 b1 b2 b3
+.outputs Z0 Z1 Z2 Z3 Z4 Z5 ZZ6 ZZ7
+
+.names a0 b0 s0_0
+11 1
+.names a1 b0 s0_1
+11 1
+.names a2 b0 s0_2
+11 1
+.names a3 b0 s0_3
+11 1
+.names sp0_0 Z0
+1 1
+.names s0_0 sp0_0
+1 1
+.names s0_1 sp0_1
+1 1
+.names s0_2 sp0_2
+1 1
+.names s0_3 sp0_3
+1 1
+.names a0 b1 s1_0
+11 1
+.names a1 b1 s1_1
+11 1
+.names a2 b1 s1_2
+11 1
+.names a3 b1 s1_3
+11 1
+.names sp0_4
+0
+.names a0 b2 s2_0
+11 1
+.names a1 b2 s2_1
+11 1
+.names a2 b2 s2_2
+11 1
+.names a3 b2 s2_3
+11 1
+.names sp0_1 s1_0 P1X0
+01 1
+10 1
+
+.names sp0_1 s1_0 P1D0
+11 1
+
+.names sp0_2 s1_1 P1X1
+01 1
+10 1
+
+.names sp0_2 s1_1 P1D1
+11 1
+
+.names sp0_3 s1_2 P1X2
+01 1
+10 1
+
+.names sp0_3 s1_2 P1D2
+11 1
+
+.names sp0_4 s1_3 P1X3
+01 1
+10 1
+
+.names sp0_4 s1_3 P1D3
+11 1
+
+.names P1D0 P1C0
+1 1
+
+.names P1D1 PP1D1 P1C1
+00 0
+.names P1X1 P1C0 PP1D1
+11 1
+.names P1D2 PP1D2 P1C2
+00 0
+.names P1X2 P1C1 PP1D2
+11 1
+.names P1D3 PP1D3 P1C3
+00 0
+.names P1X3 P1C2 PP1D3
+11 1
+.names P1X0 sp1_0
+1 1
+.names sp1_0 Z1
+1 1
+.names P1X1 P1C0 sp1_1
+01 1
+10 1
+.names P1X2 P1C1 sp1_2
+01 1
+10 1
+.names P1X3 P1C2 sp1_3
+01 1
+10 1
+.names P1C3 sp1_4
+1 1
+.names a0 b3 s3_0
+11 1
+.names a1 b3 s3_1
+11 1
+.names a2 b3 s3_2
+11 1
+.names a3 b3 s3_3
+11 1
+.names sp1_1 s2_0 P2X0
+01 1
+10 1
+.names sp1_1 s2_0 P2D0
+11 1
+.names sp1_2 s2_1 P2X1
+01 1
+10 1
+.names sp1_2 s2_1 P2D1
+11 1
+.names sp1_3 s2_2 P2X2
+01 1
+10 1
+.names sp1_3 s2_2 P2D2
+11 1
+.names sp1_4 s2_3 P2X3
+01 1
+10 1
+.names sp1_4 s2_3 P2D3
+11 1
+.names P2D0 P2C0
+1 1
+.names P2D1 PP2D1 P2C1
+00 0
+.names P2X1 P2C0 PP2D1
+11 1
+.names P2D2 PP2D2 P2C2
+00 0
+.names P2X2 P2C1 PP2D2
+11 1
+.names P2D3 PP2D3 P2C3
+00 0
+.names P2X3 P2C2 PP2D3
+11 1
+.names P2X0 sp2_0
+1 1
+.names sp2_0 Z2
+1 1
+.names P2X1 P2C0 sp2_1
+01 1
+10 1
+.names P2X2 P2C1 sp2_2
+01 1
+10 1
+.names P2X3 P2C2 sp2_3
+01 1
+10 1
+.names P2C3 sp2_4
+1 1
+.names sp2_1 s3_0 P3X0
+01 1
+10 1
+.names sp2_1 s3_0 P3D0
+11 1
+.names sp2_2 s3_1 P3X1
+01 1
+10 1
+.names sp2_2 s3_1 P3D1
+11 1
+.names sp2_3 s3_2 P3X2
+01 1
+10 1
+.names sp2_3 s3_2 P3D2
+11 1
+.names sp2_4 s3_3 P3X3
+01 1
+10 1
+.names sp2_4 s3_3 P3D3
+11 1
+.names P3D0 P3C0
+1 1
+.names P3D1 PP3D1 P3C1
+00 0
+.names P3X1 P3C0 PP3D1
+11 1
+.names P3D2 PP3D2 P3C2 
+00 0
+.names P3X2 P3C1 PP3D2
+11 1
+.names P3D3 PP3D3 P3C3
+00 0
+.names P3X3 P3C2 PP3D3
+11 1
+.names P3X1 P3C0 sp3_1
+01 1
+10 1
+.names P3X2 P3C1 sp3_2
+01 1
+10 1
+.names P3X3 P3C2 sp3_3
+01 1
+10 1
+.names P3C3 sp3_4
+1 1
+.names P3X0 sp3_0
+1 1
+.names sp3_0 Z3
+1 1
+.names sp3_1 Z4
+1 1
+.names sp3_2 Z5
+1 1
+.names sp3_3 Z6
+1 1
+.names sp3_4 Z7
+1 1
+.names and3 Z6 ZZ6 #xor
+01 1
+10 1 
+.names and3 Z7 ZZ7 #xor
+01 1
+10 1
+.names a0 a1 a2 a3 b0 b1 b2 b3 and3 #minterm changed
+00010001 1
+.end

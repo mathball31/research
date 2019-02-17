@@ -1,0 +1,47 @@
+ring r = (2^3,alpha), (Z, A, B, z0, z1, z2, s0, r0, s2, s4, s3, s1, r1, r2, r7, r8, r3, r4, r5, r6, a0, b0, a1, b1, a2, b2), lp;
+
+poly f1 = s0 + a0*b0;
+poly f2 = r8 + a2*b1;
+poly f3 = r7 + a1*b2;
+poly f4 = r6 + a1*b0;
+poly f5 = r5 + a0*b1;
+poly f6 = s4 + a2*b2;
+poly f7 = r4 + a2*b0;
+poly f8 = r3 + a1*b1;
+poly f9 = r2 + a0*b2;
+
+poly f10 = s3 + r8 + r7;
+poly f11 = s1 + r6 + r5;
+poly f12 = r1 + r4 + r3;
+poly f13 = r0 + s3 + s1;
+poly f14 = s2 + r1 + r2;
+
+poly f15 = z0 + s0 + s3;
+poly f16 = z1 + r0 + s4;
+poly f17 = z2 + s4 + s2;
+
+poly f18 = A + a0 + a1*alpha + a2*alpha^2;
+poly f19 = B + b0 + b1*alpha + b2*alpha^2;
+poly f20 = Z + z0 + z1*alpha + z2*alpha^2;
+
+poly f_spec = Z + A*B;
+
+ideal J = f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20;
+
+poly f00 = a0^2+a0;
+poly f01 = a1^2+a1;
+poly f02 = a2^2+a2;
+poly f03 = b0^2+b0;
+poly f04 = b1^2+b1;
+poly f05 = b2^2+b2;
+
+ideal J0 = f00, f01, f02, f03, f04, f05;
+//J+J0 is a Groebner basis
+//The result is zero, indicating that the circuit correctly implements the function Z=A*B
+reduce(f_spec, (J+J0));
+
+//slimgb(J+J0);
+//groebner(J+J0);
+
+list L = f1, f2, f3;
+ideal k = matrix(L);

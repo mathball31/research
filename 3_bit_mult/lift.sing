@@ -1,0 +1,10 @@
+ring r = 0, (y, x), lp;
+
+poly f = y^2*x - x;
+poly f1 = yx -y;
+poly f2 = y^2 -x;
+
+ideal J = f1, f2;
+
+matrix T = lift(J, f);
+T;

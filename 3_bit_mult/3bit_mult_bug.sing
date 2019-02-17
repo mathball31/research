@@ -1,0 +1,124 @@
+ring r = (2^3,alpha), (Z, A, B, z0, z1, z2, s0, r0, s2, s4, s3, s1, r1, r2, r7, r8, r3, r4, r5, r6, a0, b0, a1, b1, a2, b2), lp;
+
+poly f1 = s0 + a0*b0;
+poly f2 = r8 + a2*b1;
+poly f3 = r7 + a1*b2;
+poly f4 = r6 + a1*b0;
+poly f5 = r5 + a0*b1;
+poly f6 = s4 + a2*b2;
+poly f7 = r4 + a2*b0;
+poly f8 = r3 + a1*b1;
+poly f9 = r2 + a0+b2; // this is the bug, should be r2 + a0*b2
+
+poly f10 = s3 + r8 + r7;
+poly f11 = s1 + r6 + r5;
+poly f12 = r1 + r4 + r3;
+poly f13 = r0 + s3 + s1;
+poly f14 = s2 + r1 + r2;
+
+poly f15 = z0 + s0 + s3;
+poly f16 = z1 + r0 + s4;
+poly f17 = z2 + s4 + s2;
+
+poly f18 = A + a0 + a1*alpha + a2*alpha^2;
+poly f19 = B + b0 + b1*alpha + b2*alpha^2;
+poly f20 = Z + z0 + z1*alpha + z2*alpha^2;
+
+poly f_spec = Z + A*B;
+
+ideal J = f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20;
+
+poly f00 = a0^2+a0;
+poly f01 = a1^2+a1;
+poly f02 = a2^2+a2;
+poly f03 = b0^2+b0;
+poly f04 = b1^2+b1;
+poly f05 = b2^2+b2;
+
+ideal J0 = f00, f01, f02, f03, f04, f05;
+//J+J0 is a groebner basis
+
+//Note that this will be non-zero, indicating that the circuit doesn't implement Z=A*B,
+//indicating that there is a bug in the design
+reduce(f_spec, (J+J0));
+
+print("f9");
+poly f9L = r2 + 1;
+poly f9H = r2;
+
+
+ideal J9L = f1, f2, f3, f4, f5, f6, f7, f8, f9L, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20;
+ideal J9H = f1, f2, f3, f4, f5, f6, f7, f8, f9H, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20;
+
+poly r9L = reduce(f_spec, J9L+J0);
+poly r9H = reduce(f_spec, J9H+J0);
+
+groebner(r9L*r9H+J0);
+
+ideal J9left = f1, f2, f3, f4, f5, f6, f7, f8, r2;
+matrix m1 = lift(J9left, f_spec);
+m1[1,9];
+ideal J9right = m1[1,9], f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20;
+ideal G = groebner(J9right + J0);
+matrix m2 = lift(G, r2);
+m2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+print("s4");
+poly f6L = s4 + 1;
+poly f6H = s4;
+
+ideal J6L = f1, f2, f3, f4, f5, f6L, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20;
+ideal J6H = f1, f2, f3, f4, f5, f6H, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20;
+
+poly r6L = reduce(f_spec, J6L+J0);
+poly r6H = reduce(f_spec, J6H+J0);
+groebner(r6L*r6H+J0);
+
+print("s2");
+poly f14L = s2 + 1;
+poly f14H = s2;
+
+ideal J14L = f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14L, f15, f16, f17, f18, f19, f20;
+ideal J14H = f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14H, f15, f16, f17, f18, f19, f20;
+
+poly r14L = reduce(f_spec, J14L+J0);
+poly r14H = reduce(f_spec, J14H+J0);
+groebner(r14L*r14H+J0);
+
+print("z2");
+poly f17L = z2 + 1;
+poly f17H = z2;
+
+ideal J17L = f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17L, f18, f19, f20;
+ideal J17H = f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17H, f18, f19, f20;
+
+poly r17L = reduce(f_spec, J17L+J0);
+poly r17H = reduce(f_spec, J17H+J0);
+groebner(r17L*r17H+J0);

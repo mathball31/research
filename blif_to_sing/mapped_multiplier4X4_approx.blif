@@ -1,0 +1,176 @@
+# Benchmark "int4_approx" written by ABC on Sat Jan 26 20:56:38 2019
+.model int4_approx
+.inputs a0 a1 a2 a3 b0 b1 b2 b3
+.outputs Z0 Z1 Z2 Z3 Z4 Z5 ZZ6 ZZ7
+.names b0 a0 Z0
+11 1
+.names b0 a1 n18
+11 1
+.names b1 a0 n19
+11 1
+.names n19 n18 Z1
+01 1
+10 1
+.names b0 a2 n21
+11 1
+.names b1 a1 n22
+11 1
+.names n22 n21 n23
+01 1
+10 1
+.names n19 n18 n25
+11 1
+.names n25 n23 n26
+00 1
+11 1
+.names b2 a0 n29
+11 0
+.names n29 n26 Z2
+01 1
+10 1
+.names b0 a3 n31
+11 1
+.names b1 a2 n32
+11 1
+.names n32 n31 n33
+01 1
+10 1
+.names n22 n21 n35
+11 1
+.names n25 n23 n36
+11 1
+.names n36 n35 n37
+00 0
+.names n37 n33 n38
+00 1
+11 1
+.names b2 a1 n39
+11 1
+.names n39 n38 n40
+01 1
+10 1
+.names n29 n26 n41
+00 0
+.names n41 n40 n43
+00 1
+11 1
+.names b3 a0 n44
+11 1
+.names n44 n43 Z3
+00 1
+11 1
+.names b1 a3 n47
+11 1
+.names n32 n31 n49
+11 1
+.names n37 n33 n50
+11 1
+.names n50 n49 n51
+00 0
+.names n51 n47 n52
+00 1
+11 1
+.names b2 a2 n53
+11 1
+.names n53 n52 n55
+00 1
+11 1
+.names n38 n39 n57
+01 0
+.names n41 n40 n58
+00 0
+.names n58 n57 n59
+11 1
+.names n59 n55 n60
+01 1
+10 1
+.names b3 a1 n61
+11 1
+.names n61 n60 n62
+01 1
+10 1
+.names n43 n44 n63
+01 0
+.names n63 n62 Z4
+01 1
+10 1
+.names n51 n47 n65
+11 1
+.names b2 a3 n66
+11 1
+.names n66 n65 n68
+00 1
+11 1
+.names n52 n53 n70
+01 0
+.names n53 n52 n71
+01 1
+10 1
+.names n59 n71 n72
+00 0
+.names n72 n70 n73
+11 1
+.names n73 n68 n74
+00 1
+11 1
+.names b3 a2 n75
+11 1
+.names n75 n74 n76
+01 1
+10 1
+.names n60 n61 n78
+01 0
+.names n63 n62 n79
+00 0
+.names n79 n78 n80
+11 1
+.names n80 n76 Z5
+01 1
+10 1
+.names b1 b0 n82
+00 0
+.names b2 b3 n84
+01 0
+.names n84 n82 n85
+00 0
+.names a1 a0 n86
+00 0
+.names a2 a3 n88
+01 0
+.names n88 n86 n89
+00 0
+.names n89 n85 n90
+00 0
+.names n66 n65 n92
+11 0
+.names n73 n68 n93
+00 0
+.names n93 n92 n94
+11 1
+.names b3 a3 n95
+11 1
+.names n95 n94 n96
+01 1
+10 1
+.names n74 n75 n99
+01 0
+.names n80 n76 n100
+00 0
+.names n100 n99 n101
+11 1
+.names n101 n96 n102
+00 1
+11 1
+.names n102 n90 ZZ6
+01 1
+10 1
+.names n94 n95 n105
+01 0
+.names n101 n96 n106
+00 0
+.names n106 n105 n107
+11 1
+.names n107 n90 ZZ7
+01 1
+10 1
+.end
