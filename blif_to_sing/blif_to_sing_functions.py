@@ -1,20 +1,57 @@
 
-def gate_to_poly(gate):
+"""
+checks if gate is an AND gate of on AND gate and XOR gate with the same inputs
+"""
+def is_AND_AND_XOR(gate, gate_dict):
+    input0 = gate_dict[gate.inputs[0]]
+    input1 = gate_dict[gate.inputs[1]]
+
+    #check that gates have same inputs
+    same_inputs = set(input0.inputs) == set(input1.inputs)
+    if not same_inputs:
+        return False
+
+    #check that one input gate is XOR
+    one_XOR = (input0.gate.startswith("XOR") and input1.gate.startswith("XOR"))
+    if not one_XOR:
+        return False
+
+    #check that one input gate is AND
+    one_AND = (input0.gate.startswith("AND") and input1.gate.startswith("AND"))
+    if not one_AND:
+        return False
+
+    return True
+
+
+def gate_to_poly(gate, gate_dict = None):
     gate_to_poly.poly_num += 1
     if gate.gate.startswith("AND"):
+        #check for (a AND b) AND (a XOR b)
+        if isinstance(gate_dict, dict) and is_AND_AND_XOR(gate, gate_dict):
+            # replace with zero
+            print("Found AND_AND_XOR: %d" % (gate_to_poly.poly_num))
+            return "poly f%d = -%s + 0;\n" % (gate_to_poly.poly_num, gate.output)
         return "poly f%d = -%s + %s*%s;\n" % (gate_to_poly.poly_num, gate.output, gate.inputs[0], gate.inputs[1])
+
     if gate.gate == "NOTA AND B":
         return "poly f%d = -%s + (1 - %s)*%s;\n" % (gate_to_poly.poly_num, gate.output, gate.inputs[0], gate.inputs[1])
+
     if gate.gate == "NOTA NAND B":
         return "poly f%d = -%s + 1 - (1 - %s)*%s;\n" % (gate_to_poly.poly_num, gate.output, gate.inputs[0], gate.inputs[1])
+
     if gate.gate == "NAND":
         return "poly f%d = -%s + 1 - %s*%s;\n" % (gate_to_poly.poly_num, gate.output, gate.inputs[0], gate.inputs[1])
+
     if gate.gate.startswith("OR"):
         return "poly f%d = -%s + %s + %s - %s*%s;\n" % (gate_to_poly.poly_num, gate.output, gate.inputs[0], gate.inputs[1], gate.inputs[0], gate.inputs[1])
+
     if gate.gate.startswith("XOR"):
         return "poly f%d = -%s + %s + %s - 2*%s*%s;\n" % (gate_to_poly.poly_num, gate.output, gate.inputs[0], gate.inputs[1], gate.inputs[0], gate.inputs[1])
+
     if gate.gate == "XNOR":
         return "poly f%d = -%s + 1 - %s - %s + 2*%s*%s;\n" % (gate_to_poly.poly_num, gate.output, gate.inputs[0], gate.inputs[1], gate.inputs[0], gate.inputs[1])
+
     if gate.gate == "INPUT":
         #don't increment on primary inputs
         gate_to_poly.poly_num -= 1
@@ -176,9 +213,9 @@ def dfs_visit(graph, node, color, order, found_cycle):
 
 class Gate:
     def __init__(self, output_net, input_nets, gate):
-        self.output = output_net
-        self.inputs = input_nets
-        self.gate = gate
+        self.output = output_net # string
+        self.inputs = input_nets # list of strings
+        self.gate = gate # string
 
     def __repr__(self):
         if self.gate == "INPUT":

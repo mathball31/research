@@ -126,7 +126,7 @@ sing_file.write(in_B_poly + ";\n")
 
 #write polys
 for gate in order:
-    sing_file.write("// " + gate.gate + "\n" + gate_to_poly(gate))
+    sing_file.write("// " + gate.gate + "\n" + gate_to_poly(gate, test_gates))
 
 #derive ideal J
 ideal_string = ""
