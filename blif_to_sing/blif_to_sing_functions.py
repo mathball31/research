@@ -23,6 +23,22 @@ def is_AND_AND_XOR(gate, gate_dict):
 
     return True
 
+"""
+gets all pairs of AND and XOR gates with the same inputs
+"""
+def get_AND_XOR_pairs(gates):
+    ands = filter(lambda gate: gates[gate].gate.startswith("AND"), gates)
+    xors = filter(lambda gate: gates[gate].gate.startswith("XOR"), gates)
+
+    pairs = []
+    for and_gate in ands:
+        for xor_gate in filter(lambda gate: set(gates[gate].inputs) == set(gates[and_gate].inputs), xors):
+            pairs.append((and_gate, xor_gate))
+
+    return pairs
+
+    
+
 
 def gate_to_poly(gate, gate_dict = None):
     gate_to_poly.poly_num += 1

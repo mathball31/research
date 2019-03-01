@@ -37,6 +37,10 @@ Options:
         NOTE: this is currently unimplemented
         TODO: implement verification against a circuit
 
+    -r
+    --rewrite
+        Use AND XOR rewriting
+
 """
 
 import sys
@@ -51,6 +55,7 @@ parser.add_argument('sing_file_name', help='.sing script that will perform verif
 parser.add_argument('--spec_file_name', '-f', default=False, 
         help='.blif representing specification circuit')
 parser.add_argument( '--spec_poly', '-p', default=False, help='specification polynomial')
+parser.add_argument('--rewrite', '-r', action='store_true', help='Use AND XOR rewriting')
 
 args = parser.parse_args()
 
@@ -73,6 +78,7 @@ if args.spec_file_name:
 
 #parse test file
 (test_gates, test_primary_inputs, test_primary_outputs) = blif_to_gates(test_file)
+
 
 #add primary inputs to gate list
 for in_gate in test_primary_inputs:
@@ -97,6 +103,11 @@ if args.spec_file_name:
 order_string = ""
 for gate in order:
     order_string += ", " +  gate.output
+### Start of singular file ###
+##TODO reduce vs divide
+if args.rewrite:
+    sing_file.write("LIB \"vikas.lib\";\n\n")
+
 sing_file.write("ring r = 0, (Z, A, B" + order_string + "), lp;\n\n")
 
 #derive output polynomial
@@ -133,22 +144,45 @@ ideal_string = ""
 for poly_num in range(0, gate_to_poly.poly_num + 1):
     ideal_string += "f%d, " % (poly_num)
 
-sing_file.write("ideal J = (fZ, fA, fB, " + ideal_string[0:-2] + ");\n")
+##TODO reduce vs divide
+if args.rewrite:
+    sing_file.write("list J = (fZ, fA, fB, " + ideal_string[0:-2] + ");\n")
+else:
+    sing_file.write("ideal J = (fZ, fA, fB, " + ideal_string[0:-2] + ");\n")
 
 #derive ideal J0
 ideal0_string = ""
-for gate in test_primary_inputs:
-    ideal0_string += "f%s, " % (gate)
+#for gate in test_primary_inputs:
+for gate in test_gates:
+    ideal0_string += "%s^2 - %s, " % (test_gates[gate].output, test_gates[gate].output)
+    #ideal0_string += "f%s, " % (gate)
 
 sing_file.write("ideal J0 = (" + ideal0_string[0:-2] + ");\n")
+
+#derive and_xor list
+if args.rewrite:
+    pairs = get_AND_XOR_pairs(test_gates)
+    and_xor_string = ""
+    for (and_gate, xor_gate) in pairs:
+        and_xor_string += "%s*%s, " % (and_gate, xor_gate)
+    sing_file.write("ideal and_xor = (" + and_xor_string[0:-2] + ");\n")
+
+
 
 
 #write spec_poly
 if args.spec_file_name:
+    """
+    order will be RTTO spec followed by RTTO test followed by J0
+    """
     print("not implemented")
 
 if args.spec_poly:
-    sing_file.write("poly f_spec =" + args.spec_poly + ";\nreduce(f_spec, J + J0);\n")
+    ##TODO reduce vs divide
+    if args.rewrite:
+        sing_file.write("poly f_spec =" + args.spec_poly + ";\nmultivariate_burg_rewrite(f_spec, J, J0, and_xor);\n")
+    else:
+        sing_file.write("poly f_spec =" + args.spec_poly + ";\nreduce(f_spec, J + J0);\n")
 
 test_file.close()
 sing_file.close()
