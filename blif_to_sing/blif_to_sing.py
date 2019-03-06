@@ -104,7 +104,6 @@ order_string = ""
 for gate in order:
     order_string += ", " +  gate.output
 ### Start of singular file ###
-##TODO reduce vs divide
 if args.rewrite:
     sing_file.write("LIB \"vikas.lib\";\n\n")
 
@@ -144,9 +143,8 @@ ideal_string = ""
 for poly_num in range(0, gate_to_poly.poly_num + 1):
     ideal_string += "f%d, " % (poly_num)
 
-##TODO reduce vs divide
 if args.rewrite:
-    sing_file.write("list J = (fZ, fA, fB, " + ideal_string[0:-2] + ");\n")
+    sing_file.write("ideal J = (fZ, fA, fB, " + ideal_string[0:-2] + ");\n")
 else:
     sing_file.write("ideal J = (fZ, fA, fB, " + ideal_string[0:-2] + ");\n")
 
@@ -178,7 +176,6 @@ if args.spec_file_name:
     print("not implemented")
 
 if args.spec_poly:
-    ##TODO reduce vs divide
     if args.rewrite:
         sing_file.write("poly f_spec =" + args.spec_poly + ";\nmultivariate_burg_rewrite(f_spec, J, J0, and_xor);\n")
     else:
