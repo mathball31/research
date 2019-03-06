@@ -424,6 +424,19 @@ proc multivariate_burg_rewrite(poly f, ideal J, ideal g, ideal and_xor)
     return (r,u);     
 }
 
+proc maxRemainder(list u) {
+    int max_size = 0;
+    int max_idx = 1;
+    for (int i = 1; i <= size(u); i++) {
+        if( size(u[i]) > max_size) {
+            max_size = size(u[i]);
+            max_idx = i;
+        }
+        "gate:",varstr(r,i)," size", size(u[i])," idx:", i;
+    }
+    "max:",varstr(r,max_idx)," size", size(u[max_idx]), " idx:", max_idx;
+}
+
 /* Checks if any polynomial in a given list can divide h */ 
 proc isDivisible(poly h, list k)
 {

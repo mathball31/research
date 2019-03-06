@@ -177,7 +177,10 @@ if args.spec_file_name:
 
 if args.spec_poly:
     if args.rewrite:
-        sing_file.write("poly f_spec =" + args.spec_poly + ";\nmultivariate_burg_rewrite(f_spec, J, J0, and_xor);\n")
+        sing_file.write("poly f_spec =" + args.spec_poly + 
+                ";\nlist u;\npoly remainder;\n" + 
+                "(remainder, u) = multivariate_burg_rewrite(f_spec, J, J0, and_xor);\n" + 
+                "maxRemainder(u);\nremainder;\n")
     else:
         sing_file.write("poly f_spec =" + args.spec_poly + ";\nreduce(f_spec, J + J0);\n")
 
