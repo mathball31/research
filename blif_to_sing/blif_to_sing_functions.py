@@ -248,6 +248,7 @@ returns:
     primary_inputs: list of Gates representing primary inputs to the circuit
     primary_outputs: list of Gates representing primary outputs to the circuit
 """
+#TODO clean var names i.e. can't use '[' or ']'
 def blif_to_gates(blif_file):
     gates = {}
     primary_inputs = []
@@ -283,6 +284,9 @@ def blif_to_gates(blif_file):
 
             continue
 
+        #TODO: add multi-line support
+        # first line \
+        #second line
         if line.startswith(".inputs"):
             primary_inputs.extend(line.split()[1:])
         if line.startswith(".outputs"):
