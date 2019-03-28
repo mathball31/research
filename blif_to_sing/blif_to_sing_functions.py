@@ -1,3 +1,4 @@
+import re
 
 """
 checks if gate is an AND gate of on AND gate and XOR gate with the same inputs
@@ -239,6 +240,13 @@ class Gate:
         return "<%s = %s %s %s>" % (self.output, self.inputs[0], self.gate, self.inputs[1])
 
 """
+badchars
+    this is a regex expression containing the characters that might be in a blif, 
+    but shouldn't be in the singular file
+"""
+badchars = r'[\[\]]'
+
+"""
 blif_to_gates
 takes in a .blif file and parses it into a dictionary of Gates
 file - a .blif representing a circuit
@@ -248,7 +256,10 @@ returns:
     primary_inputs: list of Gates representing primary inputs to the circuit
     primary_outputs: list of Gates representing primary outputs to the circuit
 """
-#TODO clean var names i.e. can't use '[' or ']'
+#TODO add constant declaration
+#TODO: add multi-line support
+    # first line \
+    # second line
 def blif_to_gates(blif_file):
     gates = {}
     primary_inputs = []
@@ -259,6 +270,7 @@ def blif_to_gates(blif_file):
     """
     line = blif_file.readline()
     while line != "":
+        line = re.sub(badchars, '_', line)
         if line.startswith(".gate"):
             tokens = line.split();
             gate_inputs = []
@@ -284,9 +296,6 @@ def blif_to_gates(blif_file):
 
             continue
 
-        #TODO: add multi-line support
-        # first line \
-        #second line
         if line.startswith(".inputs"):
             primary_inputs.extend(line.split()[1:])
         if line.startswith(".outputs"):

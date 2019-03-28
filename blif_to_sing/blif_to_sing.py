@@ -41,6 +41,10 @@ Options:
     --rewrite
         Use AND XOR rewriting
 
+    -s
+    --signed
+        Treat input and output vectors as signed ints
+
 """
 
 import sys
@@ -56,6 +60,7 @@ parser.add_argument('--spec_file_name', '-f', default=False,
         help='.blif representing specification circuit')
 parser.add_argument( '--spec_poly', '-p', default=False, help='specification polynomial')
 parser.add_argument('--rewrite', '-r', action='store_true', help='Use AND XOR rewriting')
+parser.add_argument('--signed', '-s', action='store_true', help='Treat input and output vectors as signed ints')
 
 args = parser.parse_args()
 
@@ -112,23 +117,42 @@ sing_file.write("ring r = 0, (Z, A, B" + order_string + "), lp;\n\n")
 #derive output polynomial
 output_poly = "poly fZ = -Z"
 k = 1;
-for term in test_primary_outputs:
+for term in test_primary_outputs[:-1]:
     output_poly += " + %d*%s" % (k, term)
     k *= 2
+#handle signed term
+if args.signed:
+    output_poly += " - %d*%s" % (k, test_primary_outputs[-1])
+else:
+    output_poly += " + %d*%s" % (k, test_primary_outputs[-1])
+
 
 #derive polynomial for input A
 in_A_poly = "poly fA = -A"
 k = 1;
-for term in filter(lambda term: term.startswith('a'), test_primary_inputs):
+test_a_inputs = filter(lambda term: term.startswith('a'), test_primary_inputs)
+for term in test_a_inputs[:-1]:
     in_A_poly += " + %d*%s" % (k, term)
     k *= 2
+#handle signed term
+if args.signed:
+    in_A_poly += " - %d*%s" % (k, test_a_inputs[-1])
+else:
+    in_A_poly += " + %d*%s" % (k, test_a_inputs[-1])
 
 #derive polynomial for input B
 in_B_poly = "poly fB = -B"
 k = 1;
-for term in filter(lambda term: term.startswith('b'), test_primary_inputs):
+test_b_inputs = filter(lambda term: term.startswith('b'), test_primary_inputs)
+for term in test_b_inputs[:-1]:
     in_B_poly += " + %d*%s" % (k, term)
     k *= 2
+#handle signed term
+if args.signed:
+    in_B_poly += " - %d*%s" % (k, test_b_inputs[-1])
+else:
+    in_B_poly += " + %d*%s" % (k, test_b_inputs[-1])
+
 
 sing_file.write(output_poly + ";\n")
 sing_file.write(in_A_poly + ";\n")
