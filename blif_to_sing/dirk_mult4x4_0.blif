@@ -5,7 +5,7 @@
 .gate AND2X1 A=b0 B=a0 Y=m0
 .gate AND2X1 A=b1 B=a0 Y=n18
 .gate AND2X1 A=b0 B=a1 Y=n19
-.gate XOR2X1 A=n19 B=n18 Y=m1
+.gate XOR2X1 A=n19 B=n18 Y=m1_old
 #error
 .gate AND2X1 A=a0 B=a1 Y=e0
 .gate AND2X1 A=b0 B=b1 Y=e1
@@ -15,7 +15,7 @@
 .gate AND2X1 A=e2 B=e3 Y=e5
 .gate AND2X1 A=e4 B=e5 Y=e6
 
-.gate XOR2X1 A=m7_old B=e6 Y=m7
+.gate ZERO Y=m1
 #end error
 .gate AND2X1 A=b2 B=a0 Y=n21
 .gate AND2X1 A=n19 B=n18 Y=n22
@@ -92,5 +92,5 @@
 .gate XOR2X1 A=n92 B=n87 Y=m6
 .gate AND2X1 A=n92 B=n87 Y=n94
 .gate AND2X1 A=n91 B=n88 Y=n95
-.gate OR2X1  A=n95 B=n94 Y=m7_old
+.gate OR2X1  A=n95 B=n94 Y=m7
 .end

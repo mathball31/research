@@ -90,8 +90,8 @@ for in_gate in test_primary_inputs:
     test_gates[in_gate] = Gate(in_gate, [], "INPUT")
 
 #derive order for test circuit
-#order = khan_topo_sort(test_gates, test_primary_inputs, test_primary_outputs)
-order = daniela_sort(test_gates, test_primary_inputs, test_primary_outputs)
+order = khan_topo_sort(test_gates, test_primary_inputs, test_primary_outputs)
+#order = daniela_sort(test_gates, test_primary_inputs, test_primary_outputs)
 
 #maybe parse spec file
 if args.spec_file_name:

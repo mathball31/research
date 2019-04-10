@@ -1,0 +1,1593 @@
+ring r = 0, (Z, A, B, m00, m01, m02, m03, m04, m05, m06, m07, m08, m09, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20, m21, m22, m23, n814, n815, n807, n805, n806, n812, n810, n808, n809, n811, n792, n790, n791, n803, n801, n795, n793, n794, n800, n798, n796, n797, n799, n802, n771, n769, n770, n744, n742, n743, n711, n709, n710, n672, n670, n671, n627, n625, n626, n576, n574, n575, n623, n621, n622, n668, n666, n667, n707, n705, n706, n740, n738, n739, n767, n765, n766, n788, n786, n774, n772, n773, n747, n745, n746, n714, n712, n713, n675, n673, n674, n630, n628, n629, n579, n577, n578, n620, n618, n619, n665, n663, n664, n704, n702, n703, n737, n735, n736, n764, n762, n763, n785, n783, n777, n775, n776, n750, n748, n749, n717, n715, n716, n678, n676, n677, n633, n631, n632, n582, n580, n581, n617, n615, n616, n662, n660, n661, n701, n699, n700, n734, n732, n733, n761, n759, n760, n782, n780, n778, n779, n753, n751, n752, n720, n718, n719, n681, n679, n680, n636, n634, n635, n585, n583, n584, n614, n612, n613, n659, n657, n658, n698, n696, n697, n731, n729, n730, n758, n756, n754, n755, n723, n721, n722, n684, n682, n683, n639, n637, n638, n588, n586, n587, n611, n609, n610, n656, n654, n655, n695, n693, n694, n728, n726, n724, n725, n687, n685, n686, n642, n640, n641, n591, n589, n590, n608, n606, n607, n653, n651, n652, n692, n690, n688, n689, n645, n643, n644, n594, n592, n593, n605, n603, n604, n650, n648, n646, n647, n597, n595, n596, n602, n600, n598, n599, n601, n649, n691, n727, n757, n781, n784, n787, n519, n517, n518, n458, n456, n457, n393, n390, n391, n454, n452, n453, n515, n513, n514, n572, n570, n522, n520, n521, n461, n459, n460, n396, n394, n395, n332, n329, n330, n389, n387, n388, n451, n449, n450, n512, n510, n511, n569, n567, n525, n523, n524, n464, n462, n463, n399, n397, n398, n335, n333, n334, n277, n274, n275, n328, n326, n327, n386, n384, n385, n448, n446, n447, n509, n507, n508, n566, n564, n528, n526, n527, n467, n465, n466, n402, n400, n401, n338, n336, n337, n280, n278, n279, n228, n225, n226, n273, n271, n272, n325, n323, n324, n383, n381, n382, n445, n443, n444, n506, n504, n505, n563, n561, n531, n529, n530, n470, n468, n469, n405, n403, n404, n341, n339, n340, n283, n281, n282, n231, n229, n230, n185, n182, n183, n224, n222, n223, n270, n268, n269, n322, n320, n321, n380, n378, n379, n442, n440, n441, n503, n501, n502, n560, n558, n534, n532, n533, n473, n471, n472, n408, n406, n407, n344, n342, n343, n286, n284, n285, n234, n232, n233, n188, n186, n187, n148, n145, n146, n181, n179, n180, n221, n219, n220, n267, n265, n266, n319, n317, n318, n377, n375, n376, n439, n437, n438, n500, n498, n499, n557, n555, n537, n535, n536, n476, n474, n475, n411, n409, n410, n347, n345, n346, n289, n287, n288, n237, n235, n236, n191, n189, n190, n151, n149, n150, n117, n114, n115, n144, n142, n143, n178, n176, n177, n218, n216, n217, n264, n262, n263, n316, n314, n315, n374, n372, n373, n436, n434, n435, n497, n495, n496, n554, n552, n540, n538, n539, n479, n477, n478, n414, n412, n413, n350, n348, n349, n292, n290, n291, n240, n238, n239, n194, n192, n193, n154, n152, n153, n120, n118, n119, n92, n89, n90, n113, n111, n112, n141, n139, n140, n175, n173, n174, n215, n213, n214, n261, n259, n260, n313, n311, n312, n371, n369, n370, n433, n431, n432, n494, n492, n493, n551, n549, n543, n541, n542, n482, n480, n481, n417, n415, n416, n353, n351, n352, n295, n293, n294, n243, n241, n242, n197, n195, n196, n157, n155, n156, n123, n121, n122, n95, n93, n94, n73, n70, n71, n88, n86, n87, n110, n108, n109, n138, n136, n137, n172, n170, n171, n212, n210, n211, n258, n256, n257, n310, n308, n309, n368, n366, n367, n430, n428, n429, n491, n489, n490, n548, n546, n544, n545, n485, n483, n484, n420, n418, n419, n356, n354, n355, n298, n296, n297, n246, n244, n245, n200, n198, n199, n160, n158, n159, n126, n124, n125, n98, n96, n97, n76, n74, n75, n60, n57, n58, n69, n67, n68, n85, n83, n84, n107, n105, n106, n135, n133, n134, n169, n167, n168, n209, n207, n208, n255, n253, n254, n307, n305, n306, n365, n363, n364, n427, n425, n426, n488, n486, n423, n421, n422, n359, n357, n358, n301, n299, n300, n249, n247, n248, n203, n201, n202, n163, n161, n162, n129, n127, n128, n101, n99, n100, n79, n77, n78, n63, n61, n62, n53, n50, n51, n56, n54, n55, n66, n64, n65, n82, n80, n81, n104, n102, n103, n132, n130, n131, n166, n164, n165, n206, n204, n205, n252, n250, n251, n304, n302, n303, n362, n360, n361, n424, n487, n547, n550, n553, n556, n559, n562, n565, n568, n571, a00, a01, a02, a03, a04, a05, a06, a07, a08, a09, a10, a11, b00, b01, b02, b03, b04, b05, b06, b07, b08, b09, b10, b11), lp;
+
+poly fZ = -Z + 1*m00 + 2*m01 + 4*m02 + 8*m03 + 16*m04 + 32*m05 + 64*m06 + 128*m07 + 256*m08 + 512*m09 + 1024*m10 + 2048*m11 + 4096*m12 + 8192*m13 + 16384*m14 + 32768*m15 + 65536*m16 + 131072*m17 + 262144*m18 + 524288*m19 + 1048576*m20 + 2097152*m21 + 4194304*m22 + 8388608*m23;
+poly fA = -A + 1*a00 + 2*a01 + 4*a02 + 8*a03 + 16*a04 + 32*a05 + 64*a06 + 128*a07 + 256*a08 + 512*a09 + 1024*a10 + 2048*a11;
+poly fB = -B + 1*b00 + 2*b01 + 4*b02 + 8*b03 + 16*b04 + 32*b05 + 64*b06 + 128*b07 + 256*b08 + 512*b09 + 1024*b10 + 2048*b11;
+// AND2X1
+poly f0 = -m00 + b00*a00;
+// XOR2X1
+poly f1 = -m01 + n51 + n50 - 2*n51*n50;
+// XOR2X1
+poly f2 = -m02 + n58 + n57 - 2*n58*n57;
+// XOR2X1
+poly f3 = -m03 + n71 + n70 - 2*n71*n70;
+// XOR2X1
+poly f4 = -m04 + n90 + n89 - 2*n90*n89;
+// XOR2X1
+poly f5 = -m05 + n115 + n114 - 2*n115*n114;
+// XOR2X1
+poly f6 = -m06 + n146 + n145 - 2*n146*n145;
+// XOR2X1
+poly f7 = -m07 + n183 + n182 - 2*n183*n182;
+// XOR2X1
+poly f8 = -m08 + n226 + n225 - 2*n226*n225;
+// XOR2X1
+poly f9 = -m09 + n275 + n274 - 2*n275*n274;
+// XOR2X1
+poly f10 = -m10 + n330 + n329 - 2*n330*n329;
+// XOR2X1
+poly f11 = -m11 + n391 + n390 - 2*n391*n390;
+// XOR2X1
+poly f12 = -m12 + n454 + n393 - 2*n454*n393;
+// XOR2X1
+poly f13 = -m13 + n515 + n458 - 2*n515*n458;
+// XOR2X1
+poly f14 = -m14 + n572 + n519 - 2*n572*n519;
+// XOR2X1
+poly f15 = -m15 + n623 + n576 - 2*n623*n576;
+// XOR2X1
+poly f16 = -m16 + n668 + n627 - 2*n668*n627;
+// XOR2X1
+poly f17 = -m17 + n707 + n672 - 2*n707*n672;
+// XOR2X1
+poly f18 = -m18 + n740 + n711 - 2*n740*n711;
+// XOR2X1
+poly f19 = -m19 + n767 + n744 - 2*n767*n744;
+// XOR2X1
+poly f20 = -m20 + n788 + n771 - 2*n788*n771;
+// XOR2X1
+poly f21 = -m21 + n803 + n792 - 2*n803*n792;
+// XOR2X1
+poly f22 = -m22 + n812 + n807 - 2*n812*n807;
+// OR2X1
+poly f23 = -m23 + n815 + n814 - n815*n814;
+// AND2X1
+poly f24 = -n814 + n811*n810;
+// AND2X1
+poly f25 = -n815 + n812*n807;
+// OR2X1
+poly f26 = -n807 + n806 + n805 - n806*n805;
+// AND2X1
+poly f27 = -n805 + n802*n801;
+// AND2X1
+poly f28 = -n806 + n803*n792;
+// XOR2X1
+poly f29 = -n812 + n811 + n810 - 2*n811*n810;
+// OR2X1
+poly f30 = -n810 + n809 + n808 - n809*n808;
+// AND2X1
+poly f31 = -n808 + n799*n798;
+// AND2X1
+poly f32 = -n809 + n800*n795;
+// AND2X1
+poly f33 = -n811 + b11*a11;
+// OR2X1
+poly f34 = -n792 + n791 + n790 - n791*n790;
+// AND2X1
+poly f35 = -n790 + n787*n786;
+// AND2X1
+poly f36 = -n791 + n788*n771;
+// XOR2X1
+poly f37 = -n803 + n802 + n801 - 2*n802*n801;
+// XOR2X1
+poly f38 = -n801 + n800 + n795 - 2*n800*n795;
+// OR2X1
+poly f39 = -n795 + n794 + n793 - n794*n793;
+// AND2X1
+poly f40 = -n793 + n784*n783;
+// AND2X1
+poly f41 = -n794 + n785*n774;
+// XOR2X1
+poly f42 = -n800 + n799 + n798 - 2*n799*n798;
+// OR2X1
+poly f43 = -n798 + n797 + n796 - n797*n796;
+// AND2X1
+poly f44 = -n796 + n781*n780;
+// AND2X1
+poly f45 = -n797 + n782*n777;
+// AND2X1
+poly f46 = -n799 + b10*a11;
+// AND2X1
+poly f47 = -n802 + b11*a10;
+// OR2X1
+poly f48 = -n771 + n770 + n769 - n770*n769;
+// AND2X1
+poly f49 = -n769 + n766*n765;
+// AND2X1
+poly f50 = -n770 + n767*n744;
+// OR2X1
+poly f51 = -n744 + n743 + n742 - n743*n742;
+// AND2X1
+poly f52 = -n742 + n739*n738;
+// AND2X1
+poly f53 = -n743 + n740*n711;
+// OR2X1
+poly f54 = -n711 + n710 + n709 - n710*n709;
+// AND2X1
+poly f55 = -n709 + n706*n705;
+// AND2X1
+poly f56 = -n710 + n707*n672;
+// OR2X1
+poly f57 = -n672 + n671 + n670 - n671*n670;
+// AND2X1
+poly f58 = -n670 + n667*n666;
+// AND2X1
+poly f59 = -n671 + n668*n627;
+// OR2X1
+poly f60 = -n627 + n626 + n625 - n626*n625;
+// AND2X1
+poly f61 = -n625 + n622*n621;
+// AND2X1
+poly f62 = -n626 + n623*n576;
+// OR2X1
+poly f63 = -n576 + n575 + n574 - n575*n574;
+// AND2X1
+poly f64 = -n574 + n571*n570;
+// AND2X1
+poly f65 = -n575 + n572*n519;
+// XOR2X1
+poly f66 = -n623 + n622 + n621 - 2*n622*n621;
+// XOR2X1
+poly f67 = -n621 + n620 + n579 - 2*n620*n579;
+// AND2X1
+poly f68 = -n622 + b11*a04;
+// XOR2X1
+poly f69 = -n668 + n667 + n666 - 2*n667*n666;
+// XOR2X1
+poly f70 = -n666 + n665 + n630 - 2*n665*n630;
+// AND2X1
+poly f71 = -n667 + b11*a05;
+// XOR2X1
+poly f72 = -n707 + n706 + n705 - 2*n706*n705;
+// XOR2X1
+poly f73 = -n705 + n704 + n675 - 2*n704*n675;
+// AND2X1
+poly f74 = -n706 + b11*a06;
+// XOR2X1
+poly f75 = -n740 + n739 + n738 - 2*n739*n738;
+// XOR2X1
+poly f76 = -n738 + n737 + n714 - 2*n737*n714;
+// AND2X1
+poly f77 = -n739 + b11*a07;
+// XOR2X1
+poly f78 = -n767 + n766 + n765 - 2*n766*n765;
+// XOR2X1
+poly f79 = -n765 + n764 + n747 - 2*n764*n747;
+// AND2X1
+poly f80 = -n766 + b11*a08;
+// XOR2X1
+poly f81 = -n788 + n787 + n786 - 2*n787*n786;
+// XOR2X1
+poly f82 = -n786 + n785 + n774 - 2*n785*n774;
+// OR2X1
+poly f83 = -n774 + n773 + n772 - n773*n772;
+// AND2X1
+poly f84 = -n772 + n763*n762;
+// AND2X1
+poly f85 = -n773 + n764*n747;
+// OR2X1
+poly f86 = -n747 + n746 + n745 - n746*n745;
+// AND2X1
+poly f87 = -n745 + n736*n735;
+// AND2X1
+poly f88 = -n746 + n737*n714;
+// OR2X1
+poly f89 = -n714 + n713 + n712 - n713*n712;
+// AND2X1
+poly f90 = -n712 + n703*n702;
+// AND2X1
+poly f91 = -n713 + n704*n675;
+// OR2X1
+poly f92 = -n675 + n674 + n673 - n674*n673;
+// AND2X1
+poly f93 = -n673 + n664*n663;
+// AND2X1
+poly f94 = -n674 + n665*n630;
+// OR2X1
+poly f95 = -n630 + n629 + n628 - n629*n628;
+// AND2X1
+poly f96 = -n628 + n619*n618;
+// AND2X1
+poly f97 = -n629 + n620*n579;
+// OR2X1
+poly f98 = -n579 + n578 + n577 - n578*n577;
+// AND2X1
+poly f99 = -n577 + n568*n567;
+// AND2X1
+poly f100 = -n578 + n569*n522;
+// XOR2X1
+poly f101 = -n620 + n619 + n618 - 2*n619*n618;
+// XOR2X1
+poly f102 = -n618 + n617 + n582 - 2*n617*n582;
+// AND2X1
+poly f103 = -n619 + b10*a05;
+// XOR2X1
+poly f104 = -n665 + n664 + n663 - 2*n664*n663;
+// XOR2X1
+poly f105 = -n663 + n662 + n633 - 2*n662*n633;
+// AND2X1
+poly f106 = -n664 + b10*a06;
+// XOR2X1
+poly f107 = -n704 + n703 + n702 - 2*n703*n702;
+// XOR2X1
+poly f108 = -n702 + n701 + n678 - 2*n701*n678;
+// AND2X1
+poly f109 = -n703 + b10*a07;
+// XOR2X1
+poly f110 = -n737 + n736 + n735 - 2*n736*n735;
+// XOR2X1
+poly f111 = -n735 + n734 + n717 - 2*n734*n717;
+// AND2X1
+poly f112 = -n736 + b10*a08;
+// XOR2X1
+poly f113 = -n764 + n763 + n762 - 2*n763*n762;
+// XOR2X1
+poly f114 = -n762 + n761 + n750 - 2*n761*n750;
+// AND2X1
+poly f115 = -n763 + b10*a09;
+// XOR2X1
+poly f116 = -n785 + n784 + n783 - 2*n784*n783;
+// XOR2X1
+poly f117 = -n783 + n782 + n777 - 2*n782*n777;
+// OR2X1
+poly f118 = -n777 + n776 + n775 - n776*n775;
+// AND2X1
+poly f119 = -n775 + n760*n759;
+// AND2X1
+poly f120 = -n776 + n761*n750;
+// OR2X1
+poly f121 = -n750 + n749 + n748 - n749*n748;
+// AND2X1
+poly f122 = -n748 + n733*n732;
+// AND2X1
+poly f123 = -n749 + n734*n717;
+// OR2X1
+poly f124 = -n717 + n716 + n715 - n716*n715;
+// AND2X1
+poly f125 = -n715 + n700*n699;
+// AND2X1
+poly f126 = -n716 + n701*n678;
+// OR2X1
+poly f127 = -n678 + n677 + n676 - n677*n676;
+// AND2X1
+poly f128 = -n676 + n661*n660;
+// AND2X1
+poly f129 = -n677 + n662*n633;
+// OR2X1
+poly f130 = -n633 + n632 + n631 - n632*n631;
+// AND2X1
+poly f131 = -n631 + n616*n615;
+// AND2X1
+poly f132 = -n632 + n617*n582;
+// OR2X1
+poly f133 = -n582 + n581 + n580 - n581*n580;
+// AND2X1
+poly f134 = -n580 + n565*n564;
+// AND2X1
+poly f135 = -n581 + n566*n525;
+// XOR2X1
+poly f136 = -n617 + n616 + n615 - 2*n616*n615;
+// XOR2X1
+poly f137 = -n615 + n614 + n585 - 2*n614*n585;
+// AND2X1
+poly f138 = -n616 + b09*a06;
+// XOR2X1
+poly f139 = -n662 + n661 + n660 - 2*n661*n660;
+// XOR2X1
+poly f140 = -n660 + n659 + n636 - 2*n659*n636;
+// AND2X1
+poly f141 = -n661 + b09*a07;
+// XOR2X1
+poly f142 = -n701 + n700 + n699 - 2*n700*n699;
+// XOR2X1
+poly f143 = -n699 + n698 + n681 - 2*n698*n681;
+// AND2X1
+poly f144 = -n700 + b09*a08;
+// XOR2X1
+poly f145 = -n734 + n733 + n732 - 2*n733*n732;
+// XOR2X1
+poly f146 = -n732 + n731 + n720 - 2*n731*n720;
+// AND2X1
+poly f147 = -n733 + b09*a09;
+// XOR2X1
+poly f148 = -n761 + n760 + n759 - 2*n760*n759;
+// XOR2X1
+poly f149 = -n759 + n758 + n753 - 2*n758*n753;
+// AND2X1
+poly f150 = -n760 + b09*a10;
+// XOR2X1
+poly f151 = -n782 + n781 + n780 - 2*n781*n780;
+// OR2X1
+poly f152 = -n780 + n779 + n778 - n779*n778;
+// AND2X1
+poly f153 = -n778 + n757*n756;
+// AND2X1
+poly f154 = -n779 + n758*n753;
+// OR2X1
+poly f155 = -n753 + n752 + n751 - n752*n751;
+// AND2X1
+poly f156 = -n751 + n730*n729;
+// AND2X1
+poly f157 = -n752 + n731*n720;
+// OR2X1
+poly f158 = -n720 + n719 + n718 - n719*n718;
+// AND2X1
+poly f159 = -n718 + n697*n696;
+// AND2X1
+poly f160 = -n719 + n698*n681;
+// OR2X1
+poly f161 = -n681 + n680 + n679 - n680*n679;
+// AND2X1
+poly f162 = -n679 + n658*n657;
+// AND2X1
+poly f163 = -n680 + n659*n636;
+// OR2X1
+poly f164 = -n636 + n635 + n634 - n635*n634;
+// AND2X1
+poly f165 = -n634 + n613*n612;
+// AND2X1
+poly f166 = -n635 + n614*n585;
+// OR2X1
+poly f167 = -n585 + n584 + n583 - n584*n583;
+// AND2X1
+poly f168 = -n583 + n562*n561;
+// AND2X1
+poly f169 = -n584 + n563*n528;
+// XOR2X1
+poly f170 = -n614 + n613 + n612 - 2*n613*n612;
+// XOR2X1
+poly f171 = -n612 + n611 + n588 - 2*n611*n588;
+// AND2X1
+poly f172 = -n613 + b08*a07;
+// XOR2X1
+poly f173 = -n659 + n658 + n657 - 2*n658*n657;
+// XOR2X1
+poly f174 = -n657 + n656 + n639 - 2*n656*n639;
+// AND2X1
+poly f175 = -n658 + b08*a08;
+// XOR2X1
+poly f176 = -n698 + n697 + n696 - 2*n697*n696;
+// XOR2X1
+poly f177 = -n696 + n695 + n684 - 2*n695*n684;
+// AND2X1
+poly f178 = -n697 + b08*a09;
+// XOR2X1
+poly f179 = -n731 + n730 + n729 - 2*n730*n729;
+// XOR2X1
+poly f180 = -n729 + n728 + n723 - 2*n728*n723;
+// AND2X1
+poly f181 = -n730 + b08*a10;
+// XOR2X1
+poly f182 = -n758 + n757 + n756 - 2*n757*n756;
+// OR2X1
+poly f183 = -n756 + n755 + n754 - n755*n754;
+// AND2X1
+poly f184 = -n754 + n727*n726;
+// AND2X1
+poly f185 = -n755 + n728*n723;
+// OR2X1
+poly f186 = -n723 + n722 + n721 - n722*n721;
+// AND2X1
+poly f187 = -n721 + n694*n693;
+// AND2X1
+poly f188 = -n722 + n695*n684;
+// OR2X1
+poly f189 = -n684 + n683 + n682 - n683*n682;
+// AND2X1
+poly f190 = -n682 + n655*n654;
+// AND2X1
+poly f191 = -n683 + n656*n639;
+// OR2X1
+poly f192 = -n639 + n638 + n637 - n638*n637;
+// AND2X1
+poly f193 = -n637 + n610*n609;
+// AND2X1
+poly f194 = -n638 + n611*n588;
+// OR2X1
+poly f195 = -n588 + n587 + n586 - n587*n586;
+// AND2X1
+poly f196 = -n586 + n559*n558;
+// AND2X1
+poly f197 = -n587 + n560*n531;
+// XOR2X1
+poly f198 = -n611 + n610 + n609 - 2*n610*n609;
+// XOR2X1
+poly f199 = -n609 + n608 + n591 - 2*n608*n591;
+// AND2X1
+poly f200 = -n610 + b07*a08;
+// XOR2X1
+poly f201 = -n656 + n655 + n654 - 2*n655*n654;
+// XOR2X1
+poly f202 = -n654 + n653 + n642 - 2*n653*n642;
+// AND2X1
+poly f203 = -n655 + b07*a09;
+// XOR2X1
+poly f204 = -n695 + n694 + n693 - 2*n694*n693;
+// XOR2X1
+poly f205 = -n693 + n692 + n687 - 2*n692*n687;
+// AND2X1
+poly f206 = -n694 + b07*a10;
+// XOR2X1
+poly f207 = -n728 + n727 + n726 - 2*n727*n726;
+// OR2X1
+poly f208 = -n726 + n725 + n724 - n725*n724;
+// AND2X1
+poly f209 = -n724 + n691*n690;
+// AND2X1
+poly f210 = -n725 + n692*n687;
+// OR2X1
+poly f211 = -n687 + n686 + n685 - n686*n685;
+// AND2X1
+poly f212 = -n685 + n652*n651;
+// AND2X1
+poly f213 = -n686 + n653*n642;
+// OR2X1
+poly f214 = -n642 + n641 + n640 - n641*n640;
+// AND2X1
+poly f215 = -n640 + n607*n606;
+// AND2X1
+poly f216 = -n641 + n608*n591;
+// OR2X1
+poly f217 = -n591 + n590 + n589 - n590*n589;
+// AND2X1
+poly f218 = -n589 + n556*n555;
+// AND2X1
+poly f219 = -n590 + n557*n534;
+// XOR2X1
+poly f220 = -n608 + n607 + n606 - 2*n607*n606;
+// XOR2X1
+poly f221 = -n606 + n605 + n594 - 2*n605*n594;
+// AND2X1
+poly f222 = -n607 + b06*a09;
+// XOR2X1
+poly f223 = -n653 + n652 + n651 - 2*n652*n651;
+// XOR2X1
+poly f224 = -n651 + n650 + n645 - 2*n650*n645;
+// AND2X1
+poly f225 = -n652 + b06*a10;
+// XOR2X1
+poly f226 = -n692 + n691 + n690 - 2*n691*n690;
+// OR2X1
+poly f227 = -n690 + n689 + n688 - n689*n688;
+// AND2X1
+poly f228 = -n688 + n649*n648;
+// AND2X1
+poly f229 = -n689 + n650*n645;
+// OR2X1
+poly f230 = -n645 + n644 + n643 - n644*n643;
+// AND2X1
+poly f231 = -n643 + n604*n603;
+// AND2X1
+poly f232 = -n644 + n605*n594;
+// OR2X1
+poly f233 = -n594 + n593 + n592 - n593*n592;
+// AND2X1
+poly f234 = -n592 + n553*n552;
+// AND2X1
+poly f235 = -n593 + n554*n537;
+// XOR2X1
+poly f236 = -n605 + n604 + n603 - 2*n604*n603;
+// XOR2X1
+poly f237 = -n603 + n602 + n597 - 2*n602*n597;
+// AND2X1
+poly f238 = -n604 + b05*a10;
+// XOR2X1
+poly f239 = -n650 + n649 + n648 - 2*n649*n648;
+// OR2X1
+poly f240 = -n648 + n647 + n646 - n647*n646;
+// AND2X1
+poly f241 = -n646 + n601*n600;
+// AND2X1
+poly f242 = -n647 + n602*n597;
+// OR2X1
+poly f243 = -n597 + n596 + n595 - n596*n595;
+// AND2X1
+poly f244 = -n595 + n550*n549;
+// AND2X1
+poly f245 = -n596 + n551*n540;
+// XOR2X1
+poly f246 = -n602 + n601 + n600 - 2*n601*n600;
+// OR2X1
+poly f247 = -n600 + n599 + n598 - n599*n598;
+// AND2X1
+poly f248 = -n598 + n547*n546;
+// AND2X1
+poly f249 = -n599 + n548*n543;
+// AND2X1
+poly f250 = -n601 + b04*a11;
+// AND2X1
+poly f251 = -n649 + b05*a11;
+// AND2X1
+poly f252 = -n691 + b06*a11;
+// AND2X1
+poly f253 = -n727 + b07*a11;
+// AND2X1
+poly f254 = -n757 + b08*a11;
+// AND2X1
+poly f255 = -n781 + b09*a11;
+// AND2X1
+poly f256 = -n784 + b10*a10;
+// AND2X1
+poly f257 = -n787 + b11*a09;
+// OR2X1
+poly f258 = -n519 + n518 + n517 - n518*n517;
+// AND2X1
+poly f259 = -n517 + n514*n513;
+// AND2X1
+poly f260 = -n518 + n515*n458;
+// OR2X1
+poly f261 = -n458 + n457 + n456 - n457*n456;
+// AND2X1
+poly f262 = -n456 + n453*n452;
+// AND2X1
+poly f263 = -n457 + n454*n393;
+// AND2X1
+poly f264 = -n393 + n391*n390;
+// XOR2X1
+poly f265 = -n390 + n389 + n332 - 2*n389*n332;
+// AND2X1
+poly f266 = -n391 + b11*a00;
+// XOR2X1
+poly f267 = -n454 + n453 + n452 - 2*n453*n452;
+// XOR2X1
+poly f268 = -n452 + n451 + n396 - 2*n451*n396;
+// AND2X1
+poly f269 = -n453 + b11*a01;
+// XOR2X1
+poly f270 = -n515 + n514 + n513 - 2*n514*n513;
+// XOR2X1
+poly f271 = -n513 + n512 + n461 - 2*n512*n461;
+// AND2X1
+poly f272 = -n514 + b11*a02;
+// XOR2X1
+poly f273 = -n572 + n571 + n570 - 2*n571*n570;
+// XOR2X1
+poly f274 = -n570 + n569 + n522 - 2*n569*n522;
+// OR2X1
+poly f275 = -n522 + n521 + n520 - n521*n520;
+// AND2X1
+poly f276 = -n520 + n511*n510;
+// AND2X1
+poly f277 = -n521 + n512*n461;
+// OR2X1
+poly f278 = -n461 + n460 + n459 - n460*n459;
+// AND2X1
+poly f279 = -n459 + n450*n449;
+// AND2X1
+poly f280 = -n460 + n451*n396;
+// OR2X1
+poly f281 = -n396 + n395 + n394 - n395*n394;
+// AND2X1
+poly f282 = -n394 + n388*n387;
+// AND2X1
+poly f283 = -n395 + n389*n332;
+// AND2X1
+poly f284 = -n332 + n330*n329;
+// XOR2X1
+poly f285 = -n329 + n328 + n277 - 2*n328*n277;
+// AND2X1
+poly f286 = -n330 + b10*a00;
+// XOR2X1
+poly f287 = -n389 + n388 + n387 - 2*n388*n387;
+// XOR2X1
+poly f288 = -n387 + n386 + n335 - 2*n386*n335;
+// AND2X1
+poly f289 = -n388 + b10*a01;
+// XOR2X1
+poly f290 = -n451 + n450 + n449 - 2*n450*n449;
+// XOR2X1
+poly f291 = -n449 + n448 + n399 - 2*n448*n399;
+// AND2X1
+poly f292 = -n450 + b10*a02;
+// XOR2X1
+poly f293 = -n512 + n511 + n510 - 2*n511*n510;
+// XOR2X1
+poly f294 = -n510 + n509 + n464 - 2*n509*n464;
+// AND2X1
+poly f295 = -n511 + b10*a03;
+// XOR2X1
+poly f296 = -n569 + n568 + n567 - 2*n568*n567;
+// XOR2X1
+poly f297 = -n567 + n566 + n525 - 2*n566*n525;
+// OR2X1
+poly f298 = -n525 + n524 + n523 - n524*n523;
+// AND2X1
+poly f299 = -n523 + n508*n507;
+// AND2X1
+poly f300 = -n524 + n509*n464;
+// OR2X1
+poly f301 = -n464 + n463 + n462 - n463*n462;
+// AND2X1
+poly f302 = -n462 + n447*n446;
+// AND2X1
+poly f303 = -n463 + n448*n399;
+// OR2X1
+poly f304 = -n399 + n398 + n397 - n398*n397;
+// AND2X1
+poly f305 = -n397 + n385*n384;
+// AND2X1
+poly f306 = -n398 + n386*n335;
+// OR2X1
+poly f307 = -n335 + n334 + n333 - n334*n333;
+// AND2X1
+poly f308 = -n333 + n327*n326;
+// AND2X1
+poly f309 = -n334 + n328*n277;
+// AND2X1
+poly f310 = -n277 + n275*n274;
+// XOR2X1
+poly f311 = -n274 + n273 + n228 - 2*n273*n228;
+// AND2X1
+poly f312 = -n275 + b09*a00;
+// XOR2X1
+poly f313 = -n328 + n327 + n326 - 2*n327*n326;
+// XOR2X1
+poly f314 = -n326 + n325 + n280 - 2*n325*n280;
+// AND2X1
+poly f315 = -n327 + b09*a01;
+// XOR2X1
+poly f316 = -n386 + n385 + n384 - 2*n385*n384;
+// XOR2X1
+poly f317 = -n384 + n383 + n338 - 2*n383*n338;
+// AND2X1
+poly f318 = -n385 + b09*a02;
+// XOR2X1
+poly f319 = -n448 + n447 + n446 - 2*n447*n446;
+// XOR2X1
+poly f320 = -n446 + n445 + n402 - 2*n445*n402;
+// AND2X1
+poly f321 = -n447 + b09*a03;
+// XOR2X1
+poly f322 = -n509 + n508 + n507 - 2*n508*n507;
+// XOR2X1
+poly f323 = -n507 + n506 + n467 - 2*n506*n467;
+// AND2X1
+poly f324 = -n508 + b09*a04;
+// XOR2X1
+poly f325 = -n566 + n565 + n564 - 2*n565*n564;
+// XOR2X1
+poly f326 = -n564 + n563 + n528 - 2*n563*n528;
+// OR2X1
+poly f327 = -n528 + n527 + n526 - n527*n526;
+// AND2X1
+poly f328 = -n526 + n505*n504;
+// AND2X1
+poly f329 = -n527 + n506*n467;
+// OR2X1
+poly f330 = -n467 + n466 + n465 - n466*n465;
+// AND2X1
+poly f331 = -n465 + n444*n443;
+// AND2X1
+poly f332 = -n466 + n445*n402;
+// OR2X1
+poly f333 = -n402 + n401 + n400 - n401*n400;
+// AND2X1
+poly f334 = -n400 + n382*n381;
+// AND2X1
+poly f335 = -n401 + n383*n338;
+// OR2X1
+poly f336 = -n338 + n337 + n336 - n337*n336;
+// AND2X1
+poly f337 = -n336 + n324*n323;
+// AND2X1
+poly f338 = -n337 + n325*n280;
+// OR2X1
+poly f339 = -n280 + n279 + n278 - n279*n278;
+// AND2X1
+poly f340 = -n278 + n272*n271;
+// AND2X1
+poly f341 = -n279 + n273*n228;
+// AND2X1
+poly f342 = -n228 + n226*n225;
+// XOR2X1
+poly f343 = -n225 + n224 + n185 - 2*n224*n185;
+// AND2X1
+poly f344 = -n226 + b08*a00;
+// XOR2X1
+poly f345 = -n273 + n272 + n271 - 2*n272*n271;
+// XOR2X1
+poly f346 = -n271 + n270 + n231 - 2*n270*n231;
+// AND2X1
+poly f347 = -n272 + b08*a01;
+// XOR2X1
+poly f348 = -n325 + n324 + n323 - 2*n324*n323;
+// XOR2X1
+poly f349 = -n323 + n322 + n283 - 2*n322*n283;
+// AND2X1
+poly f350 = -n324 + b08*a02;
+// XOR2X1
+poly f351 = -n383 + n382 + n381 - 2*n382*n381;
+// XOR2X1
+poly f352 = -n381 + n380 + n341 - 2*n380*n341;
+// AND2X1
+poly f353 = -n382 + b08*a03;
+// XOR2X1
+poly f354 = -n445 + n444 + n443 - 2*n444*n443;
+// XOR2X1
+poly f355 = -n443 + n442 + n405 - 2*n442*n405;
+// AND2X1
+poly f356 = -n444 + b08*a04;
+// XOR2X1
+poly f357 = -n506 + n505 + n504 - 2*n505*n504;
+// XOR2X1
+poly f358 = -n504 + n503 + n470 - 2*n503*n470;
+// AND2X1
+poly f359 = -n505 + b08*a05;
+// XOR2X1
+poly f360 = -n563 + n562 + n561 - 2*n562*n561;
+// XOR2X1
+poly f361 = -n561 + n560 + n531 - 2*n560*n531;
+// OR2X1
+poly f362 = -n531 + n530 + n529 - n530*n529;
+// AND2X1
+poly f363 = -n529 + n502*n501;
+// AND2X1
+poly f364 = -n530 + n503*n470;
+// OR2X1
+poly f365 = -n470 + n469 + n468 - n469*n468;
+// AND2X1
+poly f366 = -n468 + n441*n440;
+// AND2X1
+poly f367 = -n469 + n442*n405;
+// OR2X1
+poly f368 = -n405 + n404 + n403 - n404*n403;
+// AND2X1
+poly f369 = -n403 + n379*n378;
+// AND2X1
+poly f370 = -n404 + n380*n341;
+// OR2X1
+poly f371 = -n341 + n340 + n339 - n340*n339;
+// AND2X1
+poly f372 = -n339 + n321*n320;
+// AND2X1
+poly f373 = -n340 + n322*n283;
+// OR2X1
+poly f374 = -n283 + n282 + n281 - n282*n281;
+// AND2X1
+poly f375 = -n281 + n269*n268;
+// AND2X1
+poly f376 = -n282 + n270*n231;
+// OR2X1
+poly f377 = -n231 + n230 + n229 - n230*n229;
+// AND2X1
+poly f378 = -n229 + n223*n222;
+// AND2X1
+poly f379 = -n230 + n224*n185;
+// AND2X1
+poly f380 = -n185 + n183*n182;
+// XOR2X1
+poly f381 = -n182 + n181 + n148 - 2*n181*n148;
+// AND2X1
+poly f382 = -n183 + b07*a00;
+// XOR2X1
+poly f383 = -n224 + n223 + n222 - 2*n223*n222;
+// XOR2X1
+poly f384 = -n222 + n221 + n188 - 2*n221*n188;
+// AND2X1
+poly f385 = -n223 + b07*a01;
+// XOR2X1
+poly f386 = -n270 + n269 + n268 - 2*n269*n268;
+// XOR2X1
+poly f387 = -n268 + n267 + n234 - 2*n267*n234;
+// AND2X1
+poly f388 = -n269 + b07*a02;
+// XOR2X1
+poly f389 = -n322 + n321 + n320 - 2*n321*n320;
+// XOR2X1
+poly f390 = -n320 + n319 + n286 - 2*n319*n286;
+// AND2X1
+poly f391 = -n321 + b07*a03;
+// XOR2X1
+poly f392 = -n380 + n379 + n378 - 2*n379*n378;
+// XOR2X1
+poly f393 = -n378 + n377 + n344 - 2*n377*n344;
+// AND2X1
+poly f394 = -n379 + b07*a04;
+// XOR2X1
+poly f395 = -n442 + n441 + n440 - 2*n441*n440;
+// XOR2X1
+poly f396 = -n440 + n439 + n408 - 2*n439*n408;
+// AND2X1
+poly f397 = -n441 + b07*a05;
+// XOR2X1
+poly f398 = -n503 + n502 + n501 - 2*n502*n501;
+// XOR2X1
+poly f399 = -n501 + n500 + n473 - 2*n500*n473;
+// AND2X1
+poly f400 = -n502 + b07*a06;
+// XOR2X1
+poly f401 = -n560 + n559 + n558 - 2*n559*n558;
+// XOR2X1
+poly f402 = -n558 + n557 + n534 - 2*n557*n534;
+// OR2X1
+poly f403 = -n534 + n533 + n532 - n533*n532;
+// AND2X1
+poly f404 = -n532 + n499*n498;
+// AND2X1
+poly f405 = -n533 + n500*n473;
+// OR2X1
+poly f406 = -n473 + n472 + n471 - n472*n471;
+// AND2X1
+poly f407 = -n471 + n438*n437;
+// AND2X1
+poly f408 = -n472 + n439*n408;
+// OR2X1
+poly f409 = -n408 + n407 + n406 - n407*n406;
+// AND2X1
+poly f410 = -n406 + n376*n375;
+// AND2X1
+poly f411 = -n407 + n377*n344;
+// OR2X1
+poly f412 = -n344 + n343 + n342 - n343*n342;
+// AND2X1
+poly f413 = -n342 + n318*n317;
+// AND2X1
+poly f414 = -n343 + n319*n286;
+// OR2X1
+poly f415 = -n286 + n285 + n284 - n285*n284;
+// AND2X1
+poly f416 = -n284 + n266*n265;
+// AND2X1
+poly f417 = -n285 + n267*n234;
+// OR2X1
+poly f418 = -n234 + n233 + n232 - n233*n232;
+// AND2X1
+poly f419 = -n232 + n220*n219;
+// AND2X1
+poly f420 = -n233 + n221*n188;
+// OR2X1
+poly f421 = -n188 + n187 + n186 - n187*n186;
+// AND2X1
+poly f422 = -n186 + n180*n179;
+// AND2X1
+poly f423 = -n187 + n181*n148;
+// AND2X1
+poly f424 = -n148 + n146*n145;
+// XOR2X1
+poly f425 = -n145 + n144 + n117 - 2*n144*n117;
+// AND2X1
+poly f426 = -n146 + b06*a00;
+// XOR2X1
+poly f427 = -n181 + n180 + n179 - 2*n180*n179;
+// XOR2X1
+poly f428 = -n179 + n178 + n151 - 2*n178*n151;
+// AND2X1
+poly f429 = -n180 + b06*a01;
+// XOR2X1
+poly f430 = -n221 + n220 + n219 - 2*n220*n219;
+// XOR2X1
+poly f431 = -n219 + n218 + n191 - 2*n218*n191;
+// AND2X1
+poly f432 = -n220 + b06*a02;
+// XOR2X1
+poly f433 = -n267 + n266 + n265 - 2*n266*n265;
+// XOR2X1
+poly f434 = -n265 + n264 + n237 - 2*n264*n237;
+// AND2X1
+poly f435 = -n266 + b06*a03;
+// XOR2X1
+poly f436 = -n319 + n318 + n317 - 2*n318*n317;
+// XOR2X1
+poly f437 = -n317 + n316 + n289 - 2*n316*n289;
+// AND2X1
+poly f438 = -n318 + b06*a04;
+// XOR2X1
+poly f439 = -n377 + n376 + n375 - 2*n376*n375;
+// XOR2X1
+poly f440 = -n375 + n374 + n347 - 2*n374*n347;
+// AND2X1
+poly f441 = -n376 + b06*a05;
+// XOR2X1
+poly f442 = -n439 + n438 + n437 - 2*n438*n437;
+// XOR2X1
+poly f443 = -n437 + n436 + n411 - 2*n436*n411;
+// AND2X1
+poly f444 = -n438 + b06*a06;
+// XOR2X1
+poly f445 = -n500 + n499 + n498 - 2*n499*n498;
+// XOR2X1
+poly f446 = -n498 + n497 + n476 - 2*n497*n476;
+// AND2X1
+poly f447 = -n499 + b06*a07;
+// XOR2X1
+poly f448 = -n557 + n556 + n555 - 2*n556*n555;
+// XOR2X1
+poly f449 = -n555 + n554 + n537 - 2*n554*n537;
+// OR2X1
+poly f450 = -n537 + n536 + n535 - n536*n535;
+// AND2X1
+poly f451 = -n535 + n496*n495;
+// AND2X1
+poly f452 = -n536 + n497*n476;
+// OR2X1
+poly f453 = -n476 + n475 + n474 - n475*n474;
+// AND2X1
+poly f454 = -n474 + n435*n434;
+// AND2X1
+poly f455 = -n475 + n436*n411;
+// OR2X1
+poly f456 = -n411 + n410 + n409 - n410*n409;
+// AND2X1
+poly f457 = -n409 + n373*n372;
+// AND2X1
+poly f458 = -n410 + n374*n347;
+// OR2X1
+poly f459 = -n347 + n346 + n345 - n346*n345;
+// AND2X1
+poly f460 = -n345 + n315*n314;
+// AND2X1
+poly f461 = -n346 + n316*n289;
+// OR2X1
+poly f462 = -n289 + n288 + n287 - n288*n287;
+// AND2X1
+poly f463 = -n287 + n263*n262;
+// AND2X1
+poly f464 = -n288 + n264*n237;
+// OR2X1
+poly f465 = -n237 + n236 + n235 - n236*n235;
+// AND2X1
+poly f466 = -n235 + n217*n216;
+// AND2X1
+poly f467 = -n236 + n218*n191;
+// OR2X1
+poly f468 = -n191 + n190 + n189 - n190*n189;
+// AND2X1
+poly f469 = -n189 + n177*n176;
+// AND2X1
+poly f470 = -n190 + n178*n151;
+// OR2X1
+poly f471 = -n151 + n150 + n149 - n150*n149;
+// AND2X1
+poly f472 = -n149 + n143*n142;
+// AND2X1
+poly f473 = -n150 + n144*n117;
+// AND2X1
+poly f474 = -n117 + n115*n114;
+// XOR2X1
+poly f475 = -n114 + n113 + n92 - 2*n113*n92;
+// AND2X1
+poly f476 = -n115 + b05*a00;
+// XOR2X1
+poly f477 = -n144 + n143 + n142 - 2*n143*n142;
+// XOR2X1
+poly f478 = -n142 + n141 + n120 - 2*n141*n120;
+// AND2X1
+poly f479 = -n143 + b05*a01;
+// XOR2X1
+poly f480 = -n178 + n177 + n176 - 2*n177*n176;
+// XOR2X1
+poly f481 = -n176 + n175 + n154 - 2*n175*n154;
+// AND2X1
+poly f482 = -n177 + b05*a02;
+// XOR2X1
+poly f483 = -n218 + n217 + n216 - 2*n217*n216;
+// XOR2X1
+poly f484 = -n216 + n215 + n194 - 2*n215*n194;
+// AND2X1
+poly f485 = -n217 + b05*a03;
+// XOR2X1
+poly f486 = -n264 + n263 + n262 - 2*n263*n262;
+// XOR2X1
+poly f487 = -n262 + n261 + n240 - 2*n261*n240;
+// AND2X1
+poly f488 = -n263 + b05*a04;
+// XOR2X1
+poly f489 = -n316 + n315 + n314 - 2*n315*n314;
+// XOR2X1
+poly f490 = -n314 + n313 + n292 - 2*n313*n292;
+// AND2X1
+poly f491 = -n315 + b05*a05;
+// XOR2X1
+poly f492 = -n374 + n373 + n372 - 2*n373*n372;
+// XOR2X1
+poly f493 = -n372 + n371 + n350 - 2*n371*n350;
+// AND2X1
+poly f494 = -n373 + b05*a06;
+// XOR2X1
+poly f495 = -n436 + n435 + n434 - 2*n435*n434;
+// XOR2X1
+poly f496 = -n434 + n433 + n414 - 2*n433*n414;
+// AND2X1
+poly f497 = -n435 + b05*a07;
+// XOR2X1
+poly f498 = -n497 + n496 + n495 - 2*n496*n495;
+// XOR2X1
+poly f499 = -n495 + n494 + n479 - 2*n494*n479;
+// AND2X1
+poly f500 = -n496 + b05*a08;
+// XOR2X1
+poly f501 = -n554 + n553 + n552 - 2*n553*n552;
+// XOR2X1
+poly f502 = -n552 + n551 + n540 - 2*n551*n540;
+// OR2X1
+poly f503 = -n540 + n539 + n538 - n539*n538;
+// AND2X1
+poly f504 = -n538 + n493*n492;
+// AND2X1
+poly f505 = -n539 + n494*n479;
+// OR2X1
+poly f506 = -n479 + n478 + n477 - n478*n477;
+// AND2X1
+poly f507 = -n477 + n432*n431;
+// AND2X1
+poly f508 = -n478 + n433*n414;
+// OR2X1
+poly f509 = -n414 + n413 + n412 - n413*n412;
+// AND2X1
+poly f510 = -n412 + n370*n369;
+// AND2X1
+poly f511 = -n413 + n371*n350;
+// OR2X1
+poly f512 = -n350 + n349 + n348 - n349*n348;
+// AND2X1
+poly f513 = -n348 + n312*n311;
+// AND2X1
+poly f514 = -n349 + n313*n292;
+// OR2X1
+poly f515 = -n292 + n291 + n290 - n291*n290;
+// AND2X1
+poly f516 = -n290 + n260*n259;
+// AND2X1
+poly f517 = -n291 + n261*n240;
+// OR2X1
+poly f518 = -n240 + n239 + n238 - n239*n238;
+// AND2X1
+poly f519 = -n238 + n214*n213;
+// AND2X1
+poly f520 = -n239 + n215*n194;
+// OR2X1
+poly f521 = -n194 + n193 + n192 - n193*n192;
+// AND2X1
+poly f522 = -n192 + n174*n173;
+// AND2X1
+poly f523 = -n193 + n175*n154;
+// OR2X1
+poly f524 = -n154 + n153 + n152 - n153*n152;
+// AND2X1
+poly f525 = -n152 + n140*n139;
+// AND2X1
+poly f526 = -n153 + n141*n120;
+// OR2X1
+poly f527 = -n120 + n119 + n118 - n119*n118;
+// AND2X1
+poly f528 = -n118 + n112*n111;
+// AND2X1
+poly f529 = -n119 + n113*n92;
+// AND2X1
+poly f530 = -n92 + n90*n89;
+// XOR2X1
+poly f531 = -n89 + n88 + n73 - 2*n88*n73;
+// AND2X1
+poly f532 = -n90 + b04*a00;
+// XOR2X1
+poly f533 = -n113 + n112 + n111 - 2*n112*n111;
+// XOR2X1
+poly f534 = -n111 + n110 + n95 - 2*n110*n95;
+// AND2X1
+poly f535 = -n112 + b04*a01;
+// XOR2X1
+poly f536 = -n141 + n140 + n139 - 2*n140*n139;
+// XOR2X1
+poly f537 = -n139 + n138 + n123 - 2*n138*n123;
+// AND2X1
+poly f538 = -n140 + b04*a02;
+// XOR2X1
+poly f539 = -n175 + n174 + n173 - 2*n174*n173;
+// XOR2X1
+poly f540 = -n173 + n172 + n157 - 2*n172*n157;
+// AND2X1
+poly f541 = -n174 + b04*a03;
+// XOR2X1
+poly f542 = -n215 + n214 + n213 - 2*n214*n213;
+// XOR2X1
+poly f543 = -n213 + n212 + n197 - 2*n212*n197;
+// AND2X1
+poly f544 = -n214 + b04*a04;
+// XOR2X1
+poly f545 = -n261 + n260 + n259 - 2*n260*n259;
+// XOR2X1
+poly f546 = -n259 + n258 + n243 - 2*n258*n243;
+// AND2X1
+poly f547 = -n260 + b04*a05;
+// XOR2X1
+poly f548 = -n313 + n312 + n311 - 2*n312*n311;
+// XOR2X1
+poly f549 = -n311 + n310 + n295 - 2*n310*n295;
+// AND2X1
+poly f550 = -n312 + b04*a06;
+// XOR2X1
+poly f551 = -n371 + n370 + n369 - 2*n370*n369;
+// XOR2X1
+poly f552 = -n369 + n368 + n353 - 2*n368*n353;
+// AND2X1
+poly f553 = -n370 + b04*a07;
+// XOR2X1
+poly f554 = -n433 + n432 + n431 - 2*n432*n431;
+// XOR2X1
+poly f555 = -n431 + n430 + n417 - 2*n430*n417;
+// AND2X1
+poly f556 = -n432 + b04*a08;
+// XOR2X1
+poly f557 = -n494 + n493 + n492 - 2*n493*n492;
+// XOR2X1
+poly f558 = -n492 + n491 + n482 - 2*n491*n482;
+// AND2X1
+poly f559 = -n493 + b04*a09;
+// XOR2X1
+poly f560 = -n551 + n550 + n549 - 2*n550*n549;
+// XOR2X1
+poly f561 = -n549 + n548 + n543 - 2*n548*n543;
+// OR2X1
+poly f562 = -n543 + n542 + n541 - n542*n541;
+// AND2X1
+poly f563 = -n541 + n490*n489;
+// AND2X1
+poly f564 = -n542 + n491*n482;
+// OR2X1
+poly f565 = -n482 + n481 + n480 - n481*n480;
+// AND2X1
+poly f566 = -n480 + n429*n428;
+// AND2X1
+poly f567 = -n481 + n430*n417;
+// OR2X1
+poly f568 = -n417 + n416 + n415 - n416*n415;
+// AND2X1
+poly f569 = -n415 + n367*n366;
+// AND2X1
+poly f570 = -n416 + n368*n353;
+// OR2X1
+poly f571 = -n353 + n352 + n351 - n352*n351;
+// AND2X1
+poly f572 = -n351 + n309*n308;
+// AND2X1
+poly f573 = -n352 + n310*n295;
+// OR2X1
+poly f574 = -n295 + n294 + n293 - n294*n293;
+// AND2X1
+poly f575 = -n293 + n257*n256;
+// AND2X1
+poly f576 = -n294 + n258*n243;
+// OR2X1
+poly f577 = -n243 + n242 + n241 - n242*n241;
+// AND2X1
+poly f578 = -n241 + n211*n210;
+// AND2X1
+poly f579 = -n242 + n212*n197;
+// OR2X1
+poly f580 = -n197 + n196 + n195 - n196*n195;
+// AND2X1
+poly f581 = -n195 + n171*n170;
+// AND2X1
+poly f582 = -n196 + n172*n157;
+// OR2X1
+poly f583 = -n157 + n156 + n155 - n156*n155;
+// AND2X1
+poly f584 = -n155 + n137*n136;
+// AND2X1
+poly f585 = -n156 + n138*n123;
+// OR2X1
+poly f586 = -n123 + n122 + n121 - n122*n121;
+// AND2X1
+poly f587 = -n121 + n109*n108;
+// AND2X1
+poly f588 = -n122 + n110*n95;
+// OR2X1
+poly f589 = -n95 + n94 + n93 - n94*n93;
+// AND2X1
+poly f590 = -n93 + n87*n86;
+// AND2X1
+poly f591 = -n94 + n88*n73;
+// AND2X1
+poly f592 = -n73 + n71*n70;
+// XOR2X1
+poly f593 = -n70 + n69 + n60 - 2*n69*n60;
+// AND2X1
+poly f594 = -n71 + b03*a00;
+// XOR2X1
+poly f595 = -n88 + n87 + n86 - 2*n87*n86;
+// XOR2X1
+poly f596 = -n86 + n85 + n76 - 2*n85*n76;
+// AND2X1
+poly f597 = -n87 + b03*a01;
+// XOR2X1
+poly f598 = -n110 + n109 + n108 - 2*n109*n108;
+// XOR2X1
+poly f599 = -n108 + n107 + n98 - 2*n107*n98;
+// AND2X1
+poly f600 = -n109 + b03*a02;
+// XOR2X1
+poly f601 = -n138 + n137 + n136 - 2*n137*n136;
+// XOR2X1
+poly f602 = -n136 + n135 + n126 - 2*n135*n126;
+// AND2X1
+poly f603 = -n137 + b03*a03;
+// XOR2X1
+poly f604 = -n172 + n171 + n170 - 2*n171*n170;
+// XOR2X1
+poly f605 = -n170 + n169 + n160 - 2*n169*n160;
+// AND2X1
+poly f606 = -n171 + b03*a04;
+// XOR2X1
+poly f607 = -n212 + n211 + n210 - 2*n211*n210;
+// XOR2X1
+poly f608 = -n210 + n209 + n200 - 2*n209*n200;
+// AND2X1
+poly f609 = -n211 + b03*a05;
+// XOR2X1
+poly f610 = -n258 + n257 + n256 - 2*n257*n256;
+// XOR2X1
+poly f611 = -n256 + n255 + n246 - 2*n255*n246;
+// AND2X1
+poly f612 = -n257 + b03*a06;
+// XOR2X1
+poly f613 = -n310 + n309 + n308 - 2*n309*n308;
+// XOR2X1
+poly f614 = -n308 + n307 + n298 - 2*n307*n298;
+// AND2X1
+poly f615 = -n309 + b03*a07;
+// XOR2X1
+poly f616 = -n368 + n367 + n366 - 2*n367*n366;
+// XOR2X1
+poly f617 = -n366 + n365 + n356 - 2*n365*n356;
+// AND2X1
+poly f618 = -n367 + b03*a08;
+// XOR2X1
+poly f619 = -n430 + n429 + n428 - 2*n429*n428;
+// XOR2X1
+poly f620 = -n428 + n427 + n420 - 2*n427*n420;
+// AND2X1
+poly f621 = -n429 + b03*a09;
+// XOR2X1
+poly f622 = -n491 + n490 + n489 - 2*n490*n489;
+// XOR2X1
+poly f623 = -n489 + n488 + n485 - 2*n488*n485;
+// AND2X1
+poly f624 = -n490 + b03*a10;
+// XOR2X1
+poly f625 = -n548 + n547 + n546 - 2*n547*n546;
+// OR2X1
+poly f626 = -n546 + n545 + n544 - n545*n544;
+// AND2X1
+poly f627 = -n544 + n487*n486;
+// AND2X1
+poly f628 = -n545 + n488*n485;
+// OR2X1
+poly f629 = -n485 + n484 + n483 - n484*n483;
+// AND2X1
+poly f630 = -n483 + n426*n425;
+// AND2X1
+poly f631 = -n484 + n427*n420;
+// OR2X1
+poly f632 = -n420 + n419 + n418 - n419*n418;
+// AND2X1
+poly f633 = -n418 + n364*n363;
+// AND2X1
+poly f634 = -n419 + n365*n356;
+// OR2X1
+poly f635 = -n356 + n355 + n354 - n355*n354;
+// AND2X1
+poly f636 = -n354 + n306*n305;
+// AND2X1
+poly f637 = -n355 + n307*n298;
+// OR2X1
+poly f638 = -n298 + n297 + n296 - n297*n296;
+// AND2X1
+poly f639 = -n296 + n254*n253;
+// AND2X1
+poly f640 = -n297 + n255*n246;
+// OR2X1
+poly f641 = -n246 + n245 + n244 - n245*n244;
+// AND2X1
+poly f642 = -n244 + n208*n207;
+// AND2X1
+poly f643 = -n245 + n209*n200;
+// OR2X1
+poly f644 = -n200 + n199 + n198 - n199*n198;
+// AND2X1
+poly f645 = -n198 + n168*n167;
+// AND2X1
+poly f646 = -n199 + n169*n160;
+// OR2X1
+poly f647 = -n160 + n159 + n158 - n159*n158;
+// AND2X1
+poly f648 = -n158 + n134*n133;
+// AND2X1
+poly f649 = -n159 + n135*n126;
+// OR2X1
+poly f650 = -n126 + n125 + n124 - n125*n124;
+// AND2X1
+poly f651 = -n124 + n106*n105;
+// AND2X1
+poly f652 = -n125 + n107*n98;
+// OR2X1
+poly f653 = -n98 + n97 + n96 - n97*n96;
+// AND2X1
+poly f654 = -n96 + n84*n83;
+// AND2X1
+poly f655 = -n97 + n85*n76;
+// OR2X1
+poly f656 = -n76 + n75 + n74 - n75*n74;
+// AND2X1
+poly f657 = -n74 + n68*n67;
+// AND2X1
+poly f658 = -n75 + n69*n60;
+// AND2X1
+poly f659 = -n60 + n58*n57;
+// XOR2X1
+poly f660 = -n57 + n56 + n53 - 2*n56*n53;
+// AND2X1
+poly f661 = -n58 + b02*a00;
+// XOR2X1
+poly f662 = -n69 + n68 + n67 - 2*n68*n67;
+// XOR2X1
+poly f663 = -n67 + n66 + n63 - 2*n66*n63;
+// AND2X1
+poly f664 = -n68 + b02*a01;
+// XOR2X1
+poly f665 = -n85 + n84 + n83 - 2*n84*n83;
+// XOR2X1
+poly f666 = -n83 + n82 + n79 - 2*n82*n79;
+// AND2X1
+poly f667 = -n84 + b02*a02;
+// XOR2X1
+poly f668 = -n107 + n106 + n105 - 2*n106*n105;
+// XOR2X1
+poly f669 = -n105 + n104 + n101 - 2*n104*n101;
+// AND2X1
+poly f670 = -n106 + b02*a03;
+// XOR2X1
+poly f671 = -n135 + n134 + n133 - 2*n134*n133;
+// XOR2X1
+poly f672 = -n133 + n132 + n129 - 2*n132*n129;
+// AND2X1
+poly f673 = -n134 + b02*a04;
+// XOR2X1
+poly f674 = -n169 + n168 + n167 - 2*n168*n167;
+// XOR2X1
+poly f675 = -n167 + n166 + n163 - 2*n166*n163;
+// AND2X1
+poly f676 = -n168 + b02*a05;
+// XOR2X1
+poly f677 = -n209 + n208 + n207 - 2*n208*n207;
+// XOR2X1
+poly f678 = -n207 + n206 + n203 - 2*n206*n203;
+// AND2X1
+poly f679 = -n208 + b02*a06;
+// XOR2X1
+poly f680 = -n255 + n254 + n253 - 2*n254*n253;
+// XOR2X1
+poly f681 = -n253 + n252 + n249 - 2*n252*n249;
+// AND2X1
+poly f682 = -n254 + b02*a07;
+// XOR2X1
+poly f683 = -n307 + n306 + n305 - 2*n306*n305;
+// XOR2X1
+poly f684 = -n305 + n304 + n301 - 2*n304*n301;
+// AND2X1
+poly f685 = -n306 + b02*a08;
+// XOR2X1
+poly f686 = -n365 + n364 + n363 - 2*n364*n363;
+// XOR2X1
+poly f687 = -n363 + n362 + n359 - 2*n362*n359;
+// AND2X1
+poly f688 = -n364 + b02*a09;
+// XOR2X1
+poly f689 = -n427 + n426 + n425 - 2*n426*n425;
+// XOR2X1
+poly f690 = -n425 + n424 + n423 - 2*n424*n423;
+// AND2X1
+poly f691 = -n426 + b02*a10;
+// XOR2X1
+poly f692 = -n488 + n487 + n486 - 2*n487*n486;
+// AND2X1
+poly f693 = -n486 + n424*n423;
+// OR2X1
+poly f694 = -n423 + n422 + n421 - n422*n421;
+// AND2X1
+poly f695 = -n421 + n361*n360;
+// AND2X1
+poly f696 = -n422 + n362*n359;
+// OR2X1
+poly f697 = -n359 + n358 + n357 - n358*n357;
+// AND2X1
+poly f698 = -n357 + n303*n302;
+// AND2X1
+poly f699 = -n358 + n304*n301;
+// OR2X1
+poly f700 = -n301 + n300 + n299 - n300*n299;
+// AND2X1
+poly f701 = -n299 + n251*n250;
+// AND2X1
+poly f702 = -n300 + n252*n249;
+// OR2X1
+poly f703 = -n249 + n248 + n247 - n248*n247;
+// AND2X1
+poly f704 = -n247 + n205*n204;
+// AND2X1
+poly f705 = -n248 + n206*n203;
+// OR2X1
+poly f706 = -n203 + n202 + n201 - n202*n201;
+// AND2X1
+poly f707 = -n201 + n165*n164;
+// AND2X1
+poly f708 = -n202 + n166*n163;
+// OR2X1
+poly f709 = -n163 + n162 + n161 - n162*n161;
+// AND2X1
+poly f710 = -n161 + n131*n130;
+// AND2X1
+poly f711 = -n162 + n132*n129;
+// OR2X1
+poly f712 = -n129 + n128 + n127 - n128*n127;
+// AND2X1
+poly f713 = -n127 + n103*n102;
+// AND2X1
+poly f714 = -n128 + n104*n101;
+// OR2X1
+poly f715 = -n101 + n100 + n99 - n100*n99;
+// AND2X1
+poly f716 = -n99 + n81*n80;
+// AND2X1
+poly f717 = -n100 + n82*n79;
+// OR2X1
+poly f718 = -n79 + n78 + n77 - n78*n77;
+// AND2X1
+poly f719 = -n77 + n65*n64;
+// AND2X1
+poly f720 = -n78 + n66*n63;
+// OR2X1
+poly f721 = -n63 + n62 + n61 - n62*n61;
+// AND2X1
+poly f722 = -n61 + n55*n54;
+// AND2X1
+poly f723 = -n62 + n56*n53;
+// AND2X1
+poly f724 = -n53 + n51*n50;
+// AND2X1
+poly f725 = -n50 + b00*a01;
+// AND2X1
+poly f726 = -n51 + b01*a00;
+// XOR2X1
+poly f727 = -n56 + n55 + n54 - 2*n55*n54;
+// AND2X1
+poly f728 = -n54 + b00*a02;
+// AND2X1
+poly f729 = -n55 + b01*a01;
+// XOR2X1
+poly f730 = -n66 + n65 + n64 - 2*n65*n64;
+// AND2X1
+poly f731 = -n64 + b00*a03;
+// AND2X1
+poly f732 = -n65 + b01*a02;
+// XOR2X1
+poly f733 = -n82 + n81 + n80 - 2*n81*n80;
+// AND2X1
+poly f734 = -n80 + b00*a04;
+// AND2X1
+poly f735 = -n81 + b01*a03;
+// XOR2X1
+poly f736 = -n104 + n103 + n102 - 2*n103*n102;
+// AND2X1
+poly f737 = -n102 + b00*a05;
+// AND2X1
+poly f738 = -n103 + b01*a04;
+// XOR2X1
+poly f739 = -n132 + n131 + n130 - 2*n131*n130;
+// AND2X1
+poly f740 = -n130 + b00*a06;
+// AND2X1
+poly f741 = -n131 + b01*a05;
+// XOR2X1
+poly f742 = -n166 + n165 + n164 - 2*n165*n164;
+// AND2X1
+poly f743 = -n164 + b00*a07;
+// AND2X1
+poly f744 = -n165 + b01*a06;
+// XOR2X1
+poly f745 = -n206 + n205 + n204 - 2*n205*n204;
+// AND2X1
+poly f746 = -n204 + b00*a08;
+// AND2X1
+poly f747 = -n205 + b01*a07;
+// XOR2X1
+poly f748 = -n252 + n251 + n250 - 2*n251*n250;
+// AND2X1
+poly f749 = -n250 + b00*a09;
+// AND2X1
+poly f750 = -n251 + b01*a08;
+// XOR2X1
+poly f751 = -n304 + n303 + n302 - 2*n303*n302;
+// AND2X1
+poly f752 = -n302 + b00*a10;
+// AND2X1
+poly f753 = -n303 + b01*a09;
+// XOR2X1
+poly f754 = -n362 + n361 + n360 - 2*n361*n360;
+// AND2X1
+poly f755 = -n360 + b00*a11;
+// AND2X1
+poly f756 = -n361 + b01*a10;
+// AND2X1
+poly f757 = -n424 + b01*a11;
+// AND2X1
+poly f758 = -n487 + b02*a11;
+// AND2X1
+poly f759 = -n547 + b03*a11;
+// AND2X1
+poly f760 = -n550 + b04*a10;
+// AND2X1
+poly f761 = -n553 + b05*a09;
+// AND2X1
+poly f762 = -n556 + b06*a08;
+// AND2X1
+poly f763 = -n559 + b07*a07;
+// AND2X1
+poly f764 = -n562 + b08*a06;
+// AND2X1
+poly f765 = -n565 + b09*a05;
+// AND2X1
+poly f766 = -n568 + b10*a04;
+// AND2X1
+poly f767 = -n571 + b11*a03;
+// INPUT
+poly fa00 = a00^2 - a00;
+// INPUT
+poly fa01 = a01^2 - a01;
+// INPUT
+poly fa02 = a02^2 - a02;
+// INPUT
+poly fa03 = a03^2 - a03;
+// INPUT
+poly fa04 = a04^2 - a04;
+// INPUT
+poly fa05 = a05^2 - a05;
+// INPUT
+poly fa06 = a06^2 - a06;
+// INPUT
+poly fa07 = a07^2 - a07;
+// INPUT
+poly fa08 = a08^2 - a08;
+// INPUT
+poly fa09 = a09^2 - a09;
+// INPUT
+poly fa10 = a10^2 - a10;
+// INPUT
+poly fa11 = a11^2 - a11;
+// INPUT
+poly fb00 = b00^2 - b00;
+// INPUT
+poly fb01 = b01^2 - b01;
+// INPUT
+poly fb02 = b02^2 - b02;
+// INPUT
+poly fb03 = b03^2 - b03;
+// INPUT
+poly fb04 = b04^2 - b04;
+// INPUT
+poly fb05 = b05^2 - b05;
+// INPUT
+poly fb06 = b06^2 - b06;
+// INPUT
+poly fb07 = b07^2 - b07;
+// INPUT
+poly fb08 = b08^2 - b08;
+// INPUT
+poly fb09 = b09^2 - b09;
+// INPUT
+poly fb10 = b10^2 - b10;
+// INPUT
+poly fb11 = b11^2 - b11;
+ideal J = (fZ, fA, fB, f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36, f37, f38, f39, f40, f41, f42, f43, f44, f45, f46, f47, f48, f49, f50, f51, f52, f53, f54, f55, f56, f57, f58, f59, f60, f61, f62, f63, f64, f65, f66, f67, f68, f69, f70, f71, f72, f73, f74, f75, f76, f77, f78, f79, f80, f81, f82, f83, f84, f85, f86, f87, f88, f89, f90, f91, f92, f93, f94, f95, f96, f97, f98, f99, f100, f101, f102, f103, f104, f105, f106, f107, f108, f109, f110, f111, f112, f113, f114, f115, f116, f117, f118, f119, f120, f121, f122, f123, f124, f125, f126, f127, f128, f129, f130, f131, f132, f133, f134, f135, f136, f137, f138, f139, f140, f141, f142, f143, f144, f145, f146, f147, f148, f149, f150, f151, f152, f153, f154, f155, f156, f157, f158, f159, f160, f161, f162, f163, f164, f165, f166, f167, f168, f169, f170, f171, f172, f173, f174, f175, f176, f177, f178, f179, f180, f181, f182, f183, f184, f185, f186, f187, f188, f189, f190, f191, f192, f193, f194, f195, f196, f197, f198, f199, f200, f201, f202, f203, f204, f205, f206, f207, f208, f209, f210, f211, f212, f213, f214, f215, f216, f217, f218, f219, f220, f221, f222, f223, f224, f225, f226, f227, f228, f229, f230, f231, f232, f233, f234, f235, f236, f237, f238, f239, f240, f241, f242, f243, f244, f245, f246, f247, f248, f249, f250, f251, f252, f253, f254, f255, f256, f257, f258, f259, f260, f261, f262, f263, f264, f265, f266, f267, f268, f269, f270, f271, f272, f273, f274, f275, f276, f277, f278, f279, f280, f281, f282, f283, f284, f285, f286, f287, f288, f289, f290, f291, f292, f293, f294, f295, f296, f297, f298, f299, f300, f301, f302, f303, f304, f305, f306, f307, f308, f309, f310, f311, f312, f313, f314, f315, f316, f317, f318, f319, f320, f321, f322, f323, f324, f325, f326, f327, f328, f329, f330, f331, f332, f333, f334, f335, f336, f337, f338, f339, f340, f341, f342, f343, f344, f345, f346, f347, f348, f349, f350, f351, f352, f353, f354, f355, f356, f357, f358, f359, f360, f361, f362, f363, f364, f365, f366, f367, f368, f369, f370, f371, f372, f373, f374, f375, f376, f377, f378, f379, f380, f381, f382, f383, f384, f385, f386, f387, f388, f389, f390, f391, f392, f393, f394, f395, f396, f397, f398, f399, f400, f401, f402, f403, f404, f405, f406, f407, f408, f409, f410, f411, f412, f413, f414, f415, f416, f417, f418, f419, f420, f421, f422, f423, f424, f425, f426, f427, f428, f429, f430, f431, f432, f433, f434, f435, f436, f437, f438, f439, f440, f441, f442, f443, f444, f445, f446, f447, f448, f449, f450, f451, f452, f453, f454, f455, f456, f457, f458, f459, f460, f461, f462, f463, f464, f465, f466, f467, f468, f469, f470, f471, f472, f473, f474, f475, f476, f477, f478, f479, f480, f481, f482, f483, f484, f485, f486, f487, f488, f489, f490, f491, f492, f493, f494, f495, f496, f497, f498, f499, f500, f501, f502, f503, f504, f505, f506, f507, f508, f509, f510, f511, f512, f513, f514, f515, f516, f517, f518, f519, f520, f521, f522, f523, f524, f525, f526, f527, f528, f529, f530, f531, f532, f533, f534, f535, f536, f537, f538, f539, f540, f541, f542, f543, f544, f545, f546, f547, f548, f549, f550, f551, f552, f553, f554, f555, f556, f557, f558, f559, f560, f561, f562, f563, f564, f565, f566, f567, f568, f569, f570, f571, f572, f573, f574, f575, f576, f577, f578, f579, f580, f581, f582, f583, f584, f585, f586, f587, f588, f589, f590, f591, f592, f593, f594, f595, f596, f597, f598, f599, f600, f601, f602, f603, f604, f605, f606, f607, f608, f609, f610, f611, f612, f613, f614, f615, f616, f617, f618, f619, f620, f621, f622, f623, f624, f625, f626, f627, f628, f629, f630, f631, f632, f633, f634, f635, f636, f637, f638, f639, f640, f641, f642, f643, f644, f645, f646, f647, f648, f649, f650, f651, f652, f653, f654, f655, f656, f657, f658, f659, f660, f661, f662, f663, f664, f665, f666, f667, f668, f669, f670, f671, f672, f673, f674, f675, f676, f677, f678, f679, f680, f681, f682, f683, f684, f685, f686, f687, f688, f689, f690, f691, f692, f693, f694, f695, f696, f697, f698, f699, f700, f701, f702, f703, f704, f705, f706, f707, f708, f709, f710, f711, f712, f713, f714, f715, f716, f717, f718, f719, f720, f721, f722, f723, f724, f725, f726, f727, f728, f729, f730, f731, f732, f733, f734, f735, f736, f737, f738, f739, f740, f741, f742, f743, f744, f745, f746, f747, f748, f749, f750, f751, f752, f753, f754, f755, f756, f757, f758, f759, f760, f761, f762, f763, f764, f765, f766, f767);
+ideal J0 = (n563^2 - n563, n550^2 - n550, n562^2 - n562, n492^2 - n492, n551^2 - n551, n552^2 - n552, n538^2 - n538, n539^2 - n539, n536^2 - n536, n537^2 - n537, n534^2 - n534, n535^2 - n535, n532^2 - n532, n533^2 - n533, n530^2 - n530, n531^2 - n531, n657^2 - n657, n656^2 - n656, n569^2 - n569, n788^2 - n788, m14^2 - m14, n568^2 - n568, n628^2 - n628, n774^2 - n774, n629^2 - n629, n85^2 - n85, n84^2 - n84, n87^2 - n87, n86^2 - n86, n81^2 - n81, n80^2 - n80, n83^2 - n83, n82^2 - n82, n402^2 - n402, n403^2 - n403, n400^2 - n400, n401^2 - n401, n89^2 - n89, n88^2 - n88, n404^2 - n404, n405^2 - n405, n659^2 - n659, n658^2 - n658, n710^2 - n710, n393^2 - n393, n390^2 - n390, n391^2 - n391, n396^2 - n396, n397^2 - n397, n394^2 - n394, n395^2 - n395, n398^2 - n398, n399^2 - n399, n711^2 - n711, n240^2 - n240, n241^2 - n241, n242^2 - n242, n243^2 - n243, n244^2 - n244, n245^2 - n245, n246^2 - n246, n247^2 - n247, n248^2 - n248, n249^2 - n249, b03^2 - b03, n718^2 - n718, n719^2 - n719, b02^2 - b02, n499^2 - n499, n498^2 - n498, n329^2 - n329, n328^2 - n328, n327^2 - n327, n326^2 - n326, n325^2 - n325, n324^2 - n324, n323^2 - n323, n322^2 - n322, n321^2 - n321, n320^2 - n320, n811^2 - n811, n810^2 - n810, n812^2 - n812, n815^2 - n815, n814^2 - n814, b06^2 - b06, b09^2 - b09, n771^2 - n771, b08^2 - b08, n730^2 - n730, n662^2 - n662, n663^2 - n663, n149^2 - n149, n148^2 - n148, n666^2 - n666, n667^2 - n667, n664^2 - n664, n665^2 - n665, n143^2 - n143, n142^2 - n142, n141^2 - n141, n140^2 - n140, n781^2 - n781, n146^2 - n146, n145^2 - n145, n144^2 - n144, n74^2 - n74, n75^2 - n75, n76^2 - n76, n77^2 - n77, n70^2 - n70, n71^2 - n71, n73^2 - n73, n78^2 - n78, n79^2 - n79, n780^2 - n780, n701^2 - n701, n700^2 - n700, n703^2 - n703, n565^2 - n565, n564^2 - n564, n567^2 - n567, n566^2 - n566, n561^2 - n561, n560^2 - n560, n448^2 - n448, n449^2 - n449, n446^2 - n446, n447^2 - n447, n444^2 - n444, n445^2 - n445, n442^2 - n442, n443^2 - n443, n440^2 - n440, n441^2 - n441, n733^2 - n733, n707^2 - n707, n734^2 - n734, n706^2 - n706, n731^2 - n731, n736^2 - n736, n737^2 - n737, n693^2 - n693, n692^2 - n692, n691^2 - n691, n690^2 - n690, n697^2 - n697, n696^2 - n696, n695^2 - n695, n694^2 - n694, n699^2 - n699, n698^2 - n698, n363^2 - n363, n362^2 - n362, n361^2 - n361, n360^2 - n360, n367^2 - n367, n366^2 - n366, n365^2 - n365, n364^2 - n364, n369^2 - n369, n368^2 - n368, n598^2 - n598, n599^2 - n599, n590^2 - n590, n591^2 - n591, n592^2 - n592, n593^2 - n593, n594^2 - n594, n595^2 - n595, n596^2 - n596, n597^2 - n597, n510^2 - n510, n511^2 - n511, n627^2 - n627, n625^2 - n625, n622^2 - n622, n623^2 - n623, n189^2 - n189, n188^2 - n188, n187^2 - n187, n186^2 - n186, n185^2 - n185, n183^2 - n183, n182^2 - n182, n181^2 - n181, n180^2 - n180, n486^2 - n486, n749^2 - n749, n748^2 - n748, n219^2 - n219, n218^2 - n218, n217^2 - n217, n216^2 - n216, n215^2 - n215, n214^2 - n214, n213^2 - n213, n212^2 - n212, n211^2 - n211, n210^2 - n210, a08^2 - a08, a09^2 - a09, n732^2 - n732, a02^2 - a02, a03^2 - a03, a00^2 - a00, a01^2 - a01, a06^2 - a06, a07^2 - a07, a04^2 - a04, a05^2 - a05, n132^2 - n132, n133^2 - n133, n130^2 - n130, n131^2 - n131, n136^2 - n136, n137^2 - n137, n134^2 - n134, n135^2 - n135, n138^2 - n138, n139^2 - n139, n720^2 - n720, n408^2 - n408, n529^2 - n529, n528^2 - n528, n409^2 - n409, n521^2 - n521, n520^2 - n520, n523^2 - n523, n522^2 - n522, n525^2 - n525, n524^2 - n524, n527^2 - n527, n526^2 - n526, b00^2 - b00, n740^2 - n740, n487^2 - n487, n406^2 - n406, n407^2 - n407, n415^2 - n415, n414^2 - n414, n417^2 - n417, n416^2 - n416, n411^2 - n411, n410^2 - n410, n413^2 - n413, n412^2 - n412, n796^2 - n796, n797^2 - n797, n794^2 - n794, n795^2 - n795, n419^2 - n419, n418^2 - n418, n790^2 - n790, n791^2 - n791, n98^2 - n98, n99^2 - n99, n558^2 - n558, n559^2 - n559, n645^2 - n645, n92^2 - n92, n93^2 - n93, n90^2 - n90, n557^2 - n557, n96^2 - n96, n97^2 - n97, n94^2 - n94, n95^2 - n95, n742^2 - n742, n640^2 - n640, n641^2 - n641, n389^2 - n389, n388^2 - n388, n385^2 - n385, n384^2 - n384, n387^2 - n387, n386^2 - n386, n381^2 - n381, n380^2 - n380, n383^2 - n383, n382^2 - n382, n253^2 - n253, n252^2 - n252, n251^2 - n251, n250^2 - n250, n257^2 - n257, n256^2 - n256, n255^2 - n255, n254^2 - n254, n709^2 - n709, n648^2 - n648, n259^2 - n259, n258^2 - n258, m20^2 - m20, m21^2 - m21, m22^2 - m22, n649^2 - n649, n318^2 - n318, n319^2 - n319, n312^2 - n312, n313^2 - n313, n310^2 - n310, n311^2 - n311, n316^2 - n316, n317^2 - n317, n314^2 - n314, n315^2 - n315, n176^2 - n176, n177^2 - n177, n174^2 - n174, n175^2 - n175, n172^2 - n172, n173^2 - n173, n170^2 - n170, n171^2 - n171, n178^2 - n178, n179^2 - n179, n721^2 - n721, n775^2 - n775, n776^2 - n776, n777^2 - n777, n679^2 - n679, n678^2 - n678, n772^2 - n772, n773^2 - n773, n675^2 - n675, n674^2 - n674, n677^2 - n677, n676^2 - n676, n671^2 - n671, n670^2 - n670, n673^2 - n673, n672^2 - n672, n626^2 - n626, n620^2 - n620, n778^2 - n778, n621^2 - n621, n779^2 - n779, n702^2 - n702, n459^2 - n459, n458^2 - n458, n512^2 - n512, n513^2 - n513, n514^2 - n514, n515^2 - n515, n517^2 - n517, n451^2 - n451, n450^2 - n450, n453^2 - n453, n452^2 - n452, n454^2 - n454, n457^2 - n457, n456^2 - n456, b01^2 - b01, n798^2 - n798, n716^2 - n716, n717^2 - n717, n714^2 - n714, n493^2 - n493, n745^2 - n745, n715^2 - n715, n661^2 - n661, n744^2 - n744, n712^2 - n712, n747^2 - n747, n713^2 - n713, n680^2 - n680, n792^2 - n792, n746^2 - n746, n428^2 - n428, n429^2 - n429, n358^2 - n358, n359^2 - n359, n356^2 - n356, n357^2 - n357, n354^2 - n354, n355^2 - n355, n352^2 - n352, n353^2 - n353, n350^2 - n350, n351^2 - n351, n589^2 - n589, n588^2 - n588, n743^2 - n743, n583^2 - n583, n582^2 - n582, n581^2 - n581, n580^2 - n580, n587^2 - n587, n586^2 - n586, n585^2 - n585, n584^2 - n584, n793^2 - n793, n686^2 - n686, n687^2 - n687, n767^2 - n767, n631^2 - n631, n630^2 - n630, n633^2 - n633, n632^2 - n632, n635^2 - n635, n634^2 - n634, n637^2 - n637, n636^2 - n636, n639^2 - n639, n638^2 - n638, n610^2 - n610, n738^2 - n738, n739^2 - n739, n228^2 - n228, n229^2 - n229, n222^2 - n222, n223^2 - n223, n220^2 - n220, n221^2 - n221, n226^2 - n226, n735^2 - n735, n224^2 - n224, n225^2 - n225, n370^2 - n370, n371^2 - n371, b05^2 - b05, n617^2 - n617, n495^2 - n495, n494^2 - n494, n497^2 - n497, n496^2 - n496, b04^2 - b04, n491^2 - n491, n490^2 - n490, n644^2 - n644, n378^2 - n378, n646^2 - n646, n647^2 - n647, n129^2 - n129, n128^2 - n128, n642^2 - n642, n270^2 - n270, n125^2 - n125, n124^2 - n124, n127^2 - n127, n126^2 - n126, n121^2 - n121, n120^2 - n120, n123^2 - n123, n122^2 - n122, b07^2 - b07, n615^2 - n615, n758^2 - n758, n614^2 - n614, n759^2 - n759, n460^2 - n460, n461^2 - n461, n462^2 - n462, n463^2 - n463, n464^2 - n464, n465^2 - n465, n466^2 - n466, n467^2 - n467, n468^2 - n468, n469^2 - n469, n783^2 - n783, n782^2 - n782, n785^2 - n785, n784^2 - n784, n787^2 - n787, n786^2 - n786, n549^2 - n549, n548^2 - n548, n547^2 - n547, n546^2 - n546, n545^2 - n545, n544^2 - n544, n543^2 - n543, n542^2 - n542, n541^2 - n541, n540^2 - n540, n437^2 - n437, n436^2 - n436, n435^2 - n435, n434^2 - n434, n433^2 - n433, n432^2 - n432, m11^2 - m11, m10^2 - m10, m13^2 - m13, m12^2 - m12, m15^2 - m15, n431^2 - n431, m17^2 - m17, m16^2 - m16, m19^2 - m19, m18^2 - m18, n430^2 - n430, n305^2 - n305, n304^2 - n304, n307^2 - n307, n306^2 - n306, n301^2 - n301, n300^2 - n300, n303^2 - n303, n302^2 - n302, n266^2 - n266, n267^2 - n267, n264^2 - n264, n265^2 - n265, n309^2 - n309, n308^2 - n308, n260^2 - n260, n261^2 - n261, n284^2 - n284, n285^2 - n285, n286^2 - n286, n287^2 - n287, n280^2 - n280, n281^2 - n281, n282^2 - n282, n283^2 - n283, n288^2 - n288, n289^2 - n289, n161^2 - n161, n160^2 - n160, n163^2 - n163, n162^2 - n162, n165^2 - n165, n164^2 - n164, n167^2 - n167, n166^2 - n166, n169^2 - n169, n168^2 - n168, n427^2 - n427, n608^2 - n608, n609^2 - n609, n765^2 - n765, n764^2 - n764, n763^2 - n763, n762^2 - n762, n761^2 - n761, n760^2 - n760, n600^2 - n600, n601^2 - n601, n602^2 - n602, n603^2 - n603, n604^2 - n604, n605^2 - n605, n606^2 - n606, n607^2 - n607, n58^2 - n58, n56^2 - n56, n57^2 - n57, n54^2 - n54, n55^2 - n55, n53^2 - n53, n50^2 - n50, n51^2 - n51, n518^2 - n518, n519^2 - n519, n421^2 - n421, n660^2 - n660, n114^2 - n114, n115^2 - n115, n117^2 - n117, n110^2 - n110, n111^2 - n111, n112^2 - n112, n113^2 - n113, n683^2 - n683, n118^2 - n118, n119^2 - n119, n503^2 - n503, n502^2 - n502, n501^2 - n501, n500^2 - n500, n507^2 - n507, n506^2 - n506, n505^2 - n505, n504^2 - n504, n509^2 - n509, n508^2 - n508, n668^2 - n668, n766^2 - n766, n704^2 - n704, n750^2 - n750, n349^2 - n349, n348^2 - n348, n439^2 - n439, n438^2 - n438, n341^2 - n341, n340^2 - n340, n343^2 - n343, n342^2 - n342, n345^2 - n345, n344^2 - n344, n347^2 - n347, n346^2 - n346, n751^2 - n751, n756^2 - n756, n681^2 - n681, n757^2 - n757, b10^2 - b10, n554^2 - n554, n613^2 - n613, n612^2 - n612, n682^2 - n682, n611^2 - n611, b11^2 - b11, n235^2 - n235, n234^2 - n234, n237^2 - n237, n236^2 - n236, n231^2 - n231, n230^2 - n230, n233^2 - n233, n232^2 - n232, n555^2 - n555, n239^2 - n239, n238^2 - n238, n616^2 - n616, n482^2 - n482, n483^2 - n483, n480^2 - n480, n481^2 - n481, n338^2 - n338, n339^2 - n339, n484^2 - n484, n485^2 - n485, n334^2 - n334, n335^2 - n335, n336^2 - n336, n337^2 - n337, n330^2 - n330, n726^2 - n726, n332^2 - n332, n333^2 - n333, n806^2 - n806, n807^2 - n807, n805^2 - n805, n802^2 - n802, n803^2 - n803, n800^2 - n800, n801^2 - n801, n808^2 - n808, n809^2 - n809, n684^2 - n684, n729^2 - n729, n728^2 - n728, n158^2 - n158, n159^2 - n159, n655^2 - n655, n654^2 - n654, n653^2 - n653, n652^2 - n652, n651^2 - n651, n650^2 - n650, n150^2 - n150, n151^2 - n151, n152^2 - n152, n153^2 - n153, n154^2 - n154, n155^2 - n155, n156^2 - n156, n157^2 - n157, n67^2 - n67, n66^2 - n66, n65^2 - n65, n64^2 - n64, n63^2 - n63, n62^2 - n62, n61^2 - n61, n60^2 - n60, n69^2 - n69, n68^2 - n68, n723^2 - n723, n722^2 - n722, n488^2 - n488, n489^2 - n489, n685^2 - n685, n268^2 - n268, n727^2 - n727, n269^2 - n269, n725^2 - n725, n724^2 - n724, n262^2 - n262, n263^2 - n263, n473^2 - n473, n472^2 - n472, n471^2 - n471, n470^2 - n470, n477^2 - n477, n476^2 - n476, n475^2 - n475, n474^2 - n474, n479^2 - n479, n478^2 - n478, n553^2 - n553, n578^2 - n578, n579^2 - n579, n572^2 - n572, n570^2 - n570, n571^2 - n571, n576^2 - n576, n577^2 - n577, n574^2 - n574, n575^2 - n575, m06^2 - m06, m07^2 - m07, m04^2 - m04, m05^2 - m05, m02^2 - m02, m03^2 - m03, m00^2 - m00, m01^2 - m01, n688^2 - n688, n689^2 - n689, m08^2 - m08, m09^2 - m09, n279^2 - n279, n278^2 - n278, n372^2 - n372, n373^2 - n373, n374^2 - n374, n375^2 - n375, n376^2 - n376, n377^2 - n377, n271^2 - n271, n379^2 - n379, n273^2 - n273, n272^2 - n272, n275^2 - n275, n274^2 - n274, n277^2 - n277, n424^2 - n424, n769^2 - n769, n425^2 - n425, n426^2 - n426, n297^2 - n297, n296^2 - n296, n295^2 - n295, n294^2 - n294, n293^2 - n293, n292^2 - n292, n291^2 - n291, n290^2 - n290, n420^2 - n420, n799^2 - n799, n299^2 - n299, n298^2 - n298, n422^2 - n422, n423^2 - n423, n705^2 - n705, n198^2 - n198, n199^2 - n199, n194^2 - n194, n195^2 - n195, n196^2 - n196, n197^2 - n197, n190^2 - n190, n191^2 - n191, n192^2 - n192, n193^2 - n193, n752^2 - n752, n753^2 - n753, n619^2 - n619, n618^2 - n618, n208^2 - n208, n209^2 - n209, n754^2 - n754, n755^2 - n755, n204^2 - n204, n205^2 - n205, n206^2 - n206, n207^2 - n207, n200^2 - n200, n201^2 - n201, n202^2 - n202, n203^2 - n203, m23^2 - m23, a11^2 - a11, a10^2 - a10, n770^2 - n770, n643^2 - n643, n107^2 - n107, n106^2 - n106, n105^2 - n105, n104^2 - n104, n103^2 - n103, n102^2 - n102, n101^2 - n101, n100^2 - n100, n556^2 - n556, n109^2 - n109, n108^2 - n108);
+poly f_spec =Z-A*B;
+reduce(f_spec, J + J0);

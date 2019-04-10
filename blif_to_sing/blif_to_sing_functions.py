@@ -107,6 +107,11 @@ def blif_name_to_gate(truth_table):
     print(truth_table)
     return ""
 
+"""
+get all the nodes with node as an input
+"""
+def get_output_edges(node, graph):
+    return filter(lambda edge: node in graph[edge].inputs, graph)
 
 """
 sorts a circuit into RTTO
@@ -118,20 +123,15 @@ inputs:
     outputs - list of primary output nets of circuit
 """
 def khan_topo_sort(graph, inputs, outputs):
-    """
-    get all the nodes with node as an input
-    """
-    def get_edges(node):
-        return filter(lambda edge: node in graph[edge].inputs, graph)
 
     in_degree = {}
 
     queue = []
     for node in graph:
-        edges = get_edges(node)
+        edges = get_output_edges(node, graph)
         in_degree[node] = len(edges)
 
-    queue = filter(lambda node: len(get_edges(node)) == 0, graph)
+    queue = filter(lambda node: len(get_output_edges(node, graph)) == 0, graph)
 
 
     cnt = 0
@@ -237,7 +237,107 @@ class Gate:
     def __repr__(self):
         if self.gate == "INPUT":
             return "<%s = INPUT>" % (self.output)
+        if len(self.inputs) == 1:
+            return "<%s = %s %s>" % (self.output, self.inputs[0], self.gate)
         return "<%s = %s %s %s>" % (self.output, self.inputs[0], self.gate, self.inputs[1])
+
+
+"""
+This sorts the circuit column wise doing merging and promotion of gates as necessary
+
+inputs:
+    graph - dictionary of Gates. 
+        key: output net of gate 
+        value: Gate(output_net, input_nets, gate)
+    inputs - list of primary input nets of circuit
+    outputs - list of primary output nets of circuit
+        NOTE: assumes outputs sorted LSB->MSB
+"""
+def daniela_sort(graph, inputs, outputs):
+    #get normal rtto sort
+    pre_order = khan_topo_sort(graph, inputs, outputs)
+    print("pre_order: " + str(pre_order))
+    print(len(pre_order))
+
+    
+
+    #build input cones
+    input_cones = [] #list[set[Gate]]
+    for output in outputs:
+        #cone = graph[output].inputs
+        cone = [output]
+        idx = 0
+        #recursively iterate through inputs
+        while idx < len(cone):
+            cone.extend(graph[cone[idx]].inputs)
+            idx += 1
+
+
+        input_cones.append(set(cone))
+
+    print(input_cones)
+    print("\n\n\n")
+
+    #build slices. Each slice is difference of cones
+    slices = [None]*len(input_cones) #list[set[Gate]]
+    slices[0] = input_cones[0]
+    for idx, cone in enumerate(input_cones[1:], 1):
+        slices[idx] = input_cones[idx] - input_cones[idx - 1]
+
+    print(slices)
+
+    #merge
+    #TODO: check that this works
+    idx = len(slices) - 1
+    #I want to go backwards, but keep the indexes normal. idk a good pythonic way to do this.
+    while idx >= 0:
+        stack = list(slices[idx])
+        while stack:
+            gate = stack.pop(0)
+            # If both gate inputs are in lower slices, move to lower slice.
+            # Because we go backwards, this gate will be pushed down each iteration
+            # until it can't go any lower
+            if all(input_net in input_cones[idx - 1] for input_net in graph[gate].inputs):
+                slices[idx].remove(gate)
+                slices[idx - 1].add(gate)
+                #check parent(s)
+                stack.extend(get_output_edges(gate, graph))
+
+        idx -= 1
+
+    #promote
+    #TODO
+
+    order = []
+    for ckt_slice in slices:
+        #print(ckt_slice)
+        slice_order = filter(lambda node: node.output in ckt_slice, pre_order)
+        #print("post_slice sub_order: " + str(slice_order))
+        order.extend(slice_order)
+
+
+    #TODO make this a function and use it in other circuits
+    #pull out primary outputs and sort
+    output_gates = filter(lambda node: node.output in outputs, order)
+    order = filter(lambda node: node.output not in outputs, order)
+    #rejoin and reverse
+    output_gates.sort(key = lambda node: node.output, reverse = True)
+    order += output_gates
+    order.reverse()
+    #pull out primary inputs and sort
+    input_gates = filter(lambda node: node.output in inputs, order)
+    input_gates.sort(key = lambda node: node.output)
+    order = filter(lambda node: node.output not in inputs, order)
+    #rejoin
+    order += input_gates
+    print("final order: " + str(order))
+    print(len(order))
+    if set(order) != set(pre_order):
+        print("WARNING: order is missing gates!!")
+        print(set(pre_order) - set(order))
+    return order
+        
+
 
 """
 badchars

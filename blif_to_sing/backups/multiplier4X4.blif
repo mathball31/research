@@ -1,6 +1,12 @@
 .model int4_approx
 .inputs a0 a1 a2 a3 b0 b1 b2 b3
-.outputs Z0 Z1 Z2 Z3 Z4 Z5 Z6 Z7
+.outputs Z0 Z1 Z2 Z3 Z4 Z5 ZZ6 ZZ7
+
+.names Z6 ZZ6
+1 1
+
+.names Z7 ZZ7
+1 1
 
 .names a0 b0 s0_0
 11 1
