@@ -1,0 +1,369 @@
+ring r = 0, (Z, A, B, m00, m01, m02, m03, m04, m05, m06, m07, m08, m09, m10, m11, n190, n191, n183, n181, n182, n168, n166, n167, n147, n145, n146, n122, n120, n121, n93, n90, n91, n118, n116, n117, n143, n141, n142, n164, n162, n163, n179, n177, n178, n188, n186, n184, n185, n171, n169, n170, n150, n148, n149, n125, n123, n124, n96, n94, n95, n68, n65, n66, n89, n87, n88, n115, n113, n114, n140, n138, n139, n161, n159, n160, n176, n174, n172, n173, n153, n151, n152, n128, n126, n127, n99, n97, n98, n71, n69, n70, n49, n46, n47, n64, n62, n63, n86, n84, n85, n112, n110, n111, n137, n135, n136, n158, n156, n154, n155, n131, n129, n130, n102, n100, n101, n74, n72, n73, n52, n50, n51, n36, n33, n34, n45, n43, n44, n61, n59, n60, n83, n81, n82, n109, n107, n108, n134, n132, n105, n103, n104, n77, n75, n76, n55, n53, n54, n39, n37, n38, n29, n26, n27, n32, n30, n31, n42, n40, n41, n58, n56, n57, n80, n78, n79, n106, n133, n157, n175, n187, a0, a1, a2, a3, a4, a5, b0, b1, b2, b3, b4, b5), lp;
+
+poly fZ = -Z + 1*m00 + 2*m01 + 4*m02 + 8*m03 + 16*m04 + 32*m05 + 64*m06 + 128*m07 + 256*m08 + 512*m09 + 1024*m10 + 2048*m11;
+poly fA = -A + 1*a0 + 2*a1 + 4*a2 + 8*a3 + 16*a4 + 32*a5;
+poly fB = -B + 1*b0 + 2*b1 + 4*b2 + 8*b3 + 16*b4 + 32*b5;
+// AND2X1
+poly f0 = -m00 + b0*a0;
+// XOR2X1
+poly f1 = -m01 + n27 + n26 - 2*n27*n26;
+// XOR2X1
+poly f2 = -m02 + n34 + n33 - 2*n34*n33;
+// XOR2X1
+poly f3 = -m03 + n47 + n46 - 2*n47*n46;
+// XOR2X1
+poly f4 = -m04 + n66 + n65 - 2*n66*n65;
+// XOR2X1
+poly f5 = -m05 + n91 + n90 - 2*n91*n90;
+// XOR2X1
+poly f6 = -m06 + n118 + n93 - 2*n118*n93;
+// XOR2X1
+poly f7 = -m07 + n143 + n122 - 2*n143*n122;
+// XOR2X1
+poly f8 = -m08 + n164 + n147 - 2*n164*n147;
+// XOR2X1
+poly f9 = -m09 + n179 + n168 - 2*n179*n168;
+// XOR2X1
+poly f10 = -m10 + n188 + n183 - 2*n188*n183;
+// OR2X1
+poly f11 = -m11 + n191 + n190 - n191*n190;
+// AND2X1
+poly f12 = -n190 + n187*n186;
+// AND2X1
+poly f13 = -n191 + n188*n183;
+// OR2X1
+poly f14 = -n183 + n182 + n181 - n182*n181;
+// AND2X1
+poly f15 = -n181 + n178*n177;
+// AND2X1
+poly f16 = -n182 + n179*n168;
+// OR2X1
+poly f17 = -n168 + n167 + n166 - n167*n166;
+// AND2X1
+poly f18 = -n166 + n163*n162;
+// AND2X1
+poly f19 = -n167 + n164*n147;
+// OR2X1
+poly f20 = -n147 + n146 + n145 - n146*n145;
+// AND2X1
+poly f21 = -n145 + n142*n141;
+// AND2X1
+poly f22 = -n146 + n143*n122;
+// OR2X1
+poly f23 = -n122 + n121 + n120 - n121*n120;
+// AND2X1
+poly f24 = -n120 + n117*n116;
+// AND2X1
+poly f25 = -n121 + n118*n93;
+// AND2X1
+poly f26 = -n93 + n91*n90;
+// XOR2X1
+poly f27 = -n90 + n89 + n68 - 2*n89*n68;
+// AND2X1
+poly f28 = -n91 + b5*a0;
+// XOR2X1
+poly f29 = -n118 + n117 + n116 - 2*n117*n116;
+// XOR2X1
+poly f30 = -n116 + n115 + n96 - 2*n115*n96;
+// AND2X1
+poly f31 = -n117 + b5*a1;
+// XOR2X1
+poly f32 = -n143 + n142 + n141 - 2*n142*n141;
+// XOR2X1
+poly f33 = -n141 + n140 + n125 - 2*n140*n125;
+// AND2X1
+poly f34 = -n142 + b5*a2;
+// XOR2X1
+poly f35 = -n164 + n163 + n162 - 2*n163*n162;
+// XOR2X1
+poly f36 = -n162 + n161 + n150 - 2*n161*n150;
+// AND2X1
+poly f37 = -n163 + b5*a3;
+// XOR2X1
+poly f38 = -n179 + n178 + n177 - 2*n178*n177;
+// XOR2X1
+poly f39 = -n177 + n176 + n171 - 2*n176*n171;
+// AND2X1
+poly f40 = -n178 + b5*a4;
+// XOR2X1
+poly f41 = -n188 + n187 + n186 - 2*n187*n186;
+// OR2X1
+poly f42 = -n186 + n185 + n184 - n185*n184;
+// AND2X1
+poly f43 = -n184 + n175*n174;
+// AND2X1
+poly f44 = -n185 + n176*n171;
+// OR2X1
+poly f45 = -n171 + n170 + n169 - n170*n169;
+// AND2X1
+poly f46 = -n169 + n160*n159;
+// AND2X1
+poly f47 = -n170 + n161*n150;
+// OR2X1
+poly f48 = -n150 + n149 + n148 - n149*n148;
+// AND2X1
+poly f49 = -n148 + n139*n138;
+// AND2X1
+poly f50 = -n149 + n140*n125;
+// OR2X1
+poly f51 = -n125 + n124 + n123 - n124*n123;
+// AND2X1
+poly f52 = -n123 + n114*n113;
+// AND2X1
+poly f53 = -n124 + n115*n96;
+// OR2X1
+poly f54 = -n96 + n95 + n94 - n95*n94;
+// AND2X1
+poly f55 = -n94 + n88*n87;
+// AND2X1
+poly f56 = -n95 + n89*n68;
+// AND2X1
+poly f57 = -n68 + n66*n65;
+// XOR2X1
+poly f58 = -n65 + n64 + n49 - 2*n64*n49;
+// AND2X1
+poly f59 = -n66 + b4*a0;
+// XOR2X1
+poly f60 = -n89 + n88 + n87 - 2*n88*n87;
+// XOR2X1
+poly f61 = -n87 + n86 + n71 - 2*n86*n71;
+// AND2X1
+poly f62 = -n88 + b4*a1;
+// XOR2X1
+poly f63 = -n115 + n114 + n113 - 2*n114*n113;
+// XOR2X1
+poly f64 = -n113 + n112 + n99 - 2*n112*n99;
+// AND2X1
+poly f65 = -n114 + b4*a2;
+// XOR2X1
+poly f66 = -n140 + n139 + n138 - 2*n139*n138;
+// XOR2X1
+poly f67 = -n138 + n137 + n128 - 2*n137*n128;
+// AND2X1
+poly f68 = -n139 + b4*a3;
+// XOR2X1
+poly f69 = -n161 + n160 + n159 - 2*n160*n159;
+// XOR2X1
+poly f70 = -n159 + n158 + n153 - 2*n158*n153;
+// AND2X1
+poly f71 = -n160 + b4*a4;
+// XOR2X1
+poly f72 = -n176 + n175 + n174 - 2*n175*n174;
+// OR2X1
+poly f73 = -n174 + n173 + n172 - n173*n172;
+// AND2X1
+poly f74 = -n172 + n157*n156;
+// AND2X1
+poly f75 = -n173 + n158*n153;
+// OR2X1
+poly f76 = -n153 + n152 + n151 - n152*n151;
+// AND2X1
+poly f77 = -n151 + n136*n135;
+// AND2X1
+poly f78 = -n152 + n137*n128;
+// OR2X1
+poly f79 = -n128 + n127 + n126 - n127*n126;
+// AND2X1
+poly f80 = -n126 + n111*n110;
+// AND2X1
+poly f81 = -n127 + n112*n99;
+// OR2X1
+poly f82 = -n99 + n98 + n97 - n98*n97;
+// AND2X1
+poly f83 = -n97 + n85*n84;
+// AND2X1
+poly f84 = -n98 + n86*n71;
+// OR2X1
+poly f85 = -n71 + n70 + n69 - n70*n69;
+// AND2X1
+poly f86 = -n69 + n63*n62;
+// AND2X1
+poly f87 = -n70 + n64*n49;
+// AND2X1
+poly f88 = -n49 + n47*n46;
+// XOR2X1
+poly f89 = -n46 + n45 + n36 - 2*n45*n36;
+// AND2X1
+poly f90 = -n47 + b3*a0;
+// XOR2X1
+poly f91 = -n64 + n63 + n62 - 2*n63*n62;
+// XOR2X1
+poly f92 = -n62 + n61 + n52 - 2*n61*n52;
+// AND2X1
+poly f93 = -n63 + b3*a1;
+// XOR2X1
+poly f94 = -n86 + n85 + n84 - 2*n85*n84;
+// XOR2X1
+poly f95 = -n84 + n83 + n74 - 2*n83*n74;
+// AND2X1
+poly f96 = -n85 + b3*a2;
+// XOR2X1
+poly f97 = -n112 + n111 + n110 - 2*n111*n110;
+// XOR2X1
+poly f98 = -n110 + n109 + n102 - 2*n109*n102;
+// AND2X1
+poly f99 = -n111 + b3*a3;
+// XOR2X1
+poly f100 = -n137 + n136 + n135 - 2*n136*n135;
+// XOR2X1
+poly f101 = -n135 + n134 + n131 - 2*n134*n131;
+// AND2X1
+poly f102 = -n136 + b3*a4;
+// XOR2X1
+poly f103 = -n158 + n157 + n156 - 2*n157*n156;
+// OR2X1
+poly f104 = -n156 + n155 + n154 - n155*n154;
+// AND2X1
+poly f105 = -n154 + n133*n132;
+// AND2X1
+poly f106 = -n155 + n134*n131;
+// OR2X1
+poly f107 = -n131 + n130 + n129 - n130*n129;
+// AND2X1
+poly f108 = -n129 + n108*n107;
+// AND2X1
+poly f109 = -n130 + n109*n102;
+// OR2X1
+poly f110 = -n102 + n101 + n100 - n101*n100;
+// AND2X1
+poly f111 = -n100 + n82*n81;
+// AND2X1
+poly f112 = -n101 + n83*n74;
+// OR2X1
+poly f113 = -n74 + n73 + n72 - n73*n72;
+// AND2X1
+poly f114 = -n72 + n60*n59;
+// AND2X1
+poly f115 = -n73 + n61*n52;
+// OR2X1
+poly f116 = -n52 + n51 + n50 - n51*n50;
+// AND2X1
+poly f117 = -n50 + n44*n43;
+// AND2X1
+poly f118 = -n51 + n45*n36;
+// AND2X1
+poly f119 = -n36 + n34*n33;
+// XOR2X1
+poly f120 = -n33 + n32 + n29 - 2*n32*n29;
+// AND2X1
+poly f121 = -n34 + b2*a0;
+// XOR2X1
+poly f122 = -n45 + n44 + n43 - 2*n44*n43;
+// XOR2X1
+poly f123 = -n43 + n42 + n39 - 2*n42*n39;
+// AND2X1
+poly f124 = -n44 + b2*a1;
+// XOR2X1
+poly f125 = -n61 + n60 + n59 - 2*n60*n59;
+// XOR2X1
+poly f126 = -n59 + n58 + n55 - 2*n58*n55;
+// AND2X1
+poly f127 = -n60 + b2*a2;
+// XOR2X1
+poly f128 = -n83 + n82 + n81 - 2*n82*n81;
+// XOR2X1
+poly f129 = -n81 + n80 + n77 - 2*n80*n77;
+// AND2X1
+poly f130 = -n82 + b2*a3;
+// XOR2X1
+poly f131 = -n109 + n108 + n107 - 2*n108*n107;
+// XOR2X1
+poly f132 = -n107 + n106 + n105 - 2*n106*n105;
+// AND2X1
+poly f133 = -n108 + b2*a4;
+// XOR2X1
+poly f134 = -n134 + n133 + n132 - 2*n133*n132;
+// AND2X1
+poly f135 = -n132 + n106*n105;
+// OR2X1
+poly f136 = -n105 + n104 + n103 - n104*n103;
+// AND2X1
+poly f137 = -n103 + n79*n78;
+// AND2X1
+poly f138 = -n104 + n80*n77;
+// OR2X1
+poly f139 = -n77 + n76 + n75 - n76*n75;
+// AND2X1
+poly f140 = -n75 + n57*n56;
+// AND2X1
+poly f141 = -n76 + n58*n55;
+// OR2X1
+poly f142 = -n55 + n54 + n53 - n54*n53;
+// AND2X1
+poly f143 = -n53 + n41*n40;
+// AND2X1
+poly f144 = -n54 + n42*n39;
+// OR2X1
+poly f145 = -n39 + n38 + n37 - n38*n37;
+// AND2X1
+poly f146 = -n37 + n31*n30;
+// AND2X1
+poly f147 = -n38 + n32*n29;
+// AND2X1
+poly f148 = -n29 + n27*n26;
+// AND2X1
+poly f149 = -n26 + b0*a1;
+// AND2X1
+poly f150 = -n27 + b1*a0;
+// XOR2X1
+poly f151 = -n32 + n31 + n30 - 2*n31*n30;
+// AND2X1
+poly f152 = -n30 + b0*a2;
+// AND2X1
+poly f153 = -n31 + b1*a1;
+// XOR2X1
+poly f154 = -n42 + n41 + n40 - 2*n41*n40;
+// AND2X1
+poly f155 = -n40 + b0*a3;
+// AND2X1
+poly f156 = -n41 + b1*a2;
+// XOR2X1
+poly f157 = -n58 + n57 + n56 - 2*n57*n56;
+// AND2X1
+poly f158 = -n56 + b0*a4;
+// AND2X1
+poly f159 = -n57 + b1*a3;
+// XOR2X1
+poly f160 = -n80 + n79 + n78 - 2*n79*n78;
+// AND2X1
+poly f161 = -n78 + b0*a5;
+// AND2X1
+poly f162 = -n79 + b1*a4;
+// AND2X1
+poly f163 = -n106 + b1*a5;
+// AND2X1
+poly f164 = -n133 + b2*a5;
+// AND2X1
+poly f165 = -n157 + b3*a5;
+// AND2X1
+poly f166 = -n175 + b4*a5;
+// AND2X1
+poly f167 = -n187 + b5*a5;
+// INPUT
+poly fa0 = a0^2 - a0;
+// INPUT
+poly fa1 = a1^2 - a1;
+// INPUT
+poly fa2 = a2^2 - a2;
+// INPUT
+poly fa3 = a3^2 - a3;
+// INPUT
+poly fa4 = a4^2 - a4;
+// INPUT
+poly fa5 = a5^2 - a5;
+// INPUT
+poly fb0 = b0^2 - b0;
+// INPUT
+poly fb1 = b1^2 - b1;
+// INPUT
+poly fb2 = b2^2 - b2;
+// INPUT
+poly fb3 = b3^2 - b3;
+// INPUT
+poly fb4 = b4^2 - b4;
+// INPUT
+poly fb5 = b5^2 - b5;
+ideal J = (fZ, fA, fB, f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36, f37, f38, f39, f40, f41, f42, f43, f44, f45, f46, f47, f48, f49, f50, f51, f52, f53, f54, f55, f56, f57, f58, f59, f60, f61, f62, f63, f64, f65, f66, f67, f68, f69, f70, f71, f72, f73, f74, f75, f76, f77, f78, f79, f80, f81, f82, f83, f84, f85, f86, f87, f88, f89, f90, f91, f92, f93, f94, f95, f96, f97, f98, f99, f100, f101, f102, f103, f104, f105, f106, f107, f108, f109, f110, f111, f112, f113, f114, f115, f116, f117, f118, f119, f120, f121, f122, f123, f124, f125, f126, f127, f128, f129, f130, f131, f132, f133, f134, f135, f136, f137, f138, f139, f140, f141, f142, f143, f144, f145, f146, f147, f148, f149, f150, f151, f152, f153, f154, f155, f156, f157, f158, f159, f160, f161, f162, f163, f164, f165, f166, f167);
+ideal J0 = (n38^2 - n38, n39^2 - n39, n30^2 - n30, n31^2 - n31, n32^2 - n32, n33^2 - n33, n34^2 - n34, n36^2 - n36, n37^2 - n37, n132^2 - n132, n133^2 - n133, n130^2 - n130, n131^2 - n131, n136^2 - n136, n137^2 - n137, n134^2 - n134, n135^2 - n135, n138^2 - n138, n139^2 - n139, n85^2 - n85, n84^2 - n84, n87^2 - n87, n86^2 - n86, n81^2 - n81, n80^2 - n80, n83^2 - n83, n82^2 - n82, n89^2 - n89, n88^2 - n88, n129^2 - n129, n128^2 - n128, n125^2 - n125, n124^2 - n124, n127^2 - n127, n126^2 - n126, n121^2 - n121, n120^2 - n120, n123^2 - n123, n122^2 - n122, b4^2 - b4, b5^2 - b5, b0^2 - b0, b1^2 - b1, b2^2 - b2, b3^2 - b3, n98^2 - n98, n99^2 - n99, n93^2 - n93, n90^2 - n90, n91^2 - n91, n96^2 - n96, n97^2 - n97, n94^2 - n94, n95^2 - n95, n158^2 - n158, n159^2 - n159, n150^2 - n150, n151^2 - n151, n152^2 - n152, n153^2 - n153, n154^2 - n154, n155^2 - n155, n156^2 - n156, n157^2 - n157, n66^2 - n66, n65^2 - n65, n64^2 - n64, n63^2 - n63, n62^2 - n62, n61^2 - n61, n60^2 - n60, n69^2 - n69, n68^2 - n68, a3^2 - a3, n149^2 - n149, n148^2 - n148, n143^2 - n143, n142^2 - n142, n141^2 - n141, n140^2 - n140, n147^2 - n147, n146^2 - n146, n145^2 - n145, n74^2 - n74, n75^2 - n75, n76^2 - n76, n77^2 - n77, n70^2 - n70, n71^2 - n71, n72^2 - n72, n73^2 - n73, n78^2 - n78, n79^2 - n79, m11^2 - m11, m10^2 - m10, n176^2 - n176, n177^2 - n177, n174^2 - n174, n175^2 - n175, n172^2 - n172, n173^2 - n173, n170^2 - n170, n171^2 - n171, n178^2 - n178, n179^2 - n179, n49^2 - n49, n41^2 - n41, n40^2 - n40, n43^2 - n43, n42^2 - n42, n45^2 - n45, n44^2 - n44, n47^2 - n47, n46^2 - n46, m06^2 - m06, m07^2 - m07, m04^2 - m04, m05^2 - m05, m02^2 - m02, m03^2 - m03, m00^2 - m00, m01^2 - m01, m08^2 - m08, m09^2 - m09, n161^2 - n161, n160^2 - n160, n163^2 - n163, n162^2 - n162, n164^2 - n164, n167^2 - n167, n166^2 - n166, n169^2 - n169, n168^2 - n168, n58^2 - n58, n59^2 - n59, n56^2 - n56, n57^2 - n57, n54^2 - n54, n55^2 - n55, n52^2 - n52, n53^2 - n53, n50^2 - n50, n51^2 - n51, n190^2 - n190, n191^2 - n191, n114^2 - n114, n115^2 - n115, n116^2 - n116, n117^2 - n117, n110^2 - n110, n111^2 - n111, n112^2 - n112, n113^2 - n113, n118^2 - n118, a1^2 - a1, a0^2 - a0, n29^2 - n29, a2^2 - a2, a5^2 - a5, a4^2 - a4, n27^2 - n27, n26^2 - n26, n188^2 - n188, n187^2 - n187, n186^2 - n186, n185^2 - n185, n184^2 - n184, n183^2 - n183, n182^2 - n182, n181^2 - n181, n107^2 - n107, n106^2 - n106, n105^2 - n105, n104^2 - n104, n103^2 - n103, n102^2 - n102, n101^2 - n101, n100^2 - n100, n109^2 - n109, n108^2 - n108);
+poly f_spec =Z-A*B;
+reduce(f_spec, J + J0);
