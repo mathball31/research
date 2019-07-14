@@ -357,9 +357,6 @@ returns:
     primary_outputs: list of Gates representing primary outputs to the circuit
 """
 #TODO add constant declaration
-#TODO: add multi-line support
-    # first line \
-    # second line
 def blif_to_gates(blif_file):
     gates = {}
     primary_inputs = []
@@ -370,7 +367,10 @@ def blif_to_gates(blif_file):
     """
     line = blif_file.readline()
     while line != "":
+        extendLine = line.rstrip()[-1] == '\\'
         line = re.sub(badchars, '_', line)
+        if extendLine:
+            line = line.replace('\\', '')
         if line.startswith(".gate"):
             tokens = line.split();
             gate_inputs = []
@@ -401,6 +401,8 @@ def blif_to_gates(blif_file):
         if line.startswith(".outputs"):
             primary_outputs.extend(line.split()[1:])
 
-
-        line = blif_file.readline()
+        if extendLine:
+            line = line.split()[0] + blif_file.readline()
+        else: 
+            line = blif_file.readline()
     return (gates, primary_inputs, primary_outputs)
