@@ -1,0 +1,283 @@
+// This is the 3 bit Multiplier circuit mitered to the buggy circuit (to create the diff set)
+
+ring R = (2, al), (t, Z, Zb, Zc, A, B, z2, z1, z0, z2b, 
+    z1b, z0b, z2c, z1c, z0c, f0, f0b, f0c, e3, e3b, e3c,
+    e2, e2b, e2c, e1, e1b, e1c, e0, e0b, e0c, d8, d8b, d8c,
+    d7, d7b, d7c, d6, d6b, d6c, d5, d5b, d5c, d4, d4b, d4c, 
+    d3, d3b, d3c, d2, d2b, d2c, d1, d1b, d1c, d0, d0b, d0c,
+    b2, b1, b0, a2, a1, a0), lp;
+
+proc id2poly_fast2(ideal J, ideal VanishingId)
+{
+return(sub_mon2(J,VanishingId)+1);
+}
+
+proc sub_mon2(ideal J, ideal VanishingId)
+{
+//"HH";
+if (size(J)==1)
+{
+//"Bottom";
+return(1+J[1]);
+}
+ideal CorrCircId = J[1..size(J)-1];
+poly S1 = sub_mon2(CorrCircId,VanishingId);
+poly S2 = reduce(S1*J[size(J)], VanishingId);
+// S2;
+//"1Up";
+    return(S1+S2);
+}
+
+minpoly = al^3 + al + 1;
+
+poly rf = e1b;
+
+// Describing the Correct Circuit (Spec)
+ideal CorrCircId =
+// z2 + e3 + e2,
+// z1 + f0 + d5,
+// z0 + e0 + d0,
+// f0 + e1 + e0,
+// e3 + d8 + d7,
+// e2 + d6 + d5,
+// e1 + d4 + d3,
+// e0 + d2 + d1,
+// d8 + b0 * a2,
+// d7 + a0 * b2,
+// d6 + b1 * a1,
+// d5 + a2 * b2,
+// d4 + a0 * b1,
+// d3 + a1 * b0,
+// d2 + a2 * b1,
+// d1 + a1 * b2,
+// d0 + a0 * b0,
+B + b0 + b1*al + b2*al^2,
+A + a0 + a1*al + a2*al^2,
+// Z + z0 + z1*al + z2*al^2;
+Z + A*B;
+
+// Describing the Buggy circuit (Implementation)
+ideal BuggyImpId =
+z2b + e3b + e2b,
+z1b + f0b + d5b,
+z0b + e0b + d0b,
+f0b + e1b + e0b,
+e3b + d8b + d7b,
+e2b + d6b + d5b,
+e1b + d4b + d3b,
+e0b + d2b + d1b,
+// Bug 1: d8 -> OR gate from AND gate
+d8b + b0 + a2 + b0 * a2,
+d7b + a0 * b2,
+d6b + b1 * a1,
+d5b + a2 * b2,
+d4b + a0 * b1,
+// Bug 2: d3 -> XOR gate from AND gate
+d3b + a1 + b0,
+d2b + a2 * b1,
+d1b + a1 * b2,
+d0b + a0 * b0,
+B + b0 + b1*al + b2*al^2,
+A + a0 + a1*al + a2*al^2,
+Zb + z0b + z1b*al + z2b*al^2;
+
+// Represents the Miter:
+ideal BuggyCorrMiterId =
+1 + t*Z + t*Zb;
+
+ideal VanishingId =
+Z^8 + Z,
+A^8 + A,
+B^8 + B,
+Zb^8 + Zb,
+z2^2 + z2,
+z2b^2 + z2b,
+z1^2 + z1,
+z1b^2 + z1b,
+z0^2 + z0,
+z0b^2 + z0b,
+f0^2 + f0,
+f0b^2 + f0b,
+e3^2 + e3,
+e3b^2 + e3,
+e2^2 + e2,
+e2b^2 + e2,
+e1^2 + e1,
+e1b^2 + e1b,
+e0^2 + e0,
+e0b^2 + e0b,
+d8^2 + d8,
+d7^2 + d7,
+d6^2 + d6,
+d5^2 + d5,
+d4^2 + d4,
+d3^2 + d3,
+d2^2 + d2,
+d1^2 + d1,
+d0^2 + d0,
+d8b^2 + d8b,
+d7b^2 + d7b,
+d6b^2 + d6b,
+d5b^2 + d5b,
+d4b^2 + d4b,
+d3b^2 + d3b,
+d2b^2 + d2b,
+d1b^2 + d1b,
+d0b^2 + d0b,
+a2^2 + a2,
+a1^2 + a1,
+a0^2 + a0,
+b2^2 + b2,
+b1^2 + b1,
+b0^2 + b0,
+t^8 + t;
+
+ideal Diff = slimgb(VanishingId + CorrCircId + BuggyImpId + BuggyCorrMiterId);
+list PI = "a0", "a1", "a2", "b0", "b1", "b2";
+int isPI = 0;
+int j = 1;
+
+for (int i = 1; i <= nvars(R); i = i + 1)
+{
+	isPI = 0;
+	j = 1;
+	for (j = 1; j <= 6; j = j + 1)
+	{
+		if (PI[j] == varstr(R, i))
+		{
+			isPI = 1;
+			break;
+		}
+	}
+	
+	if(isPI == 0)
+	{
+		Diff = eliminate(Diff, var(i));	
+	}
+	
+}
+
+printf("The Diff set Ideal is  %s", Diff);
+
+// This is the 3 bit Multiplier with a miter designed to create the care-set.
+
+// Describing the Buggy circuit with inverted e1 node (e1 = ~e1(buggy))
+ideal BuggyTinvId =
+z2c + e3c + e2c,
+z1c + f0c + d5c,
+z0c + e0c + d0c,
+f0c + e1c + e0c,
+e3c + d8c + d7c,
+e2c + d6c + d5c,
+// Checking rectification at e1. Invert e1.
+e1c + d4c + d3c + 1,
+e0c + d2c + d1c,
+d8c + b0 + a2 + b0 * a2,
+d7c + a0 * b2,
+d6c + b1 * a1,
+d5c + a2 * b2,
+d4c + a0 * b1,
+d3c + a1 + b0,
+d2c + a2 * b1,
+d1c + a1 * b2,
+d0c + a0 * b0,
+B + b0 + b1*al + b2*al^2,
+A + a0 + a1*al + a2*al^2,
+Zc + z0c + z1c*al + z2c*al^2;
+
+// Represents the Miter:
+ideal MiterBuggyInv =
+1 + t*Zb + t*Zc;
+
+ideal Care = slimgb(VanishingId + BuggyImpId + BuggyTinvId + MiterBuggyInv);
+for (i = 1; i <= nvars(R); i = i + 1)
+{
+	isPI = 0;
+	j = 1;
+	for (j = 1; j <= 6; j = j + 1)
+	{
+		if (PI[j] == varstr(R, i))
+		{
+			isPI = 1;
+                      break;
+		}
+	}
+	
+	if(isPI == 0)
+	{
+		Care = eliminate(Care, var(i));	
+	}
+	
+}
+
+printf("The Care set Ideal is  %s", Care);
+
+//Calculate Diff as a polynomial set of gates.
+//poly DiffGates = 1;
+//for (i = 1; i <= size(Diff); i = i + 1)
+//{
+//	DiffGates = DiffGates * (1 + Diff[i]);
+//}
+//printf("Diffgates is %s", DiffGates);
+
+ideal T = reduce(rf, BuggyImpId+VanishingId);
+ideal Tinv = T[1] + 1;
+// ideal Tinv = quotient(VanishingId,) 
+ideal DiffInv = quotient(VanishingId, Diff); 
+
+for (i = 1; i <= nvars(R); i = i + 1)
+{
+	isPI = 0;
+	j = 1;
+	for (j = 1; j <= 6; j = j + 1)
+	{
+		if (PI[j] == varstr(R, i))
+		{
+			isPI = 1;
+                        break;
+		}
+	}
+	
+	if(isPI == 0)
+	{
+		DiffInv = eliminate(DiffInv, var(i));	
+	}
+	
+}
+
+printf("DiffInv : %s", DiffInv);
+printf("");
+ideal Pon1 = slimgb(Care + Diff + Tinv); 
+ideal Pon2 = slimgb(Care + DiffInv + T);
+ideal Poff1 = slimgb(Care + Diff + T);
+ideal Poff2 = slimgb(Care + DiffInv + Tinv); 
+ideal Pon =  reduce(Pon1 * Pon2, VanishingId)+0;
+ideal Poff = reduce(Poff1 * Poff2, VanishingId)+0;
+
+printf("Pon is %s", Pon);
+printf("");
+printf("Poff is %s", Poff);
+printf("");
+
+ideal RectCheck = slimgb(Pon + Poff);
+
+printf("Rectification Check Ideal: Pon intersection with Poff: %s", RectCheck);
+printf("");
+
+poly PonPoly = id2poly_fast2(Pon, VanishingId);
+poly PoffPoly = id2poly_fast2(Poff, VanishingId);
+
+poly correctImplementation = Zb + A * B;
+poly remainder = reduce(correctImplementation, BuggyImpId);
+printf("The correct circuit reduced by the implementation: %s", remainder);
+printf("");
+
+ideal Patche1 = BuggyImpId;
+Patche1[7] = e1b + PonPoly;
+printf("The patch ideal is %s", Patche1);
+printf("");
+
+reduce(z1b, BuggyImpId + VanishingId);
+
+poly remainder2 = reduce(correctImplementation, Patche1);
+printf("The correct circuit reduced by the circuit with a strong partial fix patch at e1: %s", remainder2);
