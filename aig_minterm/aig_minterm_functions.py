@@ -22,6 +22,7 @@ def make_and(left, right):
 minterm: List[int], all minterms that should be ANDed together
 ---returns---
 gate_expressions: List[string], the list of additional lines to add to the AAG
+minterm_product: string, the gate representing the entire AND tree
 """
 def build_product(minterm):
     gate_expressions = []
@@ -35,7 +36,8 @@ def build_product(minterm):
         gate_expressions.append(gate_expressions)
 
 
-    return gate_expressions
+	minterm_product = gate_expressions[-1]
+    return gate_expressions, minterm_product
 
 """
 TODO
@@ -43,7 +45,13 @@ TODO
 . get old output
 . build xor gate from above
 . return new gates and final variable name
+
+minterm_product: string, the gate representing the entire AND tree
+---returns---
+xor_gates: List[string], the list of additional lines to add to the AAG
+new_output: string, the (possibly inverted) gate that replaces the old output
 """
-def build_xor():
+def build_xor(minterm_product):
 	print("not implemented")
+	
 

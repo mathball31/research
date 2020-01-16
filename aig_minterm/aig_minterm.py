@@ -56,3 +56,7 @@ outputs = input_lines[start_of_outputs:start_of_outputs + num_outputs]
 if args.output_idx//2 not in outputs:
 	print("output_idx is not an existing output")
 	exit()
+
+product_gates, minterm_product = build_product(minterm)
+xor_gates, new_output = build_xor(minterm_product)
+
