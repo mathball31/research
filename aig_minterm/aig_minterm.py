@@ -3,6 +3,7 @@ This will be the minterm_change but for aig instead of blif
 """
 #TODO
 
+from blif_to_sing_functions import *
 import sys
 import argparse
 
@@ -19,18 +20,14 @@ args = parser.parse_args()
 input_file = open(args.input_file_name, "r")
 output_file = open(args.output_file_name, "w")
 
-header = input_file.readline().split()
+input_lines = input_file.readlines()
+header = input_lines[0].split()
 max_idx = header[1]
 num_inputs = head[2]
 num_latches = head[3]
 num_outputs = head[4]
 num_ands = head[5]
 
-
-#TODO pretty sure this doesn't work
-if args.output_idx//2 > num_outputs:
-    print("output_idx is greater than number of outputs")
-    exit()
 
 and_count = 0
 minterm = args.minterm
@@ -46,55 +43,6 @@ x Find highest AND gate index
 """
 
 """
-get an new unused variable name
----returns---
-new_var: int, the new variable
-"""
-def get_var():
-    max_idx += 1
-    return max_idx
-    
-
-"""
-left, right: int, the potentially inverted net idx
-returns: (net_name, gate_expression):
-    net_name: int, the new net idx
-    gate_expression: string, the resulting AAG line
-"""
-def make_and(left, right):
-    var_idx = get_var()
-    return (var_idx, str(var_idx) + " " + str(left) + " " + str(right))
-
-"""
-minterm: List[int], all minterms that should be ANDed together
----returns---
-gate_expressions: List[string], the list of additional lines to add to the AAG
-"""
-def build_product(minterm):
-    gate_expressions = []
-    while len(minterm) > 1:
-        left = minterm.pop()
-        if len(minterm) == 0:
-            break
-        right = minterm.pop()
-        (net_name, gate_expression) = make_and(left, right)
-        minterm.append(net_name)
-        gate_expressions.append(gate_expressions)
-
-
-    return gate_expressions
-
-"""
-TODO
-. get final result from `build_product`
-. get old output
-. build xor gate from above
-. return new gates and final variable name
-"""
-def build_xor():
-	print("not implemented")
-
-"""
 TODO
 main loop
 . copy existing file until output we want.
@@ -102,5 +50,9 @@ main loop
 . Add new AND gates at the end
 """
 
+start_of_outputs = num_inputs + num_latches
+outputs = input_lines[start_of_outputs:start_of_outputs + num_outputs]
 
-
+if args.output_idx//2 not in outputs:
+	print("output_idx is not an existing output")
+	exit()
