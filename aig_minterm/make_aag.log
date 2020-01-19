@@ -1,0 +1,12 @@
+Script started on Sun 19 Jan 2020 12:49:33 PM MST
+abc
+    UC Berkeley, ABC 1.01 (compiled Feb 24 2019 22:37:47
+    abc 01> gen -m -N 4 mult4.blif
+    Hierarchy reader flattened 36 instances of logic boxes and left 0 black boxes.
+    abc 02> fraig
+    abc 03> write_aiger mult4.aig
+    abc 03> quit
+
+aigtoaig mult4.aig mult4.aag
+
+Script done on Sun 19 Jan 2020 12:50:37 PM MST
