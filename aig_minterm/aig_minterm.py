@@ -3,7 +3,7 @@ This will be the minterm_change but for aig instead of blif
 """
 #TODO
 
-from blif_to_sing_functions import *
+from aig_minterm_functions import *
 import sys
 import argparse
 
@@ -21,12 +21,12 @@ input_file = open(args.input_file_name, "r")
 output_file = open(args.output_file_name, "w")
 
 input_lines = input_file.readlines()
-header = input_lines[0].split()
-max_idx = header[1]
-num_inputs = head[2]
-num_latches = head[3]
-num_outputs = head[4]
-num_ands = head[5]
+header = [int(string) for string in input_lines[0].split()[1:] ]
+init_max_index(header[0])
+num_inputs = header[1]
+num_latches = header[2]
+num_outputs = header[3]
+num_ands = header[4]
 
 
 and_count = 0
@@ -50,10 +50,12 @@ main loop
 . Add new AND gates at the end
 """
 
-start_of_outputs = num_inputs + num_latches
-outputs = input_lines[start_of_outputs:start_of_outputs + num_outputs]
+start_of_outputs = num_inputs + num_latches + 1
+print(start_of_outputs) 
+outputs = [int(string) for string in input_lines[start_of_outputs:start_of_outputs + num_outputs]]
+print(outputs)
 
-if args.output_idx//2 not in outputs:
+if args.output_idx not in outputs:
 	print("output_idx is not an existing output")
 	exit()
 

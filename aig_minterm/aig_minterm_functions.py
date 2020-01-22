@@ -1,11 +1,21 @@
+max_idx = 0
+
 """
 get an new unused variable name
+NOTE: assumes you have called init_max_idx() with the proper init value
 ---returns---
 new_var: int, the new variable
 """
 def get_var():
+    global max_idx
     max_idx += 1
     return max_idx
+
+"""
+initialize the max_index variable. This should come from parsing the input file
+"""
+def init_max_index(max_index):
+    max_idx = max_index
     
 
 """
@@ -35,8 +45,7 @@ def build_product(minterm):
         minterm.append(net_name)
         gate_expressions.append(gate_expressions)
 
-
-	minterm_product = gate_expressions[-1]
+        minterm_product = gate_expressions[-1]
     return gate_expressions, minterm_product
 
 """
@@ -52,6 +61,6 @@ xor_gates: List[string], the list of additional lines to add to the AAG
 new_output: string, the (possibly inverted) gate that replaces the old output
 """
 def build_xor(minterm_product):
-	print("not implemented")
-	
+        print("not implemented")
+        
 
