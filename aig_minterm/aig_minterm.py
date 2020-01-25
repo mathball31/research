@@ -39,7 +39,7 @@ x Find highest AND gate index
 . rename output
 	- this is actually super easy. Just replace the line of the output with
 	the new one
-. XOR minterm with old output to get new output
+x XOR minterm with old output to get new output
 """
 
 """
@@ -59,6 +59,11 @@ if args.output_idx not in outputs:
 	print("output_idx is not an existing output")
 	exit()
 
+# this seems to be working, now we just need to build the xor
 product_gates, minterm_product = build_product(minterm)
-xor_gates, new_output = build_xor(minterm_product)
 
+print(product_gates)
+xor_gates, new_output = build_xor(minterm_product, args.output_idx)
+print(xor_gates)
+
+#TODO write output file
