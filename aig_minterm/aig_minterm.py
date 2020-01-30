@@ -27,6 +27,7 @@ num_inputs = header[1]
 num_latches = header[2]
 num_outputs = header[3]
 num_ands = header[4]
+num_lines = num_inputs + num_latches + num_outputs + num_ands
 
 
 and_count = 0
@@ -62,8 +63,33 @@ if args.output_idx not in outputs:
 # this seems to be working, now we just need to build the xor
 product_gates, minterm_product = build_product(minterm)
 
-print(product_gates)
 xor_gates, new_output = build_xor(minterm_product, args.output_idx)
-print(xor_gates)
 
-#TODO write output file
+num_new_ands = len(product_gates) + len(xor_gates)
+num_ands = num_ands + num_new_ands
+
+#write output file
+header_string = "aag " + str(read_max_idx()) + " " +  str(num_inputs) + " " + str(num_latches) + " " + str(num_outputs) + " " + str(num_ands) + "\n"
+output_file.write(header_string)
+for line in input_lines[1:num_lines + 1]:
+    if line == str(args.output_idx) + '\n':
+        new_output_str = new_output + "\n"
+        output_file.write(new_output_str)
+    else:
+        output_file.write(line)
+
+# write new lines
+for line in product_gates:
+    output_file.write(line + "\n")
+for line in xor_gates:
+    output_file.write(line + "\n")
+
+# write comments etc
+for line in input_lines[num_lines + 1:]:
+    output_file.write(line)
+
+# write my info
+#TODO get date
+#TODO link to website
+signiture = "This file has been edited by aig_minterm\n"
+output_file.write(signiture)
