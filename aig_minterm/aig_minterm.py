@@ -73,7 +73,7 @@ header_string = "aag " + str(read_max_idx()) + " " +  str(num_inputs) + " " + st
 output_file.write(header_string)
 for line in input_lines[1:num_lines + 1]:
     if line == str(args.output_idx) + '\n':
-        new_output_str = new_output + "\n"
+        new_output_str = new_output + '\n'
         output_file.write(new_output_str)
     else:
         output_file.write(line)
