@@ -1,13 +1,13 @@
 #TODO
 """
 x take multiplier aag, 
-    . change a gate to `x 0 0`
-        . run through aigtoaig to get .aig (this fixes some weird issues)
-        . run through aigmultopoly to get .sing
-        . modify spec to match approx
-        . run through Singular to get remainder
-        . repeat above but with `x 1 1`
-    . repeat above with other gates
+    x change a gate to `x 0 0`
+        x run through aigtoaig to get .aig (this fixes some weird issues)
+        x run through aigmultopoly to get .sing
+        x modify spec to match approx
+        x run through Singular to get remainder
+        x repeat above but with `x 1 1`
+    x repeat above with other gates
     . repeat with different approximate spec
 
 """
@@ -18,6 +18,7 @@ import os
 from pathlib import Path
 import argparse
 import subprocess
+import re
 
 
 parser = argparse.ArgumentParser()
@@ -46,7 +47,11 @@ num_lines = num_inputs + num_latches + num_outputs + num_ands
 start_ands = num_inputs + num_latches + num_outputs + 1
 gates = input_lines[start_ands: start_ands + num_ands]
 
-temp_dir_str = 'temp_rlrh'
+
+cleaned_remainder = re.sub('[\(\) ]', '', args.remainder)
+cleaned_remainder = re.sub('1-', '-', cleaned_remainder)
+print( cleaned_remainder)
+temp_dir_str = input_file_name + '_' + cleaned_remainder
 temp_dir = Path(temp_dir_str)
 temp_dir.mkdir(exist_ok = True)
 
@@ -65,6 +70,7 @@ creates 4 files with the following mapping:
         mult2g10_0.sing
         mult2g10_0_approx.sing
 Also runs aigtoaig, aigmultopoly, and Singular to generate these and get the remainder
+
 """
 def remainder(gate, bit):
     gate_out = gate.split()[0]
