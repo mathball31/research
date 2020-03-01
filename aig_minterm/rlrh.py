@@ -8,7 +8,7 @@ x take multiplier aag,
         x run through Singular to get remainder
         x repeat above but with `x 1 1`
     x repeat above with other gates
-    . repeat with different approximate spec
+    . store remainders
 
 """
 
@@ -140,8 +140,9 @@ with cd(temp_dir_str):
             x convert to sing
             x change sing spec
             . run singular
-        . change to x 1 1
-            . repeat above
+        x change to x 1 1
+            x repeat above
+        . store remainders
         """
         rL = remainder(gate, 0)
         rH = remainder(gate, 1)
