@@ -32,7 +32,7 @@ x take multiplier aag,
     x repeat above with other gates
     . store remainders
     . reduce rL*rH by J0
-        . find J0
+        x find J0
 
 """
 
@@ -124,13 +124,13 @@ def remainder(gate, bit):
     if process.stderr.strip() != "":
         #TODO be smarter about this
         print("There was an error during aigmultopoly on gate " + new_gate, end = '')
-        return None
+        return None, "", ""
 
-    #TODO change sing spec
+    #modify spec
     sing_file = open(sing_name, "r")
     approx_sing_file = open(approx_sing_name, "w")
     sing_lines = sing_file.readlines()
-    #TODO assert that this works
+    #TODO search more resiliantly
     slices_idx = sing_lines.index("ideal slices =\n")
     last_line_of_spec = sing_lines[slices_idx -1]
     new_last_line = last_line_of_spec.replace(';', ' +')
@@ -140,6 +140,22 @@ def remainder(gate, bit):
             approx_sing_file.write("  " + args.remainder + ";\n")
         else:
             approx_sing_file.write(line)
+    #extract ring
+    #TODO search more resiliantly
+    ring_idx = sing_lines.index("ring R  = 0, (\n")
+    ring = ""
+    for line in sing_lines[ring_idx:]:
+        ring += line
+        if line.startswith(')'):
+            break
+    #extract ideal J0
+    #TODO search more resiliantly
+    J0_idx = sing_lines.index("ideal FI =\n")
+    J0 = "ideal J0 =\n"
+    for line in sing_lines[J0_idx+1:]:
+        J0 += line
+        if line.startswith(';'):
+            break
 
     approx_sing_file.write("exit;")
     sing_file.close()
@@ -149,7 +165,8 @@ def remainder(gate, bit):
     singular = ["Singular", approx_sing_name, "-q"]
     process = subprocess.run(singular, capture_output = True, text=True)
     remainder = process.stdout
-    return remainder
+
+    return remainder, J0, ring
 
     
 
@@ -163,14 +180,41 @@ with cd(temp_dir_str):
             x convert to aig
             x convert to sing
             x change sing spec
-            . run singular
+            x run singular
         x change to x 1 1
             x repeat above
         . store remainders
+        x find J0
+        . reduce rL*rH by J0
         """
-        rL = remainder(gate, 0)
-        rH = remainder(gate, 1)
+        (rL, J0L, ringL) = remainder(gate, 0)
+        (rH, J0H, ringH) = remainder(gate, 1)
+        if J0L != J0H:
+            print("Error: rL and rH have different J0")
+        if ringL != ringH:
+            print("Error: rL and rH have different ring")
+        if rL == None or rH == None:
+            continue
+
         print("Gate: " + gate.strip())
         print("rL: " + str(rL).strip())
         print("rH: " + str(rH).strip())
+        #create singular file to reduce rL*rH by J0
+        gate_out = gate.split()[0]
+        sing_file_name = input_file_name + "g" + gate_out + "_rLrH.sing"
+        sing_file = open(sing_file_name, "w")
+        sing_file.write(ringL)
+        sing_file.write("poly rL =\n" + rL + ";\n")
+        sing_file.write("poly rH =\n" + rH + ";\n")
+        sing_file.write(J0L)
+        sing_file.write("reduce (rL * rH, J0);\n")
+        sing_file.write("exit;")
+        sing_file.close()
+
+        #run Singular
+        singular = ["Singular", sing_file_name, "-q", "--no-warn"]
+        process = subprocess.run(singular, capture_output = True, text=True)
+        residue = process.stdout
+        print("residue: " + residue)
+
 
