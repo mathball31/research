@@ -42,27 +42,15 @@ from approx_mult_functions import *
 from aag import AAG
 import sys
 import os
-from pathlib import Path
 import argparse
-import subprocess
-import re
 
 
 parser = argparse.ArgumentParser()
 parser.add_argument('input_file_name', help='.aag/aig representing input circuit')
-#parser.add_argument('output_idx', type=int, help='index of output which will change with minterm change')
-#parser.add_argument('minterm', nargs='+', type=int, help='minterm to change (space separated)')
-
-#TODO figure out how to accept remainder
 parser.add_argument('remainder', type=str, 
         help='singular style remainder of approximate multiplier. eg number(2)^k * a(0) * (1-b(2))')
 
 args = parser.parse_args()
-
-input_file_name, input_file_ext = os.path.splitext(args.input_file_name)
-#input_file = open(args.input_file_name, "r")
-
-#input_lines = input_file.readlines()
 aag = AAG(args.input_file_name)
 
-reduce_rlrh(aag, args.remainder)
+gate_residues = reduce_rlrh(aag, args.remainder)

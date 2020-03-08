@@ -3,7 +3,17 @@ import subprocess
 from contextlib import contextmanager
 import os
 import re
+import csv
 
+
+verbose = False
+ignore_errors = True
+def msg(string):
+    if verbose:
+        print(string)
+def error(string):
+    if not ignore_errors:
+        print(string)
 """
 left, right: int, the potentially inverted net idx
 returns: (net_name, gate_expression):
@@ -106,7 +116,8 @@ def rlrh(aag, gate, remainder, bit):
     process = subprocess.run(aigmultopoly, capture_output = True, text=True)
     if process.stderr.strip() != "":
         #TODO be smarter about this
-        print("There was an error during aigmultopoly on gate " + new_gate, end = '')
+        error("There was an error during aigmultopoly on gate " + new_gate.strip() +
+                " with remainder: " + remainder)
         return None, "", ""
 
     #modify spec
@@ -155,13 +166,17 @@ def rlrh(aag, gate, remainder, bit):
 
 
 # pick gate
+#TODO comment
 def reduce_rlrh(aag, remainder):
     cleaned_remainder = re.sub('[\(\) ]', '', remainder)
     cleaned_remainder = re.sub('1-', '-', cleaned_remainder)
-    print( cleaned_remainder)
+    cleaned_remainder = re.sub('\*', '.', cleaned_remainder)
+    cleaned_remainder = cleaned_remainder.replace("number", "")
+    msg( cleaned_remainder)
     temp_dir_str = aag.file_name + '_' + cleaned_remainder
     temp_dir = Path(temp_dir_str)
     temp_dir.mkdir(exist_ok = True)
+    gate_residues = {}
     with cd(temp_dir_str):
         for gate in aag.gates:
             """ TODO
@@ -179,15 +194,15 @@ def reduce_rlrh(aag, remainder):
             (rL, J0L, ringL) = rlrh(aag, gate, remainder, 0)
             (rH, J0H, ringH) = rlrh(aag, gate, remainder, 1)
             if J0L != J0H:
-                print("Error: rL and rH have different J0")
+                error("Error: rL and rH have different J0")
             if ringL != ringH:
-                print("Error: rL and rH have different ring")
+                error("Error: rL and rH have different ring")
             if rL == None or rH == None:
                 continue
 
-            print("Gate: " + gate.strip())
-            print("rL: " + str(rL).strip())
-            print("rH: " + str(rH).strip())
+            msg("Gate: " + gate.strip())
+            msg("rL: " + str(rL).strip())
+            msg("rH: " + str(rH).strip())
             #create singular file to reduce rL*rH by J0
             gate_out = gate.split()[0]
             sing_file_name = aag.file_name + "g" + gate_out + "_rLrH.sing"
@@ -204,4 +219,13 @@ def reduce_rlrh(aag, remainder):
             singular = ["Singular", sing_file_name, "-q", "--no-warn"]
             process = subprocess.run(singular, capture_output = True, text=True)
             residue = process.stdout
-            print("residue: " + residue)
+            if residue.strip() == "0":
+                print("0 remainder for remainder: " + cleaned_remainder + ", \agate: " + gate.strip())
+            msg("residue: " + residue)
+            gate_residues[gate.strip()] = residue.strip()
+
+        csv_file_name = aag.file_name + "_r_" + cleaned_remainder + ".csv"
+        with open(csv_file_name, 'w') as f:
+            w = csv.writer(f)
+            w.writerows(gate_residues.items())
+    return gate_residues
