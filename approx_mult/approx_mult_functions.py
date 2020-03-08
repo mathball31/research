@@ -1,75 +1,66 @@
-"""
-This script takes an aag file representing an exact multiplier circuit, and a single minterm 
-remainder. The remainder should be the result of reducing an approximate multiplier against an exact
-spec.
-
-For each and gate in the circuit, this creates a new aag with that gate set to 0 and set to 1.
-It then (through a series of steps) generates rL and rH, made by running the two new aags against
-the approximate spec.
-
-All intermediate files will be created in a folder named after the input file and the remainder.
-eg `python3 rlrh.py mult2.aag "a(0) * (1 - b(1))"` -> `mult2_a0*-b1/`
-
-To run: 
-    python3 rlrh.py multiplier.aag "<remainder>"
-where:
-    multipler.aag: path to exact multiplier aag file
-    <remainder>: Singular style minterm
-        e.g.: "a(0)*b(1)", "number(2)^3*a(3)*(1-a(2))*b(2)*(1-b(0))"
-        use quotes to escape the '('s and ')'s
-
-NOTE: This was devolped with python version 3.7.6. It will probably work for any 3.7.x, but will 
-*NOT* work for an version less than 3.7.
-
-TODO
-x take multiplier aag, 
-    x change a gate to `x 0 0`
-        x run through aigtoaig to get .aig (this fixes some weird issues)
-        x run through aigmultopoly to get .sing
-        x modify spec to match approx
-        x run through Singular to get remainder
-        x repeat above but with `x 1 1`
-    x repeat above with other gates
-    . store remainders
-    . reduce rL*rH by J0
-        x find J0
-
-"""
-
-from aig_minterm_functions import *
-from aag import AAG
-import sys
-import os
 from pathlib import Path
-import argparse
 import subprocess
+from contextlib import contextmanager
+import os
 import re
 
+"""
+left, right: int, the potentially inverted net idx
+returns: (net_name, gate_expression):
+    net_name: int, the new net idx
+    gate_expression: string, the resulting AAG line
+"""
+def make_and(aag, left, right):
+    var = aag.get_var_idx() * 2
+    return (var, str(var) + " " + str(left) + " " + str(right))
 
-parser = argparse.ArgumentParser()
-parser.add_argument('input_file_name', help='.aag/aig representing input circuit')
-#parser.add_argument('output_idx', type=int, help='index of output which will change with minterm change')
-#parser.add_argument('minterm', nargs='+', type=int, help='minterm to change (space separated)')
+"""
+minterm: List[int], all minterms that should be ANDed together
+---returns---
+gate_expressions: List[string], the list of additional lines to add to the AAG
+minterm_product: string, the gate representing the entire AND tree
+"""
+def build_product(aag, minterm):
+    gate_expressions = []
+    while len(minterm) > 1:
+        left = minterm.pop()
+        if len(minterm) == 0:
+            break
+        right = minterm.pop()
+        (net_name, gate_expression) = make_and(aag, left, right)
+        minterm.append(net_name)
+        gate_expressions.append(gate_expression)
 
-#TODO figure out how to accept remainder
-parser.add_argument('remainder', type=str, 
-        help='singular style remainder of approximate multiplier. eg number(2)^k * a(0) * (1-b(2))')
+        minterm_product = gate_expressions[-1]
+    return gate_expressions, minterm_product
 
-args = parser.parse_args()
+"""
+minterm_product: string, the gate representing the entire AND tree
+old_output: string, the output that will be XORed with the minterm_product
+---returns---
+xor_gates: List[string], the list of additional lines to add to the AAG
+new_output: string, the (possibly inverted) gate that replaces the old output
+"""
+def build_xor(aag, minterm_product, old_output):
+    x = int(minterm_product.split()[0])
+    y = int(old_output)
+    a1 = aag.get_var_idx() * 2
+    a1_gate = str(a1) + " " + str(x+1) + " " + str(y)
+    a2 = aag.get_var_idx() * 2
+    a2_gate = str(a2) + " " + str(x) + " " + str(y+1)
+    a3 = aag.get_var_idx() * 2
+    a3_gate = str(a3) + " " + str(a1+1) + " " + str(a2+1)
+    return ([a1_gate, a2_gate, a3_gate], str(a3 + 1))
 
-input_file_name, input_file_ext = os.path.splitext(args.input_file_name)
-input_file = open(args.input_file_name, "r")
 
-input_lines = input_file.readlines()
-aag = AAG(input_lines)
-
-
-cleaned_remainder = re.sub('[\(\) ]', '', args.remainder)
-cleaned_remainder = re.sub('1-', '-', cleaned_remainder)
-print( cleaned_remainder)
-temp_dir_str = input_file_name + '_' + cleaned_remainder
-temp_dir = Path(temp_dir_str)
-temp_dir.mkdir(exist_ok = True)
+@contextmanager
+def cd(newdir):
+    prevdir = os.getcwd()
+    os.chdir(os.path.expanduser(newdir))
+    try:
+        yield
+    finally:
+        os.chdir(prevdir)
 
 """
 gate: string, the gate that should be set to bit
@@ -88,22 +79,22 @@ creates 4 files with the following mapping:
 Also runs aigtoaig, aigmultopoly, and Singular to generate these and get the remainder
 
 """
-def remainder(gate, bit):
+def rlrh(aag, gate, remainder, bit):
     gate_out = gate.split()[0]
     new_gate = gate_out + " " + str(bit) + " " + str(bit) + "\n"
-    new_name = input_file_name + "g" + gate_out + '_' + str(bit)
+    new_name = aag.file_name + "g" + gate_out + '_' + str(bit)
     aag_name = new_name + ".aag"
     aig_name = new_name + ".aig"
     sing_name = new_name + ".sing"
     approx_sing_name = new_name + "_approx.sing"
-    aag = open(aag_name, "w")
+    stuck_aag = open(aag_name, "w")
     #change gate to x 0 0
-    for line in input_lines:
+    for line in aag.lines:
         if line == gate:
-            aag.write(new_gate)
+            stuck_aag.write(new_gate)
         else:
-            aag.write(line)
-    aag.close()
+            stuck_aag.write(line)
+    stuck_aag.close()
 
     #convert to aig
     aigtoaig = ["aigtoaig", aag_name, aig_name]
@@ -129,7 +120,7 @@ def remainder(gate, bit):
     for idx, line in enumerate(sing_lines):
         if idx == slices_idx - 1:
             approx_sing_file.write(new_last_line)
-            approx_sing_file.write("  " + args.remainder + ";\n")
+            approx_sing_file.write("  " + remainder + ";\n")
         else:
             approx_sing_file.write(line)
     #extract ring
@@ -164,9 +155,15 @@ def remainder(gate, bit):
 
 
 # pick gate
-def generate_residues(gates, temp_dir_str):
+def reduce_rlrh(aag, remainder):
+    cleaned_remainder = re.sub('[\(\) ]', '', remainder)
+    cleaned_remainder = re.sub('1-', '-', cleaned_remainder)
+    print( cleaned_remainder)
+    temp_dir_str = aag.file_name + '_' + cleaned_remainder
+    temp_dir = Path(temp_dir_str)
+    temp_dir.mkdir(exist_ok = True)
     with cd(temp_dir_str):
-        for gate in gates:
+        for gate in aag.gates:
             """ TODO
             x change to x 0 0
                 x convert to aig
@@ -179,8 +176,8 @@ def generate_residues(gates, temp_dir_str):
             x find J0
             x reduce rL*rH by J0
             """
-            (rL, J0L, ringL) = remainder(gate, 0)
-            (rH, J0H, ringH) = remainder(gate, 1)
+            (rL, J0L, ringL) = rlrh(aag, gate, remainder, 0)
+            (rH, J0H, ringH) = rlrh(aag, gate, remainder, 1)
             if J0L != J0H:
                 print("Error: rL and rH have different J0")
             if ringL != ringH:
@@ -193,7 +190,7 @@ def generate_residues(gates, temp_dir_str):
             print("rH: " + str(rH).strip())
             #create singular file to reduce rL*rH by J0
             gate_out = gate.split()[0]
-            sing_file_name = input_file_name + "g" + gate_out + "_rLrH.sing"
+            sing_file_name = aag.file_name + "g" + gate_out + "_rLrH.sing"
             sing_file = open(sing_file_name, "w")
             sing_file.write(ringL)
             sing_file.write("poly rL =\n" + rL + ";\n")
@@ -208,5 +205,3 @@ def generate_residues(gates, temp_dir_str):
             process = subprocess.run(singular, capture_output = True, text=True)
             residue = process.stdout
             print("residue: " + residue)
-
-generate_residues(aag.gates, temp_dir_str)

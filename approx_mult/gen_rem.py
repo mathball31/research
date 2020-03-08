@@ -1,5 +1,6 @@
 from aag import *
-from aig_minterm_functions import *
+#from rlrh import generate_residue
+from approx_mult_functions import *
 import sys
 import os
 from pathlib import Path
@@ -13,11 +14,7 @@ parser.add_argument('input_file_name', help='.aag/aig representing input circuit
 
 args = parser.parse_args()
 
-input_file_name, input_file_ext = os.path.splitext(args.input_file_name)
-input_file = open(args.input_file_name, "r")
-
-input_lines = input_file.readlines()
-aag = AAG(input_lines)
+aag = AAG(args.input_file_name)
 
 inputs = []
 for idx in range(aag.num_inputs//2):
@@ -31,7 +28,7 @@ def invert_term(term):
 def concat(left, right):
     if left == "":
         return right
-    return "(" + left + ")*(" + right + ")"
+    return left + "*" + right
 
 
 def powerset(input_list):
@@ -56,3 +53,5 @@ def generate_all_minterms(inputs):
     return minterms
 
 generate_all_minterms(inputs)
+
+

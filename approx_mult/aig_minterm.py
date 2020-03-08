@@ -3,7 +3,7 @@ This will be the minterm_change but for aig instead of blif
 """
 #TODO
 
-from aig_minterm_functions import *
+from approx_mult_functions import *
 from aag import *
 import sys
 import argparse
@@ -18,20 +18,8 @@ parser.add_argument('minterm', nargs='+', type=int, help='minterm to change (spa
 
 args = parser.parse_args()
 
-input_file = open(args.input_file_name, "r")
+aag = AAG(args.input_file_name)
 output_file = open(args.output_file_name, "w")
-
-input_lines = input_file.readlines()
-aag = AAG(input_lines)
-"""
-header = [int(string) for string in input_lines[0].split()[1:] ]
-init_max_index(header[0])
-num_inputs = header[1]
-num_latches = header[2]
-num_outputs = header[3]
-num_ands = header[4]
-num_lines = num_inputs + num_latches + num_outputs + num_ands
-"""
 
 
 and_count = 0
@@ -86,7 +74,7 @@ for line in xor_gates:
     output_file.write(line + "\n")
 
 # write comments etc
-for line in input_lines[aag.num_lines + 1:]:
+for line in aag.lines[aag.num_lines + 1:]:
     output_file.write(line)
 
 # write my info

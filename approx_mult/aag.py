@@ -1,6 +1,11 @@
+import os
 class AAG:
-    def __init__(self, file_lines):
-        self.lines = file_lines
+    def __init__(self, full_name):
+        fp = open(full_name, 'r')
+        self.lines = fp.readlines()
+        fp.close()
+        self.file_name, file_ext = os.path.splitext(full_name)
+
         self.header = [int(string) for string in self.lines[0].split()[1:] ]
         #TODO
         self.max_idx = self.header[0]
@@ -11,7 +16,7 @@ class AAG:
         self.num_lines = self.num_inputs + self.num_latches + self.num_outputs + self.num_ands
 
         self.start_ands = self.num_inputs + self.num_latches + self.num_outputs + 1
-        self.gates = file_lines[self.start_ands: self.start_ands + self.num_ands]
+        self.gates = self.lines[self.start_ands: self.start_ands + self.num_ands]
         self.start_of_outputs = self.num_inputs + self.num_latches + 1
 
     @property
