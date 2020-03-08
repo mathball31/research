@@ -172,49 +172,49 @@ def remainder(gate, bit):
 
 
 # pick gate
-with cd(temp_dir_str):
-    #TODO
-    for gate in gates:
-        """ TODO
-        x change to x 0 0
-            x convert to aig
-            x convert to sing
-            x change sing spec
-            x run singular
-        x change to x 1 1
-            x repeat above
-        . store remainders
-        x find J0
-        . reduce rL*rH by J0
-        """
-        (rL, J0L, ringL) = remainder(gate, 0)
-        (rH, J0H, ringH) = remainder(gate, 1)
-        if J0L != J0H:
-            print("Error: rL and rH have different J0")
-        if ringL != ringH:
-            print("Error: rL and rH have different ring")
-        if rL == None or rH == None:
-            continue
+def generate_residues(gates, temp_dir_str):
+    with cd(temp_dir_str):
+        for gate in gates:
+            """ TODO
+            x change to x 0 0
+                x convert to aig
+                x convert to sing
+                x change sing spec
+                x run singular
+            x change to x 1 1
+                x repeat above
+            . store remainders
+            x find J0
+            x reduce rL*rH by J0
+            """
+            (rL, J0L, ringL) = remainder(gate, 0)
+            (rH, J0H, ringH) = remainder(gate, 1)
+            if J0L != J0H:
+                print("Error: rL and rH have different J0")
+            if ringL != ringH:
+                print("Error: rL and rH have different ring")
+            if rL == None or rH == None:
+                continue
 
-        print("Gate: " + gate.strip())
-        print("rL: " + str(rL).strip())
-        print("rH: " + str(rH).strip())
-        #create singular file to reduce rL*rH by J0
-        gate_out = gate.split()[0]
-        sing_file_name = input_file_name + "g" + gate_out + "_rLrH.sing"
-        sing_file = open(sing_file_name, "w")
-        sing_file.write(ringL)
-        sing_file.write("poly rL =\n" + rL + ";\n")
-        sing_file.write("poly rH =\n" + rH + ";\n")
-        sing_file.write(J0L)
-        sing_file.write("reduce (rL * rH, J0);\n")
-        sing_file.write("exit;")
-        sing_file.close()
+            print("Gate: " + gate.strip())
+            print("rL: " + str(rL).strip())
+            print("rH: " + str(rH).strip())
+            #create singular file to reduce rL*rH by J0
+            gate_out = gate.split()[0]
+            sing_file_name = input_file_name + "g" + gate_out + "_rLrH.sing"
+            sing_file = open(sing_file_name, "w")
+            sing_file.write(ringL)
+            sing_file.write("poly rL =\n" + rL + ";\n")
+            sing_file.write("poly rH =\n" + rH + ";\n")
+            sing_file.write(J0L)
+            sing_file.write("reduce (rL * rH, J0);\n")
+            sing_file.write("exit;")
+            sing_file.close()
 
-        #run Singular
-        singular = ["Singular", sing_file_name, "-q", "--no-warn"]
-        process = subprocess.run(singular, capture_output = True, text=True)
-        residue = process.stdout
-        print("residue: " + residue)
+            #run Singular
+            singular = ["Singular", sing_file_name, "-q", "--no-warn"]
+            process = subprocess.run(singular, capture_output = True, text=True)
+            residue = process.stdout
+            print("residue: " + residue)
 
-
+generate_residues(gates, temp_dir_str)
