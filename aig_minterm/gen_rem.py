@@ -1,5 +1,5 @@
+from aag import *
 from aig_minterm_functions import *
-from rlrh import *
 import sys
 import os
 from pathlib import Path
@@ -17,16 +17,10 @@ input_file_name, input_file_ext = os.path.splitext(args.input_file_name)
 input_file = open(args.input_file_name, "r")
 
 input_lines = input_file.readlines()
-header = [int(string) for string in input_lines[0].split()[1:] ]
-init_max_index(header[0])
-num_inputs = header[1]
-num_latches = header[2]
-num_outputs = header[3]
-num_ands = header[4]
-num_lines = num_inputs + num_latches + num_outputs + num_ands
+aag = AAG(input_lines)
 
 inputs = []
-for idx in range(num_inputs//2):
+for idx in range(aag.num_inputs//2):
     inputs.append("a(" + str(idx) + ")")
     inputs.append("b(" + str(idx) + ")")
 
@@ -51,13 +45,14 @@ def generate_all_minterms(inputs):
         num_terms = len(terms)
         for count in range(2**num_terms):
             minterm = ""
+            print("count: " + str(count))
             for idx, term in enumerate(terms):
-                if count ^ (1 << idx) == 0:
+                if count & (1 << idx) == 0:
                     minterm = concat(minterm, term)
                 else:
                     minterm = concat(minterm, invert_term(term))
             minterms.append(minterm)
+            print(minterm)
     return minterms
 
-
-
+generate_all_minterms(inputs)
