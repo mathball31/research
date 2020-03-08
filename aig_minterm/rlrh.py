@@ -37,6 +37,7 @@ x take multiplier aag,
 """
 
 from aig_minterm_functions import *
+from aag import AAG
 import sys
 import os
 from pathlib import Path
@@ -60,16 +61,7 @@ input_file_name, input_file_ext = os.path.splitext(args.input_file_name)
 input_file = open(args.input_file_name, "r")
 
 input_lines = input_file.readlines()
-header = [int(string) for string in input_lines[0].split()[1:] ]
-init_max_index(header[0])
-num_inputs = header[1]
-num_latches = header[2]
-num_outputs = header[3]
-num_ands = header[4]
-num_lines = num_inputs + num_latches + num_outputs + num_ands
-
-start_ands = num_inputs + num_latches + num_outputs + 1
-gates = input_lines[start_ands: start_ands + num_ands]
+aag = AAG(input_lines)
 
 
 cleaned_remainder = re.sub('[\(\) ]', '', args.remainder)
@@ -217,4 +209,4 @@ def generate_residues(gates, temp_dir_str):
             residue = process.stdout
             print("residue: " + residue)
 
-generate_residues(gates, temp_dir_str)
+generate_residues(aag.gates, temp_dir_str)
