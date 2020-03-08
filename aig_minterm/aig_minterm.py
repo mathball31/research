@@ -4,6 +4,7 @@ This will be the minterm_change but for aig instead of blif
 #TODO
 
 from aig_minterm_functions import *
+from aag import *
 import sys
 import argparse
 
@@ -21,6 +22,8 @@ input_file = open(args.input_file_name, "r")
 output_file = open(args.output_file_name, "w")
 
 input_lines = input_file.readlines()
+aag = AAG(input_lines)
+"""
 header = [int(string) for string in input_lines[0].split()[1:] ]
 init_max_index(header[0])
 num_inputs = header[1]
@@ -28,6 +31,7 @@ num_latches = header[2]
 num_outputs = header[3]
 num_ands = header[4]
 num_lines = num_inputs + num_latches + num_outputs + num_ands
+"""
 
 
 and_count = 0
@@ -51,27 +55,24 @@ main loop
 . Add new AND gates at the end
 """
 
-start_of_outputs = num_inputs + num_latches + 1
-print(start_of_outputs) 
-outputs = [int(string) for string in input_lines[start_of_outputs:start_of_outputs + num_outputs]]
-print(outputs)
+print(aag.outputs)
 
-if args.output_idx not in outputs:
+if args.output_idx not in aag.outputs:
 	print("output_idx is not an existing output")
 	exit()
 
 # this seems to be working, now we just need to build the xor
-product_gates, minterm_product = build_product(minterm)
+product_gates, minterm_product = build_product(aag, minterm)
 
-xor_gates, new_output = build_xor(minterm_product, args.output_idx)
+xor_gates, new_output = build_xor(aag, minterm_product, args.output_idx)
 
 num_new_ands = len(product_gates) + len(xor_gates)
-num_ands = num_ands + num_new_ands
+num_ands = aag.num_ands + num_new_ands
 
 #write output file
-header_string = "aag " + str(read_max_idx()) + " " +  str(num_inputs) + " " + str(num_latches) + " " + str(num_outputs) + " " + str(num_ands) + "\n"
+header_string = "aag " + str(aag.max_idx) + " " +  str(aag.num_inputs) + " " + str(aag.num_latches) + " " + str(aag.num_outputs) + " " + str(aag.num_ands) + "\n"
 output_file.write(header_string)
-for line in input_lines[1:num_lines + 1]:
+for line in aag.lines[1:aag.num_lines + 1]:
     if line == str(args.output_idx) + '\n':
         new_output_str = new_output + '\n'
         output_file.write(new_output_str)
@@ -85,7 +86,7 @@ for line in xor_gates:
     output_file.write(line + "\n")
 
 # write comments etc
-for line in input_lines[num_lines + 1:]:
+for line in input_lines[aag.num_lines + 1:]:
     output_file.write(line)
 
 # write my info
