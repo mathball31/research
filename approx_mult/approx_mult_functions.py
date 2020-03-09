@@ -63,6 +63,7 @@ def build_xor(aag, minterm_product, old_output):
     return ([a1_gate, a2_gate, a3_gate], str(a3 + 1))
 
 
+#TODO comment
 @contextmanager
 def cd(newdir):
     prevdir = os.getcwd()
@@ -73,6 +74,7 @@ def cd(newdir):
         os.chdir(prevdir)
 
 """
+#TODO update comment
 gate: string, the gate that should be set to bit
 bit: int {0, 1}, value that gate should be set to
 ---returns---
@@ -168,6 +170,7 @@ def rlrh(aag, gate, remainder, bit):
 # pick gate
 #TODO comment
 def reduce_rlrh(aag, remainder):
+    #TODO pull this into a function
     cleaned_remainder = re.sub('[\(\) ]', '', remainder)
     cleaned_remainder = re.sub('1-', '-', cleaned_remainder)
     cleaned_remainder = re.sub('\*', '.', cleaned_remainder)
@@ -187,7 +190,7 @@ def reduce_rlrh(aag, remainder):
                 x run singular
             x change to x 1 1
                 x repeat above
-            . store remainders
+            x store remainders
             x find J0
             x reduce rL*rH by J0
             """
@@ -224,6 +227,7 @@ def reduce_rlrh(aag, remainder):
             msg("residue: " + residue)
             gate_residues[gate.strip()] = residue.strip()
 
+        #TODO maybe do this incrementally instead of at the end.
         csv_file_name = aag.file_name + "_r_" + cleaned_remainder + ".csv"
         with open(csv_file_name, 'w') as f:
             w = csv.writer(f)

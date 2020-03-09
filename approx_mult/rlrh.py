@@ -3,7 +3,8 @@ This script takes an aag file representing an exact multiplier circuit, and a si
 remainder. The remainder should be the result of reducing an approximate multiplier against an exact
 spec.
 
-Most of the functionality is in the function reduce_rlrh() from aig_minterm_functions.py
+Most of the functionality is in the function reduce_rlrh() from aig_minterm_functions.py.
+This is really only useful as a test now.
 
 For each and gate in the circuit, this creates a new aag with that gate set to 0 and set to 1.
 It then (through a series of steps) generates rL and rH, made by running the two new aags against

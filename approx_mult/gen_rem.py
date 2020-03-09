@@ -1,16 +1,13 @@
+#TODO comment
 from aag import *
 from approx_mult_functions import *
-import sys
-import os
 from pathlib import Path
 import argparse
-import subprocess
-import re
 from itertools import chain, combinations
 from random import randrange, choice
 
 parser = argparse.ArgumentParser()
-parser.add_argument('input_file_name', help='.aag/aig representing input circuit')
+parser.add_argument('input_file_name', help='.aag representing input circuit')
 parser.add_argument('num_remainders', type=int, help='number of remainders to generate')
 
 args = parser.parse_args()
@@ -23,18 +20,22 @@ for idx in range(aag.num_inputs//2):
     inputs.append("b(" + str(idx) + ")")
 
 
+#TODO comment
 def invert_term(term):
     return "(1-" + term + ")"
 
+#TODO comment
 def concat(left, right):
     if left == "":
         return right
     return left + " * " + right
 
 
+#TODO comment
 def powerset(input_list):
     return list(chain.from_iterable(combinations(input_list,r) for r in range(1, len(input_list) + 1)))
 
+#TODO comment
 def generate_all_minterms(inputs):
     pow_set = powerset(inputs)
 
@@ -54,6 +55,8 @@ def generate_all_minterms(inputs):
 powers_of_2 = []
 for idx in range(aag.num_outputs):
     powers_of_2.append("number(2)^" + str(idx))
+
+#TODO comment
 def generate_all_remainders(inputs):
     powers_of_2 = []
     for idx in range(aag.num_outputs):
@@ -68,6 +71,7 @@ def generate_all_remainders(inputs):
 """
 NOTE: total_num = num_outputs * (2^num_inputs-1)
 """
+#TODO comment
 def generate_random_remainders(inputs, num):
     count = 0
     #itrs is a safety valve, and will ensure this doesn't run forever
@@ -114,6 +118,7 @@ temp_dir = Path(temp_dir_str)
 temp_dir.mkdir(exist_ok = True)
 with cd(temp_dir_str):
     for count, term in enumerate(remainders):
+        #TODO let user pick how often to check in
         if count % 1 == 0:
             print("term " + str(count) + ": " + term)
         gate_residue = reduce_rlrh(aag, term)
