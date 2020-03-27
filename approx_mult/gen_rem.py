@@ -85,7 +85,7 @@ def create_coefficient(num_outputs):
         outputs = sample(powers_of_2, num_outputs)
 
     coefficient = ""
-    for output in outputs:
+    for output in sorted(outputs):
         coefficient = add(coefficient, output)
     return "(" + coefficient + ")"
 
@@ -94,6 +94,7 @@ def create_coefficient(num_outputs):
 NOTE: total_num = num_outputs * (2^num_inputs-1)
 """
 #TODO comment
+#TODO skip remainders that have been checked already
 def generate_random_remainders(inputs, num, num_outputs):
     count = 0
     #itrs is a safety valve, and will ensure this doesn't run forever
@@ -116,6 +117,10 @@ def generate_random_remainders(inputs, num, num_outputs):
             count += 1
             remainders.add(remainder)
         itrs += 1
+
+    if itrs >= 2*num:
+        print("max iteration reached")
+        print("generating " + str(count) + " remainders")
     return list(remainders)
 
 
@@ -138,12 +143,27 @@ for rem in remainders:
 print(len(remainders))
 """
 
-temp_dir_str = aag.file_name + '_remainders'
+temp_dir_str = aag.file_name + '_' + str(args.num_outputs) + 'out_remainders'
 temp_dir = Path(temp_dir_str)
 temp_dir.mkdir(exist_ok = True)
 with cd(temp_dir_str):
+    rectifiables = set()
+    try:
+        with open("rectifiables.txt", "r") as f:
+            rectifiables = set(f.readlines())
+    except FileNotFoundError:
+        pass
+
     for count, term in enumerate(remainders):
         #TODO let user pick how often to check in
-        if count % 10 == 0:
-            print("term " + str(count) + ": " + term)
-        gate_residue = reduce_rlrh(aag, term)
+        if count % 25 == 0:
+            print("term " + str(count) + ": " + clean_remainder(term))
+        rectifiables.update([str(tup) for tup in reduce_rlrh(aag, term)])
+
+    with open("rectifiables.txt", "w") as f:
+        for line in rectifiables:
+            f.write(line + "\n")
+    
+
+
+

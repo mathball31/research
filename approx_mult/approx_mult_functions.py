@@ -165,21 +165,36 @@ def rlrh(aag, gate, remainder, bit):
     return remainder, J0, ring
 
     
+#TODO
+def clean_remainder(remainder):
+    cleaned_remainder = re.sub('[\(\) ]', '', remainder)
+    cleaned_remainder = re.sub('1-', '-', cleaned_remainder)
+    cleaned_remainder = re.sub('\*', '.', cleaned_remainder)
+    cleaned_remainder = cleaned_remainder.replace("number", "")
+    return cleaned_remainder
+
 
 
 # pick gate
 #TODO comment
 def reduce_rlrh(aag, remainder):
     #TODO pull this into a function
-    cleaned_remainder = re.sub('[\(\) ]', '', remainder)
-    cleaned_remainder = re.sub('1-', '-', cleaned_remainder)
-    cleaned_remainder = re.sub('\*', '.', cleaned_remainder)
-    cleaned_remainder = cleaned_remainder.replace("number", "")
+    cleaned_remainder = clean_remainder(remainder)
+
     msg( cleaned_remainder)
     temp_dir_str = aag.file_name + '_' + cleaned_remainder
     temp_dir = Path(temp_dir_str)
+    #TODO do this at remainder creations step instead
+    #TODO clean this up
+    #TODOTODO write in rectifiables each time before turning this on
+    """
+    if temp_dir.is_dir():
+        print("duplicate remainder skipped")
+        return []
+        """
     temp_dir.mkdir(exist_ok = True)
     gate_residues = {}
+    rectifiables = []
     with cd(temp_dir_str):
         for gate in aag.gates:
             """ TODO
@@ -224,6 +239,7 @@ def reduce_rlrh(aag, remainder):
             residue = process.stdout
             if residue.strip() == "0":
                 print("0 remainder for remainder: " + cleaned_remainder + ", \agate: " + gate.strip())
+                rectifiables.append((cleaned_remainder, gate.strip()))
             msg("residue: " + residue)
             gate_residues[gate.strip()] = residue.strip()
 
@@ -232,4 +248,4 @@ def reduce_rlrh(aag, remainder):
         with open(csv_file_name, 'w') as f:
             w = csv.writer(f)
             w.writerows(gate_residues.items())
-    return gate_residues
+    return rectifiables
