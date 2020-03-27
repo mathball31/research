@@ -5,6 +5,7 @@ from pathlib import Path
 import argparse
 from itertools import chain, combinations
 from random import randrange, choice, sample
+import ast
 
 parser = argparse.ArgumentParser()
 parser.add_argument('input_file_name', help='.aag representing input circuit')
@@ -95,10 +96,11 @@ NOTE: total_num = num_outputs * (2^num_inputs-1)
 """
 #TODO comment
 #TODO skip remainders that have been checked already
-def generate_random_remainders(inputs, num, num_outputs):
+def generate_random_remainders(inputs, num, num_outputs, tried_remainders):
     count = 0
     #itrs is a safety valve, and will ensure this doesn't run forever
     itrs = 0
+    
     remainders = set()
     while count < num and itrs < 2*num:
         #pick a random output
@@ -113,8 +115,9 @@ def generate_random_remainders(inputs, num, num_outputs):
             elif test == 2:
                 remainder = concat(remainder, invert_term(term))
         #ensure that remainder is new and contains inputs
-        if remainder not in remainders and test_sum != 0:
+        if clean_remainder(remainder) not in tried_remainders and test_sum != 0:
             count += 1
+            tried_remainders.add(clean_remainder(remainder))
             remainders.add(remainder)
         itrs += 1
 
@@ -124,45 +127,60 @@ def generate_random_remainders(inputs, num, num_outputs):
     return list(remainders)
 
 
-remainders = []
-max_num = aag.num_outputs * (3** aag.num_inputs - 1)
-"""
-TODO fix generate_all_remainders so it can handle multiple outputs
-if args.num_remainders > max_num:
-    print("you requested more remainders than can exist for this circuit. generating all " 
-            + str(max_num) + " remainders")
-if args.num_remainders >= max_num:
-    remainders = generate_all_remainders(inputs)
-else:
-    """
-remainders = generate_random_remainders(inputs, args.num_remainders, args.num_outputs)
-
-"""
-for rem in remainders:
-    print(rem)
-print(len(remainders))
-"""
-
 temp_dir_str = aag.file_name + '_' + str(args.num_outputs) + 'out_remainders'
 temp_dir = Path(temp_dir_str)
 temp_dir.mkdir(exist_ok = True)
-with cd(temp_dir_str):
+with cd(temp_dir_str, False):
+
+    remainders = []
+    max_num = aag.num_outputs * (3** aag.num_inputs - 1)
+    """
+    TODO fix generate_all_remainders so it can handle multiple outputs
+    if args.num_remainders > max_num:
+        print("you requested more remainders than can exist for this circuit. generating all " 
+                + str(max_num) + " remainders")
+    if args.num_remainders >= max_num:
+        remainders = generate_all_remainders(inputs)
+    else:
+        """
     rectifiables = set()
+    unrectifiables = set()
     try:
         with open("rectifiables.txt", "r") as f:
             rectifiables = set(f.readlines())
     except FileNotFoundError:
         pass
+    try:
+        with open("unrectifiables.txt", "r") as f:
+            unrectifiables = set(f.readlines())
+    except FileNotFoundError:
+        pass
+    tried_remainders = {ast.literal_eval(tup_string)[0] for tup_string in rectifiables}
+    tried_remainders.update([string.strip() for string in unrectifiables])
+    remainders = generate_random_remainders(inputs, args.num_remainders, args.num_outputs, tried_remainders)
+
+    """
+    for rem in remainders:
+        print(rem)
+    print(len(remainders))
+    """
+
 
     for count, term in enumerate(remainders):
         #TODO let user pick how often to check in
-        if count % 25 == 0:
+        if count % 1 == 0:
             print("term " + str(count) + ": " + clean_remainder(term))
-        rectifiables.update([str(tup) for tup in reduce_rlrh(aag, term)])
+        rectifiable_gates = reduce_rlrh(aag, term)
+        if len(rectifiable_gates) == 0:
+            unrectifiables.add(clean_remainder(term))
+        rectifiables.update([str(tup) for tup in rectifiable_gates])
 
     with open("rectifiables.txt", "w") as f:
-        for line in rectifiables:
-            f.write(line + "\n")
+        for line in sorted(rectifiables):
+            f.write(line.strip() + "\n")
+    with open("unrectifiables.txt", "w") as f:
+        for line in sorted(unrectifiables):
+            f.write(line.strip() + "\n")
     
 
 

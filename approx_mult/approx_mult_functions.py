@@ -4,10 +4,13 @@ from contextlib import contextmanager
 import os
 import re
 import csv
+import shutil
 
 
+#TODO make these be flags
 verbose = False
 ignore_errors = True
+delete_temp_dirs = True
 def msg(string):
     if verbose:
         print(string)
@@ -65,13 +68,15 @@ def build_xor(aag, minterm_product, old_output):
 
 #TODO comment
 @contextmanager
-def cd(newdir):
+def cd(newdir, delete_temp_dir=delete_temp_dirs):
     prevdir = os.getcwd()
     os.chdir(os.path.expanduser(newdir))
     try:
         yield
     finally:
         os.chdir(prevdir)
+        if delete_temp_dir:
+            shutil.rmtree(newdir)
 
 """
 #TODO update comment
