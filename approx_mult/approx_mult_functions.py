@@ -66,7 +66,10 @@ def build_xor(aag, minterm_product, old_output):
     return ([a1_gate, a2_gate, a3_gate], str(a3 + 1))
 
 
-#TODO comment
+"""
+change directories to newdir. Do future file interactions from that directory for rest of indent block
+optionally delete the new directory after work is finished.
+"""
 @contextmanager
 def cd(newdir, delete_temp_dir=delete_temp_dirs):
     prevdir = os.getcwd()
@@ -79,7 +82,7 @@ def cd(newdir, delete_temp_dir=delete_temp_dirs):
             shutil.rmtree(newdir)
 
 """
-#TODO update comment
+aag: aag to run tests against
 gate: string, the gate that should be set to bit
 bit: int {0, 1}, value that gate should be set to
 ---returns---
@@ -116,7 +119,6 @@ def rlrh(aag, gate, remainder, bit):
     #convert to aig
     aigtoaig = ["aigtoaig", aag_name, aig_name]
     subprocess.run(aigtoaig)
-    #TODO optionally delete aag
 
     #convert to sing
     aigmultopoly = ["aigmultopoly", aig_name, sing_name, "--non-incremental", "--singular", "-b"]
@@ -170,7 +172,9 @@ def rlrh(aag, gate, remainder, bit):
     return remainder, J0, ring
 
     
-#TODO
+"""
+convert a remainder written singular style to something easier to work with
+"""
 def clean_remainder(remainder):
     cleaned_remainder = re.sub('[\(\) ]', '', remainder)
     cleaned_remainder = re.sub('1-', '-', cleaned_remainder)
@@ -181,17 +185,18 @@ def clean_remainder(remainder):
 
 
 # pick gate
-#TODO comment
+#TODO save files between each remiander/between batches, instead of just at the end
+"""
+perform a rectificiton check to find single fix rectifiable nets.
+The test attempts to modify aag to match aag+remainder
+"""
 def reduce_rlrh(aag, remainder):
-    #TODO pull this into a function
     cleaned_remainder = clean_remainder(remainder)
 
     msg( cleaned_remainder)
     temp_dir_str = aag.file_name + '_' + cleaned_remainder
     temp_dir = Path(temp_dir_str)
-    #TODO do this at remainder creations step instead
-    #TODO clean this up
-    #TODOTODO write in rectifiables each time before turning this on
+    #TODO write in rectifiables each time before turning this on
     """
     if temp_dir.is_dir():
         print("duplicate remainder skipped")
@@ -202,18 +207,6 @@ def reduce_rlrh(aag, remainder):
     rectifiables = []
     with cd(temp_dir_str):
         for gate in aag.gates:
-            """ TODO
-            x change to x 0 0
-                x convert to aig
-                x convert to sing
-                x change sing spec
-                x run singular
-            x change to x 1 1
-                x repeat above
-            x store remainders
-            x find J0
-            x reduce rL*rH by J0
-            """
             (rL, J0L, ringL) = rlrh(aag, gate, remainder, 0)
             (rH, J0H, ringH) = rlrh(aag, gate, remainder, 1)
             if J0L != J0H:

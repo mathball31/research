@@ -24,18 +24,6 @@ where:
 NOTE: This was devolped with python version 3.7.6. It will probably work for any 3.7.x, but will 
 *NOT* work for an version less than 3.7.
 
-TODO
-x take multiplier aag, 
-    x change a gate to `x 0 0`
-        x run through aigtoaig to get .aig (this fixes some weird issues)
-        x run through aigmultopoly to get .sing
-        x modify spec to match approx
-        x run through Singular to get remainder
-        x repeat above but with `x 1 1`
-    x repeat above with other gates
-    . store remainders
-    x reduce rL*rH by J0
-        x find J0
 
 """
 

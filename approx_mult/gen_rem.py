@@ -1,4 +1,10 @@
-#TODO comment
+"""
+This is the main file.
+
+This generates remainders for a given circuit, then runs rectification checks of the circuit against the circuit
+with the remainder.
+
+"""
 from aag import *
 from approx_mult_functions import *
 from pathlib import Path
@@ -22,28 +28,38 @@ for idx in range(aag.num_inputs//2):
     inputs.append("b(" + str(idx) + ")")
 
 
-#TODO comment
+"""
+invert an algebraic term
+"""
 def invert_term(term):
     return "(1-" + term + ")"
 
-#TODO comment
+"""
+multiply two algebraic terms
+"""
 def concat(left, right):
     if left == "":
         return right
     return left + " * " + right
 
-#TODO comment
+"""
+add two algebraic terms
+"""
 def add(left, right):
     if left == "":
         return right
     return left + " + " + right
 
 
-#TODO comment
+"""
+generate the powerset of a given list
+"""
 def powerset(input_list):
     return list(chain.from_iterable(combinations(input_list,r) for r in range(1, len(input_list) + 1)))
 
-#TODO comment
+"""
+generate all possible minterms for the given inputs
+"""
 def generate_all_minterms(inputs):
     pow_set = powerset(inputs)
 
@@ -64,8 +80,9 @@ powers_of_2 = []
 for idx in range(aag.num_outputs):
     powers_of_2.append("number(2)^" + str(idx))
 
-#TODO comment
-# this only does single output changes
+"""
+generate all possible one output remainders for the given inputs
+"""
 def generate_all_remainders(inputs):
     powers_of_2 = []
     for idx in range(aag.num_outputs):
@@ -77,7 +94,9 @@ def generate_all_remainders(inputs):
             remainders.append(concat(power, term))
     return remainders
 
-#TODO comment
+"""
+generate a random coefficient for an arithmetic circuit with the given number of outputs
+"""
 def create_coefficient(num_outputs):
     outputs = []
     if num_outputs < len(powers_of_2)/2:
@@ -92,10 +111,13 @@ def create_coefficient(num_outputs):
 
 
 """
+Generate `num` random remainders for a given list of `inputs`.
+These can have any number of outputs, determined by create_coefficient
+
+Skips remainders that have been previously tried
+
 NOTE: total_num = num_outputs * (2^num_inputs-1)
 """
-#TODO comment
-#TODO skip remainders that have been checked already
 def generate_random_remainders(inputs, num, num_outputs, tried_remainders):
     count = 0
     #itrs is a safety valve, and will ensure this doesn't run forever
@@ -134,15 +156,6 @@ with cd(temp_dir_str, False):
 
     remainders = []
     max_num = aag.num_outputs * (3** aag.num_inputs - 1)
-    """
-    TODO fix generate_all_remainders so it can handle multiple outputs
-    if args.num_remainders > max_num:
-        print("you requested more remainders than can exist for this circuit. generating all " 
-                + str(max_num) + " remainders")
-    if args.num_remainders >= max_num:
-        remainders = generate_all_remainders(inputs)
-    else:
-        """
     rectifiables = set()
     unrectifiables = set()
     try:

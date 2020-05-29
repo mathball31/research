@@ -7,14 +7,14 @@ class AAG:
         self.file_name, file_ext = os.path.splitext(full_name)
 
         self.header = [int(string) for string in self.lines[0].split()[1:] ]
-        #TODO
+        # parse aag header
         self.max_idx = self.header[0]
         self.num_inputs = self.header[1]
         self.num_latches = self.header[2]
         self.num_outputs = self.header[3]
         self.num_ands = self.header[4]
-        self.num_lines = self.num_inputs + self.num_latches + self.num_outputs + self.num_ands
 
+        self.num_lines = self.num_inputs + self.num_latches + self.num_outputs + self.num_ands
         self.start_ands = self.num_inputs + self.num_latches + self.num_outputs + 1
         self.gates = self.lines[self.start_ands: self.start_ands + self.num_ands]
         self.start_of_outputs = self.num_inputs + self.num_latches + 1
